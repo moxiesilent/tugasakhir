@@ -40,7 +40,7 @@ class SuratController extends Controller
         $data = new Surat();
         $data->jenis_surat = $request->get('jenissurat');
         $data->save();
-        return back()->with('status','data baru telah ditambahkan');
+        return redirect()->route('surats.index')->with('status','data baru telah ditambahkan');
     }
 
     /**
@@ -62,7 +62,8 @@ class SuratController extends Controller
      */
     public function edit(Surat $surat)
     {
-        //
+        $data = $surat;
+        return view("surat.edit",compact('data'));
     }
 
     /**
@@ -74,7 +75,15 @@ class SuratController extends Controller
      */
     public function update(Request $request, Surat $surat)
     {
-        //
+        try{
+            $surat->jenis_surat = $request->get('jenissurat');
+            $surat->save();
+            return redirect()->route('surats.index')->with('status','data surat berhasil diubah');     
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal mengubah data.";
+            return redirect()->route('surats.index')->with('error', $msg);
+        }
     }
 
     /**
@@ -85,6 +94,13 @@ class SuratController extends Controller
      */
     public function destroy(Surat $surat)
     {
-        //
+        try{
+            $surat->delete();
+            return redirect()->route('surats.index')->with('status','data surat berhasil dihapus');       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('surats.index')->with('error', $msg);
+        }
     }
 }

@@ -37,7 +37,10 @@ class BentukhargaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Bentukharga();
+        $data->bentuk_harga = $request->get('bentukharga');
+        $data->save();
+        return redirect()->route('bentukhargas.index')->with('status','data baru telah ditambahkan');
     }
 
     /**

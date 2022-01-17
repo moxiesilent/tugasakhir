@@ -15,8 +15,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/dt-global_style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
     <link href="{{asset('assets/css/apps/invoice-list.css')}}" rel="stylesheet" type="text/css" />
-    <link href="cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"/>
-    <link href="cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"/>
+    <link href="{{asset('cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css')}}"/>
+    <link href="{{asset('cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"/>
     <script src="https://unpkg.com/feather-icons"></script>
     <!-- END GLOBAL MANDATORY STYLES -->
     
@@ -47,7 +47,7 @@
             <ul class="navbar-nav theme-brand flex-row  text-center">
                 <li class="nav-item theme-logo">
                     <a href="index.html">
-                        <img src="assets/img/90x90.jpg" class="navbar-logo" alt="logo">
+                        <img src="{{asset('assets/img/90x90.jpg')}}" class="navbar-logo" alt="logo">
                     </a>
                 </li>
                 <li class="nav-item theme-text">
@@ -66,7 +66,7 @@
                     <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                         <div class="user-profile-section">
                             <div class="media mx-auto">
-                                <img src="assets/img/90x90.jpg" class="img-fluid mr-2" alt="avatar">
+                                <img src="{{asset('assets/img/90x90.jpg')}}" class="img-fluid mr-2" alt="avatar">
                                 <div class="media-body">
                                     <h5>John Doe</h5>
                                     <p>Admin</p>
@@ -113,7 +113,7 @@
                 <div class="profile-info">
                     <figure class="user-cover-image"></figure>
                     <div class="user-info">
-                        <img src="assets/img/90x90.jpg" alt="avatar">
+                        <img src="{{asset('assets/img/90x90.jpg')}}" alt="avatar">
                         <h6 class="">John Doe</h6>
                         <p class="">Admin</p>
                     </div>

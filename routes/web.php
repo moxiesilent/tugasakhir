@@ -26,15 +26,21 @@ Route::get('/', function () {
 });
 
 Route::resource('surats',SuratController::class);
+Route::resource('tipepropertis',TipepropertiController::class);
+Route::resource('primarys',PrimaryController::class);
+Route::resource('lantais',LantaiController::class);
+Route::resource('calonpembelis',CalonpembeliController::class);
+Route::resource('bentukhargas',BentukhargaController::class);
+Route::resource('agens',AgenController::class);
 
-Route::get('/surat', [ SuratController::class, "index" ]);
-Route::get('/bentukharga', [ BentukhargaController::class, "index" ]);
-Route::get('/lantai', [ LantaiController::class, "index" ]);
-Route::get('/tipeproperti', [ TipepropertiController::class, "index" ]);
-Route::get('/calonpembeli', [ CalonpembeliController::class, "index" ]);
-Route::get('/primary', [ PrimaryController::class, "index" ]);
-Route::get('/agen', [ AgenController::class, "index" ]);
-Route::get('/reminder', [ ReminderController::class, "index" ]);
+Route::get('/surat', [ SuratController::class, "index" ])->name('surat');
+Route::get('/bentukharga', [ BentukhargaController::class, "index" ])->name('bentukharga');
+Route::get('/lantai', [ LantaiController::class, "index" ])->name('lantai');
+Route::get('/tipeproperti', [ TipepropertiController::class, "index" ])->name('tipeproperti');
+Route::get('/calonpembeli', [ CalonpembeliController::class, "index" ])->name('calonpembeli');
+Route::get('/primary', [ PrimaryController::class, "index" ])->name('primary');
+Route::get('/agen', [ AgenController::class, "index" ])->name('agen');
+Route::get('/reminder', [ ReminderController::class, "index" ])->name('reminder');
 
 Auth::routes();
 

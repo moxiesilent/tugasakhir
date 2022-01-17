@@ -59,7 +59,8 @@ class PrimaryController extends Controller
      */
     public function edit(Primary $primary)
     {
-        //
+        $data = $primary;
+        return view("primary.edit",compact('data'));
     }
 
     /**

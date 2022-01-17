@@ -37,7 +37,10 @@ class LantaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Lantai();
+        $data->nama = $request->get('jenislantai');
+        $data->save();
+        return redirect()->route('lantais.index')->with('status','data baru telah ditambahkan');
     }
 
     /**
@@ -59,7 +62,8 @@ class LantaiController extends Controller
      */
     public function edit(Lantai $lantai)
     {
-        //
+        $data = $lantai;
+        return view("lantai.edit",compact('data'));
     }
 
     /**
@@ -71,7 +75,15 @@ class LantaiController extends Controller
      */
     public function update(Request $request, Lantai $lantai)
     {
-        //
+        try{
+            $lantai->nama = $request->get('jenislantai');
+            $lantai->save();
+            return redirect()->route('lantais.index')->with('status','data lantai berhasil diubah');     
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal mengubah data.";
+            return redirect()->route('lantais.index')->with('error', $msg);
+        }
     }
 
     /**
@@ -82,6 +94,13 @@ class LantaiController extends Controller
      */
     public function destroy(Lantai $lantai)
     {
-        //
+        try{
+            $lantai->delete();
+            return redirect()->route('lantais.index')->with('status','data lantai berhasil dihapus');       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('lantais.index')->with('error', $msg);
+        }
     }
 }
