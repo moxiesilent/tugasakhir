@@ -42,10 +42,10 @@
             <li>
                 <a href="{{url('tipeproperti')}}"> Tipe Properti </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="{{url('surat')}}"> Surat </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="{{url('bentukharga')}}"> Bentuk Harga </a>
             </li>
             <li>
@@ -91,18 +91,18 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
-                <form method="post" action="{{url('surats/'.$data->idjenis_surat)}}">
+                <form method="post" action="{{url('bentukhargas/'.$data->idbentuk_harga)}}">
                     @csrf
                     @method('PUT')
                     <div class="">
                         <div class="">
                             <div class="form-group">
-                                <label for="jenissurat">Jenis Surat</label>
-                                <input id="jenissurat" type="text" name="jenissurat" value="{{$data->jenis_surat}}" class="form-control" required>
+                                <label for="bentukharga">Jenis Lantai</label>
+                                <input id="bentukharga" type="text" name="bentukharga" value="{{$data->bentuk_harga}}" class="form-control" required>
                             </div>
                         </div>                                        
                     </div>
-                    <a href="{{url('surats')}}" class="btn btn-secondary-light"> Kembali</a>
+                    <a href="{{url('bentukhargas')}}" class="btn btn-secondary-light"> Kembali</a>
                     <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
                 </form>
                 </div>

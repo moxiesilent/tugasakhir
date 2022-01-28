@@ -33,12 +33,20 @@ Route::resource('calonpembelis',CalonpembeliController::class);
 Route::resource('bentukhargas',BentukhargaController::class);
 Route::resource('agens',AgenController::class);
 
+Route::post('/hapussurat', [ SuratController::class, "hapussurat" ])->name('hapussurat');
+Route::post('/hapustipeproperti', [ TipepropertiController::class, "hapustipeproperti" ])->name('hapustipeproperti');
+Route::post('/hapusprimary', [ PrimaryController::class, "hapusprimary" ])->name('hapusprimary');
+Route::post('/hapusbentukharga', [ BentukhargaController::class, "hapusbentukharga" ])->name('hapusbentukharga');
+Route::post('/hapuslantai', [ LantaiController::class, "hapuslantai" ])->name('hapuslantai');
+Route::post('/hapusagen', [ AgenController::class, "hapusagen" ])->name('hapusagen');
+
 Route::get('/surat', [ SuratController::class, "index" ])->name('surat');
 Route::get('/bentukharga', [ BentukhargaController::class, "index" ])->name('bentukharga');
 Route::get('/lantai', [ LantaiController::class, "index" ])->name('lantai');
 Route::get('/tipeproperti', [ TipepropertiController::class, "index" ])->name('tipeproperti');
 Route::get('/calonpembeli', [ CalonpembeliController::class, "index" ])->name('calonpembeli');
 Route::get('/primary', [ PrimaryController::class, "index" ])->name('primary');
+Route::get('/primary/{id}', [ PrimaryController::class, "show" ]);
 Route::get('/agen', [ AgenController::class, "index" ])->name('agen');
 Route::get('/reminder', [ ReminderController::class, "index" ])->name('reminder');
 

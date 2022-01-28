@@ -62,7 +62,8 @@ class BentukhargaController extends Controller
      */
     public function edit(Bentukharga $bentukharga)
     {
-        //
+        $data = $bentukharga;
+        return view("bentukharga.edit",compact('data'));
     }
 
     /**
@@ -74,7 +75,15 @@ class BentukhargaController extends Controller
      */
     public function update(Request $request, Bentukharga $bentukharga)
     {
-        //
+        try{
+            $bentukharga->bentuk_harga = $request->get('bentukharga');
+            $bentukharga->save();
+            return redirect()->route('bentukhargas.index')->with('status','data berhasil diubah');     
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal mengubah data.";
+            return redirect()->route('bentukhargas.index')->with('error', $msg);
+        }
     }
 
     /**
@@ -85,6 +94,26 @@ class BentukhargaController extends Controller
      */
     public function destroy(Bentukharga $bentukharga)
     {
-        //
+        try{
+            $bentukharga->delete();
+            return redirect()->route('bentukhargas.index')->with('status','data berhasil dihapus');       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('bentukhargas.index')->with('error', $msg);
+        }
+    }
+
+    public function hapusbentukharga(Request $request)
+    {
+        try{
+            $bentukharga = Bentukharga::find($request->id);
+            $bentukharga->delete();
+            return redirect()->route('bentukhargas.index')->with('status','data berhasil dihapus');       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('bentukhargas.index')->with('error', $msg);
+        }
     }
 }

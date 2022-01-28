@@ -94,7 +94,13 @@ class SuratController extends Controller
      */
     public function destroy(Surat $surat)
     {
+        
+    }
+
+    public function hapussurat(Request $request)
+    {
         try{
+            $surat = Surat::find($request->id);
             $surat->delete();
             return redirect()->route('surats.index')->with('status','data surat berhasil dihapus');       
         }

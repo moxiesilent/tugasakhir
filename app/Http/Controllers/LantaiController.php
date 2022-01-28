@@ -103,4 +103,17 @@ class LantaiController extends Controller
             return redirect()->route('lantais.index')->with('error', $msg);
         }
     }
+
+    public function hapuslantai(Request $request)
+    {
+        try{
+            $lantai = Lantai::find($request->id);
+            $lantai->delete();
+            return redirect()->route('lantais.index')->with('status','data berhasil dihapus');       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('lantais.index')->with('error', $msg);
+        }
+    }
 }

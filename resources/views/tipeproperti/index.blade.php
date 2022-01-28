@@ -125,12 +125,8 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a class="dropdown-item btn btn-primary btn-sm" href="{{url('tipepropertis/'.$d->idtipeproperti.'/edit')}}">&nbsp&nbsp&nbspUbah</a>
-                                            <form method="post" action="{{url('tipepropertis/'.$d->idtipeproperti)}}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input class="dropdown-item btn btn-danger btn-sm" type="submit" value="Hapus">
-                                            </form>
+                                            <a href="{{url('tipepropertis/'.$d->idtipe_properti.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
+                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idtipe_properti}}')">&nbsp&nbsp&nbspHapus</button>
                                         </div>
                                     </div>
                                 </td>
@@ -179,5 +175,45 @@
 $(document).ready( function () {
     $('#myTable').DataTable();
 } );
+</script>
+<script>
+    function hapus(token,id){
+        swal({
+        title: "Yakin Ingin Menghapus Data? ",
+        text: "Data yang ada akan hilang sepenuhnya",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#FF5722",
+        confirmButtonText: "Ya, Hapus!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+        closeOnCancel: true,
+        showLoaderOnConfirm: true
+    }).then(function (result) {
+        if (result.value) {
+            var url = '/hapustipeproperti';
+            $.post(url, {
+
+                _token: token,
+                id:id,
+                },
+            function (data) {
+                swal(
+                'Berhasil!',
+                'Data berhasil dihapus.',
+                'success'
+                ).then(function () {
+                    location.reload();
+                })
+            });
+        } else if(result.dismiss) {
+            swal(
+                'Hapus Data Dibatalkan!',
+                '',
+                'error'
+            )
+        }
+    })
+}
 </script>
 @endsection

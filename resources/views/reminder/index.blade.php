@@ -106,6 +106,10 @@
                     <strong>Error!</strong> {{session('error')}}</button>
                 </div>
                 @endif
+                @if(count($data) == 0)
+                <br>
+                <h4 class="text-center">Data tidak ditemukan</h4>
+                @else
                     <table id="myTable" class="table table-striped" style="width:100%; ">
                         <thead>
                             <tr>
@@ -141,7 +145,7 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                @endif
                 </div>
             </div>
         </div>
@@ -154,5 +158,52 @@
 $(document).ready( function () {
     $('#myTable').DataTable();
 } );
+</script>
+
+<script>
+    function hapus(token,id){
+        swal({
+        title: "Yakin Ingin Menghapus Data? ",
+        text: "Data yang ada akan hilang sepenuhnya",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#FF5722",
+        confirmButtonText: "Ya, Hapus!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+        closeOnCancel: true,
+        showLoaderOnConfirm: true
+    }).then(function (result) {
+        if (result.value) {
+            var act = '/hapussurat';
+            $.post(act, {
+
+                _token: token,
+                id:id,
+                },
+            function (data) {
+                swal(
+                'Berhasil!',
+                'Data berhasil dihapus.',
+                'success'
+                ).then(function () {
+                    location.reload();
+                })
+            });
+        } else if(result.dismiss) {
+            swal(
+                'Hapus Data Dibatalkan!',
+                '',
+                'error'
+                )
+        }
+        
+
+    }, function (dismiss) {
+        if (dismiss === 'cancel') {
+            
+        }
+    })
+}
 </script>
 @endsection

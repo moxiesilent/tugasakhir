@@ -62,7 +62,8 @@ class TipepropertiController extends Controller
      */
     public function edit(Tipeproperti $tipeproperti)
     {
-        //
+        $data = $tipeproperti;
+        return view("tipeproperti.edit",compact('data'));
     }
 
     /**
@@ -74,7 +75,15 @@ class TipepropertiController extends Controller
      */
     public function update(Request $request, Tipeproperti $tipeproperti)
     {
-        //
+        try{
+            $tipeproperti->jenis_properti = $request->get('jenisproperti');
+            $tipeproperti->save();
+            return redirect()->route('tipepropertis.index')->with('status','data berhasil diubah');     
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal mengubah data.";
+            return redirect()->route('tipepropertis.index')->with('error', $msg);
+        }
     }
 
     /**
@@ -85,6 +94,18 @@ class TipepropertiController extends Controller
      */
     public function destroy(Tipeproperti $tipeproperti)
     {
-        //
+        
+    }
+
+    public function hapustipeproperti(Request $request){
+        try{
+            $tipeproperti = Tipeproperti::find($request->id);
+            $tipeproperti->delete();
+            return redirect()->route('tipe$tipepropertis.index')->with('status','data berhasil dihapus');       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('tipe$tipepropertis.index')->with('error', $msg);
+        }
     }
 }

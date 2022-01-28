@@ -92,7 +92,7 @@
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
                 <div class="" style="margin-bottom:20px;">
-                    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah">Tambah Baru</button>
+                    <a href="{{url('primarys/create')}}" class="btn btn-primary mb-2">Tambah Baru</a>
                 </div>
                 @if(session('status'))
                 <div class="alert alert-light-success border-0 mb-4" role="alert">
@@ -113,6 +113,7 @@
                                 <th>Nama Project</th>
                                 <th>Developer</th>
                                 <th>BLT</th>
+                                <th>Gambar</th>
                                 <th width="50px">Action</th>
                             </tr>
                         </thead>
@@ -122,20 +123,17 @@
                                 <td>{{$d->idprimary}}</td>
                                 <td>{{$d->nama_project}}</td>
                                 <td>{{$d->developer}}</td>
-                                <td>{{$d->blt}}</td>
+                                <td class="text-right">{{$d->blt}}</td>
+                                <td><img src="{{asset('images/primary/'.$d->foto)}}" height='100px'/></td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a class="dropdown-item btn btn-primary btn-sm" href="{{url('primarys/'.$d->idprimary.'/detail')}}">&nbsp&nbsp&nbspDetail</a>
-                                            <a class="dropdown-item btn btn-primary btn-sm" href="{{url('primarys/'.$d->idprimary.'/edit')}}">&nbsp&nbsp&nbspUbah</a>
-                                            <form method="post" action="{{url('primarys/'.$d->idprimary)}}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input class="dropdown-item btn btn-danger btn-sm" type="submit" value="Hapus">
-                                            </form>
+                                            <a href="{{url('primarys/'.$d->idprimary)}}"><button class="dropdown-item btn btn-primary">&nbsp&nbsp&nbspDetail</button></a><br>
+                                            <a href="{{url('primarys/'.$d->idprimary.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
+                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idprimary}}')">&nbsp&nbsp&nbspHapus</button>
                                         </div>
                                     </div>
                                 </td>
@@ -150,65 +148,6 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <form method="post" action="{{url('primarys')}}">
-            @csrf
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Primary</h5>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-6 col-12 mx-auto">
-                        <div class="form-group">
-                            <label for="project">Nama Primary Project</label>
-                            <input id="project" type="text" name="project" placeholder="Primary project..." class="form-control" required>
-                        </div>
-                    </div>                                        
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12 mx-auto">
-                        <div class="form-group">
-                            <label for="developer">Developer</label>
-                            <input id="developer" type="text" name="developer" placeholder="Developer..." class="form-control" required>
-                        </div>
-                    </div>                                        
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12 mx-auto">
-                        <div class="form-group">
-                            <label for="blt">BLT</label>
-                            <input id="blt" type="text" name="blt" placeholder="Jumlah BLT(angka)" class="form-control" required>
-                        </div>
-                    </div>                                        
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12 mx-auto">
-                        <div class="form-group">
-                            <label for="komisi">Komisi (%)</label>
-                            <input id="komisi" type="text" name="komisi" placeholder="(dalam persen)" class="form-control" required>
-                        </div>
-                    </div>                                        
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12 mx-auto">
-                        <div class="form-group">
-                            <label for="keterangan">Keterangan</label>
-                            <input id="keterangan" type="text" name="keterangan" placeholder="Keterangan..." class="form-control" required>
-                        </div>
-                    </div>                                        
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Tutup</button>
-                <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
 @endsection
 
 @section('javascript')
@@ -216,5 +155,45 @@
 $(document).ready( function () {
     $('#myTable').DataTable();
 } );
+</script>
+<script>
+    function hapus(token,id){
+        swal({
+        title: "Yakin Ingin Menghapus Data? ",
+        text: "Data yang ada akan hilang sepenuhnya",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#FF5722",
+        confirmButtonText: "Ya, Hapus!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+        closeOnCancel: true,
+        showLoaderOnConfirm: true
+    }).then(function (result) {
+        if (result.value) {
+            var act = '/hapusprimary';
+            $.post(act, {
+
+                _token: token,
+                id:id,
+                },
+            function (data) {
+                swal(
+                'Berhasil!',
+                'Data berhasil dihapus.',
+                'success'
+                ).then(function () {
+                    location.reload();
+                })
+            });
+        } else if(result.dismiss) {
+            swal(
+                'Hapus Data Dibatalkan!',
+                '',
+                'error'
+            )
+        }
+    })
+}
 </script>
 @endsection

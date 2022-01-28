@@ -112,11 +112,3 @@
 </div>
 
 @endsection
-
-@section('javascript')
-<script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script>
-@endsection
