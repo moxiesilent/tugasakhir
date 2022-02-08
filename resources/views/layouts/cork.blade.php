@@ -10,7 +10,9 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/plugins.css')}}" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/elements/alert.css')}}">
+
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/datatables.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/dt-global_style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
@@ -19,12 +21,16 @@
     <link href="{{asset('cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js')}}"/>
     <link href="{{asset('assets/css/scrollspyNav.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('plugins/animate/animate.css')}}" rel="stylesheet" type="text/css" />
+
     <script src="{{asset('plugins/sweetalerts/promise-polyfill.js')}}"></script>
     <link href="{{asset('plugins/sweetalerts/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('plugins/sweetalerts/sweetalert.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/components/custom-sweetalert.css')}}" rel="stylesheet" type="text/css" />
     <script src="https://unpkg.com/feather-icons"></script>
+
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}">
 
     <link href="{{asset('plugins/flatpickr/flatpickr.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('plugins/noUiSlider/nouislider.min.css')}}" rel="stylesheet" type="text/css">

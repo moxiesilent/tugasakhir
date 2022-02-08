@@ -20,7 +20,7 @@
     </li>
 
     <li class="menu">
-        <a href="javascript:void(0);" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{url('listing')}}" aria-expanded="false" class="dropdown-toggle">
             <div class="">
                 <i data-feather="box"></i>
                 <span> Listing</span>
@@ -41,6 +41,9 @@
         <ul class="collapse submenu recent-submenu list-unstyled show" id="submenu" data-parent="#accordionExample">
             <li class="active">
                 <a href="{{url('tipeproperti')}}"> Tipe Properti </a>
+            </li>
+            <li class="">
+                <a href="{{url('tipeapartemen')}}"> Tipe Apartemen </a>
             </li>
             <li>
                 <a href="{{url('surat')}}"> Surat </a>

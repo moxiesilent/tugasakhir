@@ -39,16 +39,16 @@
             </div>
         </a>
         <ul class="collapse submenu recent-submenu list-unstyled show" id="submenu" data-parent="#accordionExample">
-            <li>
+            <li class="">
                 <a href="{{url('tipeproperti')}}"> Tipe Properti </a>
             </li>
-            <li class="">
+            <li class="active">
                 <a href="{{url('tipeapartemen')}}"> Tipe Apartemen </a>
             </li>
             <li>
                 <a href="{{url('surat')}}"> Surat </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="{{url('bentukharga')}}"> Bentuk Harga </a>
             </li>
             <li>
@@ -113,23 +113,23 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Bentuk Harga</th>
+                                <th>Jenis Properti</th>
                                 <th width="50px">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($data as $d)
                             <tr>
-                                <td>{{$d->idbentuk_harga}}</td>
-                                <td>{{$d->bentuk_harga}}</td>
+                                <td>{{$d->idtipe_properti}}</td>
+                                <td>{{$d->jenis_properti}}</td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('bentukhargas/'.$d->idbentuk_harga.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idbentuk_harga}}')">&nbsp&nbsp&nbspHapus</button>
+                                            <a href="{{url('tipepropertis/'.$d->idtipe_properti.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
+                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idtipe_properti}}')">&nbsp&nbsp&nbspHapus</button>
                                         </div>
                                     </div>
                                 </td>
@@ -148,17 +148,17 @@
 <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <form method="post" action="{{url('bentukhargas')}}">
+            <form method="post" action="{{url('tipeapartemens')}}">
             @csrf
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Bentuk Harga</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Tipe Properti</h5>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-6 col-12 mx-auto">
                         <div class="form-group">
-                            <label for="bentukharga">Bentuk Harga</label>
-                            <input id="bentukharga" type="text" name="bentukharga" placeholder="Bentuk harga..." class="form-control" required>
+                            <label for="tipeapartemen">Tipe Apartemen</label>
+                            <input id="tipeapartemen" type="text" name="tipeapartemen" placeholder="Tipe properti..." class="form-control" required>
                         </div>
                     </div>                                        
                 </div>
@@ -179,7 +179,6 @@ $(document).ready( function () {
     $('#myTable').DataTable();
 } );
 </script>
-
 <script>
     function hapus(token,id){
         swal({
@@ -195,7 +194,7 @@ $(document).ready( function () {
         showLoaderOnConfirm: true
     }).then(function (result) {
         if (result.value) {
-            var url = '/hapusbentukharga';
+            var url = '/hapustipeapartemen';
             $.post(url, {
 
                 _token: token,

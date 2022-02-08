@@ -19,8 +19,8 @@
         </a>
     </li>
 
-    <li class="menu">
-        <a href="{{url('listing')}}" aria-expanded="false" class="dropdown-toggle">
+    <li class="menu active">
+        <a href="{{url('listing')}}" aria-expanded="true" class="dropdown-toggle">
             <div class="">
                 <i data-feather="box"></i>
                 <span> Listing</span>
@@ -28,8 +28,8 @@
         </a>
     </li>
 
-    <li class="menu active">
-        <a href="#submenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+    <li class="menu">
+        <a href="#submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             <div class="">
                 <i data-feather="file"></i>
                 <span> Jenis</span>
@@ -48,10 +48,10 @@
             <li>
                 <a href="{{url('surat')}}"> Surat </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="{{url('bentukharga')}}"> Bentuk Harga </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="{{url('lantai')}}"> Lantai </a>
             </li>                           
         </ul>
@@ -95,7 +95,7 @@
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
                 <div class="" style="margin-bottom:20px;">
-                    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah">Tambah Baru</button>
+                    <a href="{{url('listings/create')}}" class="btn btn-primary mb-2">Tambah Baru</a>               
                 </div>
                 @if(session('status'))
                 <div class="alert alert-light-success border-0 mb-4" role="alert">
@@ -109,27 +109,44 @@
                     <strong>Error!</strong> {{session('error')}}</button>
                 </div>
                 @endif
-                    <table id="myTable" class="table table-striped" style="width:100%; ">
+                <div class="mb-3">
+                    <h4>Data Rumah</4>
+                </div>
+                <div class="mb-5">
+                    <table id="myTable" class="table table-striped" style="width: 100%; ">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Bentuk Harga</th>
-                                <th width="50px">Actions</th>
+                                <th>Kode Listing</th>
+                                <th>Agen</th>
+                                <th>Harga</th>
+                                <th>Komisi</th>
+                                <th>Daerah</th>
+                                <th>Status</th>
+                                <th>Status</th>
+                                <th>Status</th>
+                                <th>Status</th>
+                                <th>Status</th>
+                                <th>Status</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($data as $d)
                             <tr>
-                                <td>{{$d->idbentuk_harga}}</td>
-                                <td>{{$d->bentuk_harga}}</td>
+                                <td>{{$d->kode_listing}}</td>
+                                <td>{{$d->agen_idagen}}</td>
+                                <td>{{$d->harga}}</td>
+                                <td>{{$d->komisi}}</td>
+                                <td>{{$d->daerah_iddaerah}}</td>
+                                <td>{{$d->status}}</td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('bentukhargas/'.$d->idbentuk_harga.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idbentuk_harga}}')">&nbsp&nbsp&nbspHapus</button>
+                                            <a href="{{url('lantais/'.$d->idjenis_lantai.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
+                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idjenis_lantai}}')">&nbsp&nbsp&nbspHapus</button>
                                         </div>
                                     </div>
                                 </td>
@@ -137,7 +154,89 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                </div>
+                <div class="mb-3">
+                    <h4>Data Apartemen</4>
+                </div>
+                <div class="mb-5">
+                    <table id="myTable2" class="table table-striped" style="width: 100%; ">
+                        <thead>
+                            <tr>
+                                <th>Kode Listing</th>
+                                <th>Agen</th>
+                                <th>Harga</th>
+                                <th>Komisi</th>
+                                <th>Daerah</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($data as $d)
+                            <tr>
+                                <td>{{$d->kode_listing}}</td>
+                                <td>{{$d->agen_idagen}}</td>
+                                <td>{{$d->harga}}</td>
+                                <td>{{$d->komisi}}</td>
+                                <td>{{$d->daerah_iddaerah}}</td>
+                                <td>{{$d->status}}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                                            <a href="{{url('listings/'.$d->kode_listing.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
+                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->kode_listing}}')">&nbsp&nbsp&nbspHapus</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mb-3">
+                    <h4>Data Properti Lain</4>
+                </div>
+                <div class="mb-5">
+                    <table id="myTable3" class="table table-striped" style="width: 100%; ">
+                        <thead>
+                            <tr>
+                                <th>Kode Listing</th>
+                                <th>Agen</th>
+                                <th>Harga</th>
+                                <th>Komisi</th>
+                                <th>Daerah</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($data as $d)
+                            <tr>
+                                <td>{{$d->kode_listing}}</td>
+                                <td>{{$d->agen_idagen}}</td>
+                                <td>{{$d->harga}}</td>
+                                <td>{{$d->komisi}}</td>
+                                <td>{{$d->daerah_iddaerah}}</td>
+                                <td>{{$d->status}}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                                            <a href="{{url('lantais/'.$d->idjenis_lantai.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
+                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idjenis_lantai}}')">&nbsp&nbsp&nbspHapus</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
                 </div>
             </div>
         </div>
@@ -148,17 +247,17 @@
 <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <form method="post" action="{{url('bentukhargas')}}">
+            <form method="post" action="{{url('lantais')}}">
             @csrf
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Bentuk Harga</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Jenis Lantai</h5>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-6 col-12 mx-auto">
                         <div class="form-group">
-                            <label for="bentukharga">Bentuk Harga</label>
-                            <input id="bentukharga" type="text" name="bentukharga" placeholder="Bentuk harga..." class="form-control" required>
+                            <label for="jenislantai">Jenis Lantai</label>
+                            <input id="jenislantai" type="text" name="jenislantai" placeholder="Jenis lantai..." class="form-control" required>
                         </div>
                     </div>                                        
                 </div>
@@ -176,10 +275,26 @@
 @section('javascript')
 <script>
 $(document).ready( function () {
-    $('#myTable').DataTable();
+    $('#myTable').DataTable({
+        "scrollX": true
+    });
+} );
+$(document).ready( function () {
+    $('#myTable2').DataTable({
+        "scrollX": true
+    });
+} );
+$(document).ready( function () {
+    $('#myTable3').DataTable({
+        "scrollX": true
+    });
+} );
+$(document).ready( function () {
+    $('#myTable4').DataTable({
+        "scrollX": true
+    });
 } );
 </script>
-
 <script>
     function hapus(token,id){
         swal({
@@ -195,7 +310,7 @@ $(document).ready( function () {
         showLoaderOnConfirm: true
     }).then(function (result) {
         if (result.value) {
-            var url = '/hapusbentukharga';
+            var url = '/hapuslantai';
             $.post(url, {
 
                 _token: token,

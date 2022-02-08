@@ -9,6 +9,8 @@ use App\Http\Controllers\CalonpembeliController;
 use App\Http\Controllers\TipepropertiController;
 use App\Http\Controllers\AgenController;
 use App\Http\Controllers\ReminderController;
+use App\Http\Controllers\ListingController;
+use App\Http\Controllers\TipeapartemenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +29,13 @@ Route::get('/', function () {
 
 Route::resource('surats',SuratController::class);
 Route::resource('tipepropertis',TipepropertiController::class);
+Route::resource('tipeapartemens',TipeapartemenController::class);
 Route::resource('primarys',PrimaryController::class);
 Route::resource('lantais',LantaiController::class);
 Route::resource('calonpembelis',CalonpembeliController::class);
 Route::resource('bentukhargas',BentukhargaController::class);
 Route::resource('agens',AgenController::class);
+Route::resource('listings',ListingController::class);
 
 Route::post('/hapussurat', [ SuratController::class, "hapussurat" ])->name('hapussurat');
 Route::post('/hapustipeproperti', [ TipepropertiController::class, "hapustipeproperti" ])->name('hapustipeproperti');
@@ -39,6 +43,8 @@ Route::post('/hapusprimary', [ PrimaryController::class, "hapusprimary" ])->name
 Route::post('/hapusbentukharga', [ BentukhargaController::class, "hapusbentukharga" ])->name('hapusbentukharga');
 Route::post('/hapuslantai', [ LantaiController::class, "hapuslantai" ])->name('hapuslantai');
 Route::post('/hapusagen', [ AgenController::class, "hapusagen" ])->name('hapusagen');
+Route::post('/hapuslisting', [ ListingController::class, "hapuslisting" ])->name('hapuslisting');
+Route::post('/hapustipeapartemen', [ TipeapartemenController::class, "hapustipeapartemen" ])->name('hapustipeapartemen');
 
 Route::get('/surat', [ SuratController::class, "index" ])->name('surat');
 Route::get('/bentukharga', [ BentukhargaController::class, "index" ])->name('bentukharga');
@@ -49,6 +55,8 @@ Route::get('/primary', [ PrimaryController::class, "index" ])->name('primary');
 Route::get('/primary/{id}', [ PrimaryController::class, "show" ]);
 Route::get('/agen', [ AgenController::class, "index" ])->name('agen');
 Route::get('/reminder', [ ReminderController::class, "index" ])->name('reminder');
+Route::get('/listing', [ ListingController::class, "index" ])->name('listing');
+Route::get('/tipeapartemen', [ TipeapartemenController::class, "index" ])->name('tipeapartemen');
 
 Auth::routes();
 

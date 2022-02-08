@@ -39,10 +39,10 @@
             </div>
         </a>
         <ul class="collapse submenu recent-submenu list-unstyled show" id="submenu" data-parent="#accordionExample">
-            <li>
+            <li class="">
                 <a href="{{url('tipeproperti')}}"> Tipe Properti </a>
             </li>
-            <li class="">
+            <li class="active">
                 <a href="{{url('tipeapartemen')}}"> Tipe Apartemen </a>
             </li>
             <li>
@@ -51,7 +51,7 @@
             <li>
                 <a href="{{url('bentukharga')}}"> Bentuk Harga </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="{{url('lantai')}}"> Lantai </a>
             </li>                           
         </ul>
@@ -94,18 +94,18 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
-                <form method="post" action="{{url('lantais/'.$data->idjenis_lantai)}}">
+                <form method="post" action="{{url('tipepropertis/'.$data->idtipe_properti)}}">
                     @csrf
                     @method('PUT')
                     <div class="">
                         <div class="">
                             <div class="form-group">
-                                <label for="jenislantai">Jenis Lantai</label>
-                                <input id="jenislantai" type="text" name="jenislantai" value="{{$data->nama}}" class="form-control" required>
+                                <label for="jenisproperti">Jenis Surat</label>
+                                <input id="jenisproperti" type="text" name="jenisproperti" value="{{$data->jenis_properti}}" class="form-control" required>
                             </div>
                         </div>                                        
                     </div>
-                    <a href="{{url('lantais')}}" class="btn btn-secondary-light"> Kembali</a>
+                    <a href="{{url('tipepropertis')}}" class="btn btn-secondary-light"> Kembali</a>
                     <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
                 </form>
                 </div>

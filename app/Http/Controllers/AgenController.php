@@ -72,7 +72,8 @@ class AgenController extends Controller
      */
     public function show(User $agen)
     {
-        //
+        $data = $agen;
+        return view("agen.show",compact('data'));
     }
 
     /**
@@ -83,7 +84,8 @@ class AgenController extends Controller
      */
     public function edit(User $agen)
     {
-        return view("agen.edit");
+        $data = $agen;
+        return view("agen.edit",compact('data'));
     }
 
     /**
