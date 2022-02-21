@@ -128,7 +128,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="alamat">Alamat Domisili Pemilik</label>
-                                <input id="alamat" type="text" name="alamatdomisili" placeholder="Alamat domisili pemilik..." class="form-control" required>
+                                <input id="alamat" type="text" name="alamatdomisili" placeholder="Alamat domisili pemilik..." class="form-control">
                             </div>
                         </div>                                        
                     </div>
@@ -136,7 +136,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="hp">No HP Pemilik</label>
-                                <input id="hp" type="text" name="hppemilik" placeholder="08xxxxxx" class="form-control" required>
+                                <input id="hp" type="text" name="hppemilik" placeholder="08xxxxxx" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="suratkepemilikan">Surat Kepemilikan Atas Nama</label>
-                                <input id="suratkepemilikan" type="text" name="skan" placeholder="Surat kepemilikan atas nama..." class="form-control" required>
+                                <input id="suratkepemilikan" type="text" name="skan" placeholder="Surat kepemilikan atas nama..." class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="alamatproperti">Alamat Properti</label>
-                                <input id="alamatproperti" type="text" name="alamatproperti" placeholder="Alamat properti..." class="form-control" required>
+                                <input id="alamatproperti" type="text" name="alamatproperti" placeholder="Alamat properti..." class="form-control">
                             </div>
                         </div>
                     </div>
@@ -501,7 +501,19 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="provinsi">Provinsi</label>
-                                <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih provinsi" name="idprovinsi">
+                                <select onchange="provinsi()" id="provinsi" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih provinsi">
+                                    @foreach($provinsi as $pr)
+                                        <option value="{{$pr->idprovinsi}}">{{$pr->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group" id="pilihKota">
+                                <label for="kota">Kabupaten atau Kota</label>
+                                <select onchange="kota()" id="kota" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih kabupaten atau kota">
                                     
                                 </select>
                             </div>
@@ -509,9 +521,9 @@
                     </div>
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
-                            <div class="form-group">
-                                <label for="kabupaten">Kabupaten atau Kota</label>
-                                <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih kabupaten atau kota" name="idprovinsi">
+                            <div class="form-group" id="pilihKecamatan">
+                                <label for="kecamatan">Kecamatan</label>
+                                <select onchange="kecamatan()" id="kecamatan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah">
                                     
                                 </select>
                             </div>
@@ -519,10 +531,12 @@
                     </div>
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
-                            <div class="form-group">
-                                <label for="wilayah">Wilayah (khusus Surabaya)</label>
-                                <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah" name="idprovinsi">
-                                    
+                            <div class="form-group" id="pilihKelurahan">
+                                <label for="kelurahan">Kelurahan</label>
+                                <select onchange="kelurahan()" id="kelurahan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah" name="kelurahan">
+                                    @foreach($kelurahan as $kl)
+                                        <option value="{{$kl->idkelurahan}}">{{$kl->nama}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>                                        
@@ -575,5 +589,23 @@ $(document).ready(function() {
 <script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
 <script>
     var secondUpload = new FileUploadWithPreview('mySecondImage')
+</script>
+<script>
+    function provinsi(){
+        var provinsi = $('#provinsi').val();
+        $('#pilihKota').load('{{url("kota")}}/'+provinsi, function(e) {});
+    }
+</script>
+<script>
+    function kota(){
+        var kota = $('#kota').val();
+        $('#pilihKecamatan').load('{{url("kecamatan")}}/'+kota, function(e) {});
+    }
+</script>
+<script>
+    function kecamatan(){
+        var kecamatan = $('#kecamatan').val();
+        $('#pilihKelurahan').load('{{url("kelurahan")}}/'+kecamatan, function(e) {});
+    }
 </script>
 @endsection

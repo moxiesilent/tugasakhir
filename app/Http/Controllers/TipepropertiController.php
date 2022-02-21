@@ -101,11 +101,11 @@ class TipepropertiController extends Controller
         try{
             $tipeproperti = Tipeproperti::find($request->id);
             $tipeproperti->delete();
-            return redirect()->route('tipe$tipepropertis.index')->with('status','data berhasil dihapus');       
+            return redirect()->route('tipepropertis.index')->with('status','data berhasil dihapus');       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('tipe$tipepropertis.index')->with('error', $msg);
+            return redirect()->route('tipepropertis.index')->with('error', $msg);
         }
     }
 }

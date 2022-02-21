@@ -118,7 +118,7 @@ class AgenController extends Controller
             return redirect()->route('agens.index')->with('status','data berhasil diubah');     
         }
         catch(\PDOException $e){
-            $msg ="Gagal menambah data. ";
+            $msg ="Gagal mengubah data. ";
             return redirect()->route('agens.index')->with('error', $msg);
         }
     }

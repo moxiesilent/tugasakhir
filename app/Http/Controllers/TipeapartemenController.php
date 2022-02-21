@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tipeapartemen;
 use Illuminate\Http\Request;
+use DB;
 
 class TipeapartemenController extends Controller
 {
@@ -14,7 +15,8 @@ class TipeapartemenController extends Controller
      */
     public function index()
     {
-        //
+        $data = Tipeapartemen::all();
+        return view('tipeapartemen.index',compact('data'));
     }
 
     /**
@@ -35,7 +37,10 @@ class TipeapartemenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Tipeapartemen();
+        $data->tipe_apartemen = $request->get('tipeapartemen');
+        $data->save();
+        return redirect()->route('tipeapartemens.index')->with('status','data baru telah ditambahkan');
     }
 
     /**
@@ -57,7 +62,8 @@ class TipeapartemenController extends Controller
      */
     public function edit(Tipeapartemen $tipeapartemen)
     {
-        //
+        $data = $tipeapartemen;
+        return view("tipeapartemen.edit",compact('data'));
     }
 
     /**
@@ -69,7 +75,15 @@ class TipeapartemenController extends Controller
      */
     public function update(Request $request, Tipeapartemen $tipeapartemen)
     {
-        //
+        try{
+            $tipeapartemen->tipe_apartemen = $request->get('jenisapartemen');
+            $tipeapartemen->save();
+            return redirect()->route('tipeapartemens.index')->with('status','data berhasil diubah');     
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal mengubah data.";
+            return redirect()->route('tipeapartemens.index')->with('error', $msg);
+        }
     }
 
     /**
@@ -81,5 +95,17 @@ class TipeapartemenController extends Controller
     public function destroy(Tipeapartemen $tipeapartemen)
     {
         //
+    }
+
+    public function hapustipeapartemen(Request $request){
+        try{
+            $tipeapartemen = Tipeapartemen::find($request->id);
+            $tipeapartemen->delete();
+            return redirect()->route('tipeapartemens.index')->with('status','data berhasil dihapus');       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('tipeapartemens.index')->with('error', $msg);
+        }
     }
 }

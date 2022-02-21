@@ -6,6 +6,11 @@ use App\Models\Listing;
 use App\Models\User;
 use App\Models\Surat;
 use App\Models\Lantai;
+use App\Models\Foto;
+use App\Models\Provinsi;
+use App\Models\Kota;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\Bentukharga;
 use App\Models\Tipeproperti;
 use Illuminate\Http\Request;
@@ -37,7 +42,9 @@ class ListingController extends Controller
         $bentukharga = Bentukharga::all();
         $jenissurat = Surat::all();
         $tipeproperti = Tipeproperti::all();
-        return view("listing.create",compact('agen','jenislantai','bentukharga','jenissurat','tipeproperti'));
+        $provinsi = Provinsi::all();
+        $kelurahan = Kelurahan::all();
+        return view("listing.create",compact('agen','jenislantai','bentukharga','jenissurat','tipeproperti','provinsi','kelurahan'));
     }
 
     /**
@@ -48,7 +55,7 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        try{
+        // try{
             $data = new Listing();
 
             $data->kode_listing = $request->get('kode');
@@ -58,7 +65,7 @@ class ListingController extends Controller
             $data->surat_kepemilikan_atasnama = $request->get('skan');
             $data->alamat_properti = $request->get('alamatproperti');
             if($request->get('tipeapartemen') != '0'){
-                $data->tipe_apartemen = $request->get('tipeapartemen');
+                $data->tipe_apartemens_idtipe_apartemen = $request->get('tipeapartemen');
             }
             $data->tower = $request->get('tower');
             $data->cluster = $request->get('cluster');
@@ -93,10 +100,11 @@ class ListingController extends Controller
             $data->jenis_surat_idjenis_surat = $request->get('idjs');
             $data->tipe_properti_idtipe_properti = $request->get('idtp');
             $data->jenis_lantai_idjenis_lantai = $request->get('idjl');
-            $data->daerah_iddaerah = $request->get('idd');
+            $data->kelurahans_idkelurahan = $request->get('kelurahan');
             $data->catatan = $request->get('catatan');
-            $data->status = $request->get('status');
-
+            $data->status = 'available';
+            $data->save();
+            
             if($request->hasFile('foto')){
                 foreach($request->file('foto') as $key => $file){
                     $foto = new Foto();
@@ -105,16 +113,16 @@ class ListingController extends Controller
                     $imgFile=time().'_'.$file->getClientOriginalName();
                     $file->move($imgFolder,$imgFile);
                     $foto->path=$imgFile;
+                    $foto->save();
                 }
             }
-
-            $data->save();
+            
             return redirect()->route('listings.index')->with('status','data baru telah ditambahkan');     
-        }
-        catch(\PDOException $e){
-            $msg ="Gagal menambah data. ";
-            return redirect()->route('listings.index')->with('error', $msg);
-        }
+        // }
+        // catch(\PDOException $e){
+        //     $msg ="Gagal menambah data. ";
+        //     return redirect()->route('listings.index')->with('error', $msg);
+        // }
     }
 
     /**
@@ -160,5 +168,10 @@ class ListingController extends Controller
     public function destroy(Listing $listing)
     {
         //
+    }
+
+    public function kota($id){
+        $kota = DB::table('kotas')->where('provinsis_idprovinsi',$id)->get();
+        return view('listing.kota',compact('kota'));
     }
 }

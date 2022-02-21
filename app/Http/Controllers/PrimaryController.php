@@ -38,7 +38,6 @@ class PrimaryController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         try{
             $data = new Primary();
 

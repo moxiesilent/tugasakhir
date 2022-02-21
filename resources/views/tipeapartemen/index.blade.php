@@ -95,7 +95,12 @@
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
                 <div class="" style="margin-bottom:20px;">
-                    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah">Tambah Baru</button>
+                    <div class="text-center">
+                        <h4><b>Data Tipe Apartemen</b></4>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah">Tambah Baru</button>
+                    </div>
                 </div>
                 @if(session('status'))
                 <div class="alert alert-light-success border-0 mb-4" role="alert">
@@ -113,23 +118,23 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Jenis Properti</th>
+                                <th>Tipe Apartemen</th>
                                 <th width="50px">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($data as $d)
                             <tr>
-                                <td>{{$d->idtipe_properti}}</td>
-                                <td>{{$d->jenis_properti}}</td>
+                                <td>{{$d->idtipe_apartemen}}</td>
+                                <td>{{$d->tipe_apartemen}}</td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('tipepropertis/'.$d->idtipe_properti.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idtipe_properti}}')">&nbsp&nbsp&nbspHapus</button>
+                                            <a href="{{url('tipeapartemens/'.$d->idtipe_apartemen.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
+                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idtipe_apartemen}}')">&nbsp&nbsp&nbspHapus</button>
                                         </div>
                                     </div>
                                 </td>
@@ -151,14 +156,14 @@
             <form method="post" action="{{url('tipeapartemens')}}">
             @csrf
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Tipe Properti</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Tipe Apartemen</h5>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-6 col-12 mx-auto">
                         <div class="form-group">
                             <label for="tipeapartemen">Tipe Apartemen</label>
-                            <input id="tipeapartemen" type="text" name="tipeapartemen" placeholder="Tipe properti..." class="form-control" required>
+                            <input id="tipeapartemen" type="text" name="tipeapartemen" placeholder="Tipe apartemen..." class="form-control" required>
                         </div>
                     </div>                                        
                 </div>

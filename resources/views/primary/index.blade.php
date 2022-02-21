@@ -95,7 +95,12 @@
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
                 <div class="" style="margin-bottom:20px;">
-                    <a href="{{url('primarys/create')}}" class="btn btn-primary mb-2">Tambah Baru</a>
+                    <div class="text-center">
+                        <h4><b>Data Primary</b></4>
+                    </div>
+                    <div class="text-right">
+                        <a href="{{url('primarys/create')}}" class="btn btn-primary mb-2">Tambah Baru</a>
+                    </div>
                 </div>
                 @if(session('status'))
                 <div class="alert alert-light-success border-0 mb-4" role="alert">

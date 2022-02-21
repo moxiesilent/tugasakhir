@@ -58,6 +58,10 @@ Route::get('/reminder', [ ReminderController::class, "index" ])->name('reminder'
 Route::get('/listing', [ ListingController::class, "index" ])->name('listing');
 Route::get('/tipeapartemen', [ TipeapartemenController::class, "index" ])->name('tipeapartemen');
 
+Route::get('/kota/{id}', [ ListingController::class, "kota" ]);
+Route::get('/kecamatan/{id}', 'ListingController@kecamatan');
+Route::get('/kelurahan/{id}', 'ListingController@kelurahan');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

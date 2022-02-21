@@ -95,7 +95,12 @@
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
                 <div class="" style="margin-bottom:20px;">
-                    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah">Tambah Baru</button>
+                    <div class="text-center">
+                        <h4><b>Data Calon Pembeli</b></4>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah">Tambah Baru</button>
+                    </div>
                 </div>
                 @if(session('status'))
                 <div class="alert alert-light-success border-0 mb-4" role="alert">
