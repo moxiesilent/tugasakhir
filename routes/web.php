@@ -54,6 +54,7 @@ Route::get('/calonpembeli', [ CalonpembeliController::class, "index" ])->name('c
 Route::get('/primary', [ PrimaryController::class, "index" ])->name('primary');
 Route::get('/primary/{id}', [ PrimaryController::class, "show" ]);
 Route::get('/agen', [ AgenController::class, "index" ])->name('agen');
+Route::get('/agen/{id}', [ AgenController::class, "show" ]);
 Route::get('/reminder', [ ReminderController::class, "index" ])->name('reminder');
 Route::get('/listing', [ ListingController::class, "index" ])->name('listing');
 Route::get('/tipeapartemen', [ TipeapartemenController::class, "index" ])->name('tipeapartemen');

@@ -129,7 +129,7 @@
                             @foreach($data as $d)
                             <tr>
                                 <td>{{$d->kode}}</td>
-                                <td>{{$d->name}}</td>
+                                <td>{{$d->nama}}</td>
                                 <td><span class="inv-email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> {{$d->email}}</span></td>
                                 <td><span class="inv-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> {{date('d-m-Y',strtotime($d->tanggallahir))}}</span></td>
                                 <td>{{$d->hp}}</td>
@@ -139,9 +139,9 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('agens/'.$d->id)}}"><button class="dropdown-item btn btn-primary">&nbsp&nbsp&nbspDetail</button></a><br>
-                                            <a href="{{url('agens/'.$d->id.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->id}}')">&nbsp&nbsp&nbspHapus</button>
+                                            <a href="{{url('agens/'.$d->idagen)}}"><button class="dropdown-item btn btn-primary">&nbsp&nbsp&nbspDetail</button></a><br>
+                                            <a href="{{url('agens/'.$d->idagen.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
+                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idagen}}')">&nbsp&nbsp&nbspHapus</button>
                                         </div>
                                     </div>
                                 </td>
@@ -149,7 +149,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -178,7 +177,7 @@ $(document).ready( function () {
         closeOnCancel: true,
         showLoaderOnConfirm: true
     }).then(function () {
-        var act = '/hapusprimary';
+        var act = '/hapusagen';
         $.post(act, {
 
             _token: token,

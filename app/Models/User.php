@@ -10,6 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    protected $table = "agens";
+    protected $primaryKey = "idagen";
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -18,7 +21,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nama',
         'email',
         'password',
         'jabatan',
@@ -49,4 +52,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function listings(){
+        return $this->hasMany("App\Models\Listing","agen_idagen","idagen");
+    }
 }

@@ -11,4 +11,8 @@ class Tipeproperti extends Model
     protected $primaryKey = 'idtipe_properti';
     protected $table = "tipe_propertis";
     public $timestamps=false;
+
+    public function listings(){
+        return $this->hasMany("App\Models\Listing","tipe_properti_idtipe_properti ","idtipe_properti");
+    }
 }

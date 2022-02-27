@@ -50,11 +50,12 @@ class AgenController extends Controller
         }
 
         $data->kode = $request->get('kode');
-        $data->name = $request->get('nama');
+        $data->nama = $request->get('nama');
         $data->email = $request->get('email');
         $data->tanggallahir = $request->get('tanggallahir');
         $data->jabatan = $request->get('jabatan');
         $data->password = Hash::make('12345678');
+        // $data->password = md5('12345678');
         $data->jenis_kelamin = $request->get('jeniskelamin');
         $data->hp = $request->get('hp');
         $data->alamat = $request->get('alamat');

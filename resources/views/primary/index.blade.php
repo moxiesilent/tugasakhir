@@ -131,7 +131,7 @@
                                 <td>{{$d->idprimary}}</td>
                                 <td>{{$d->nama_project}}</td>
                                 <td>{{$d->developer}}</td>
-                                <td class="text-right">{{$d->blt}}</td>
+                                <td class="text-right">{{number_format($d->blt)}}</td>
                                 <td><img src="{{asset('images/primary/'.$d->foto)}}" height='100px'/></td>
                                 <td>
                                     <div class="dropdown">

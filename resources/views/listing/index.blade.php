@@ -122,104 +122,18 @@
                                 <th>Komisi</th>
                                 <th>Daerah</th>
                                 <th>Status</th>
-                                <th>Status</th>
-                                <th>Status</th>
-                                <th>Status</th>
-                                <th>Status</th>
-                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            
                             @foreach($data as $d)
                             <tr>
                                 <td>{{$d->kode_listing}}</td>
-                                <td>{{$d->agen_idagen}}</td>
-                                <td>{{$d->harga}}</td>
-                                <td>{{$d->komisi}}</td>
-                                <td>{{$d->daerah_iddaerah}}</td>
-                                <td>{{$d->status}}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('lantais/'.$d->idjenis_lantai.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idjenis_lantai}}')">&nbsp&nbsp&nbspHapus</button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mb-3">
-                    <h4>Data Apartemen</4>
-                </div>
-                <div class="mb-5">
-                    <table id="myTable2" class="table table-striped" style="width: 100%; ">
-                        <thead>
-                            <tr>
-                                <th>Kode Listing</th>
-                                <th>Agen</th>
-                                <th>Harga</th>
-                                <th>Komisi</th>
-                                <th>Daerah</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($data as $d)
-                            <tr>
-                                <td>{{$d->kode_listing}}</td>
-                                <td>{{$d->agen_idagen}}</td>
-                                <td>{{$d->harga}}</td>
-                                <td>{{$d->komisi}}</td>
-                                <td>{{$d->daerah_iddaerah}}</td>
-                                <td>{{$d->status}}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('listings/'.$d->kode_listing.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->kode_listing}}')">&nbsp&nbsp&nbspHapus</button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mb-3">
-                    <h4>Data Properti Lain</4>
-                </div>
-                <div class="mb-5">
-                    <table id="myTable3" class="table table-striped" style="width: 100%; ">
-                        <thead>
-                            <tr>
-                                <th>Kode Listing</th>
-                                <th>Agen</th>
-                                <th>Harga</th>
-                                <th>Komisi</th>
-                                <th>Daerah</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($data as $d)
-                            <tr>
-                                <td>{{$d->kode_listing}}</td>
-                                <td>{{$d->agen_idagen}}</td>
-                                <td>{{$d->harga}}</td>
-                                <td>{{$d->komisi}}</td>
-                                <td>{{$d->daerah_iddaerah}}</td>
+                                <td>{{$d->agens->nama}}</td>
+                                <td class="text-right">{{number_format($d->harga)}}</td>
+                                <td>{{$d->komisi}} %</td>
+                                <td>{{$d->kelurahans->nama}}</td>
                                 <td>{{$d->status}}</td>
                                 <td>
                                     <div class="dropdown">
@@ -310,7 +224,7 @@ $(document).ready( function () {
         showLoaderOnConfirm: true
     }).then(function (result) {
         if (result.value) {
-            var url = '/hapuslantai';
+            var url = '/hapuslisting';
             $.post(url, {
 
                 _token: token,

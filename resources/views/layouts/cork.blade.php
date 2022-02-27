@@ -135,7 +135,7 @@
                     <figure class="user-cover-image"></figure>
                     <div class="user-info">
                         <img src="{{asset('assets/img/arrow-down.png')}}" alt="avatar">
-                        <h6 class="">John Doe</h6>
+                        <h6 class="">Admin</h6>
                         <p class="">Admin</p>
                     </div>
                 </div>

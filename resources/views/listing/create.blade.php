@@ -114,10 +114,10 @@
                                 <label for="agen">Agen</label>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="idagen" required>
                                     @foreach($agen as $ag)
-                                        @if($ag->name == 'admin')
+                                        @if($ag->nama == 'admin')
                                             <option value=""></option>
                                         @else
-                                            <option value="{{$ag->id}}">{{$ag->kode}} - {{$ag->name}}</option>
+                                            <option value="{{$ag->idagen}}">{{$ag->kode}} - {{$ag->nama}}</option>
                                         @endif
                                     @endforeach
                                 </select>

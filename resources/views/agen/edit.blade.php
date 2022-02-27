@@ -102,7 +102,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="nama">Nama Lengkap</label>
-                                <input id="nama" type="text" name="nama" value="{{$data->name}}" class="form-control" required>
+                                <input id="nama" type="text" name="nama" value="{{$data->nama}}" class="form-control" required>
                             </div>
                         </div>                                        
                     </div>
