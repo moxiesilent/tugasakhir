@@ -10,7 +10,6 @@ class Listing extends Model
     use HasFactory;
     protected $primaryKey = 'kode_listing';
     protected $table = "listings";
-    public $timestamps=false;
     public $incrementing = false; 
 
     public function agens(){

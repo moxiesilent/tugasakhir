@@ -95,9 +95,11 @@
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
                 <div style="margin-bottom:20px;">
-                    <h3>Ubah Listing</h3>
+                    <div class="text-center">
+                        <h3><b>Ubah Listing</b></3>
+                    </div>
                 </div>
-                <form enctype="multipart/form-data" method="post" action="{{url('listings/'.$data->kode_listing')}}">
+                <form enctype="multipart/form-data" method="post" action="{{url('listings/'.$data->kode_listing)}}">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -113,15 +115,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="agen">Agen</label>
-                                <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="idagen" required>
-                                    @foreach($agen as $ag)
-                                        @if($ag->name == 'admin')
-                                            <option value=""></option>
-                                        @else
-                                            <option value="{{$ag->id}}">{{$ag->kode}} - {{$ag->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
+                                <input id="agen" type="text" value="{{$data->agens->nama}}" class="form-control" disabled>
                             </div>
                         </div>                                        
                     </div>

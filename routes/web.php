@@ -59,9 +59,9 @@ Route::get('/reminder', [ ReminderController::class, "index" ])->name('reminder'
 Route::get('/listing', [ ListingController::class, "index" ])->name('listing');
 Route::get('/tipeapartemen', [ TipeapartemenController::class, "index" ])->name('tipeapartemen');
 
-Route::get('/kota/{id}', [ ListingController::class, "kota" ]);
-Route::get('/kecamatan/{id}', 'ListingController@kecamatan');
-Route::get('/kelurahan/{id}', 'ListingController@kelurahan');
+Route::post('/getkota', [ ListingController::class, "getKota" ])->name('getKota');
+Route::post('/getkecamatan', [ ListingController::class, "getKecamatan" ])->name('getKecamatan');
+Route::post('/kelurahan', [ ListingController::class, "getKelurahan" ])->name('getKelurahan');
 
 Auth::routes();
 

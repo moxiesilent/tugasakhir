@@ -501,7 +501,8 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="provinsi">Provinsi</label>
-                                <select onchange="provinsi()" id="provinsi" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih provinsi">
+                                <select id="provinsi" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih provinsi">
+                                    <option value="-">-- Pilih Provinsi --</option>
                                     @foreach($provinsi as $pr)
                                         <option value="{{$pr->idprovinsi}}">{{$pr->nama}}</option>
                                     @endforeach
@@ -513,8 +514,8 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group" id="pilihKota">
                                 <label for="kota">Kabupaten atau Kota</label>
-                                <select onchange="kota()" id="kota" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih kabupaten atau kota">
-                                    
+                                <select id="kota" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih kabupaten atau kota">
+                                    <option value="-">-- Pilih Kota --</option>
                                 </select>
                             </div>
                         </div>                                        
@@ -523,8 +524,8 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group" id="pilihKecamatan">
                                 <label for="kecamatan">Kecamatan</label>
-                                <select onchange="kecamatan()" id="kecamatan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah">
-                                    
+                                <select id="kecamatan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah">
+                                    <option value="-">-- Pilih Kecamatan --</option>
                                 </select>
                             </div>
                         </div>                                        
@@ -533,10 +534,8 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group" id="pilihKelurahan">
                                 <label for="kelurahan">Kelurahan</label>
-                                <select onchange="kelurahan()" id="kelurahan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah" name="kelurahan">
-                                    @foreach($kelurahan as $kl)
-                                        <option value="{{$kl->idkelurahan}}">{{$kl->nama}}</option>
-                                    @endforeach
+                                <select id="kelurahan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah" name="kelurahan">
+                                    <option value="-">-- Pilih Kelurahan --</option>
                                 </select>
                             </div>
                         </div>                                        
@@ -591,21 +590,64 @@ $(document).ready(function() {
     var secondUpload = new FileUploadWithPreview('mySecondImage')
 </script>
 <script>
-    function provinsi(){
-        var provinsi = $('#provinsi').val();
-        $('#pilihKota').load('{{url("kota")}}/'+provinsi, function(e) {});
-    }
+    $('#provinsi').on('change', function(e) {
+        var idprov = e.target.value;
+        $.ajax({
+            type: "POST",
+            url: "{{route('getKota')}}",
+            data: {
+                '_token': '<?php echo csrf_token() ?>',
+                'idprov': idprov
+            },
+            success: function(data) {
+                $('#kota').empty();
+                $('#kota').append('<option value="">--Pilih Kota--</option>');
+                for (let i = 0; i < data.listkota.length; i++) {
+                    $('#kota').append('<option value="'+data.listkota[i].idkota+'">'+data.listkota[i].nama_kota+'</option>');
+                }
+            }
+        })
+    });
 </script>
 <script>
-    function kota(){
-        var kota = $('#kota').val();
-        $('#pilihKecamatan').load('{{url("kecamatan")}}/'+kota, function(e) {});
-    }
+    $('#kota').on('change', function(e) {
+        var idkota = e.target.value;
+        $.ajax({
+            type: "POST",
+            url: "{{route('getKecamatan')}}",
+            data: {
+                '_token': '<?php echo csrf_token() ?>',
+                'idkota': idkota
+            },
+            success: function(data) {
+                $('#kecamatan').empty();
+                $('#kecamatan').append('<option value="">--Pilih Kecamatan--</option>');
+                for (let i = 0; i < data.listkecamatan.length; i++) {
+                    $('#kecamatan').append('<option value="'+data.listkecamatan[i].idkecamatan+'">'+data.listkecamatan[i].nama+'</option>');
+                }
+            }
+        })
+    });
 </script>
 <script>
-    function kecamatan(){
-        var kecamatan = $('#kecamatan').val();
-        $('#pilihKelurahan').load('{{url("kelurahan")}}/'+kecamatan, function(e) {});
-    }
+    $('#kecamatan').on('change', function(e) {
+        var idkecamatan = e.target.value;
+        $.ajax({
+            type: "POST",
+            url: "{{route('getKelurahan')}}",
+            data: {
+                '_token': '<?php echo csrf_token() ?>',
+                'idkecamatan': idkecamatan
+            },
+            success: function(data) {
+                $('#kelurahan').empty();
+                $('#kelurahan').append('<option value="">--Pilih Kelurahan--</option>');
+                for (let i = 0; i < data.listkelurahan.length; i++) {
+                    $('#kelurahan').append('<option value="'+data.listkelurahan[i].idkelurahan+'">'+data.listkelurahan[i].nama+'</option>');
+                }
+            }
+        })
+    });
 </script>
+
 @endsection

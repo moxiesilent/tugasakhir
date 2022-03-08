@@ -95,7 +95,12 @@
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
                 <div class="" style="margin-bottom:20px;">
-                    <a href="{{url('listings/create')}}" class="btn btn-primary mb-2">Tambah Baru</a>               
+                    <div class="text-center">
+                        <h4><b>Data Listing</b></4>
+                    </div>
+                    <div class="text-right">
+                        <a href="{{url('listings/create')}}" class="btn btn-primary mb-2">Tambah Baru</a>  
+                    </div>
                 </div>
                 @if(session('status'))
                 <div class="alert alert-light-success border-0 mb-4" role="alert">
@@ -109,15 +114,13 @@
                     <strong>Error!</strong> {{session('error')}}</button>
                 </div>
                 @endif
-                <div class="mb-3">
-                    <h4>Data Rumah</4>
-                </div>
-                <div class="mb-5">
-                    <table id="myTable" class="table table-striped" style="width: 100%; ">
+
+                <table id="myTable" class="table table-striped" style="width:100%; ">
                         <thead>
                             <tr>
                                 <th>Kode Listing</th>
-                                <th>Agen</th>
+                                <th>L.Tanah</th>
+                                <th>L.Bangunan</th>
                                 <th>Harga</th>
                                 <th>Komisi</th>
                                 <th>Daerah</th>
@@ -126,23 +129,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
                             @foreach($data as $d)
                             <tr>
                                 <td>{{$d->kode_listing}}</td>
-                                <td>{{$d->agens->nama}}</td>
-                                <td class="text-right">{{number_format($d->harga)}}</td>
+                                <td>{{$d->luas_tanah}} m<sup>2</sup></td>
+                                <td>{{$d->luas_bangunan}} m<sup>2</sup></td>
+                                <td class="text-right"><b>{{number_format($d->harga)}}</b></td>
                                 <td>{{$d->komisi}} %</td>
                                 <td>{{$d->kelurahans->nama}}</td>
-                                <td>{{$d->status}}</td>
+                                <td>
+                                    @if($d->status == 'available')
+                                    <h6 class="text-success"><b>{{$d->status}}</b></h6>
+                                    @elseif($d->status == 'pending')
+                                    <h6 class="text-warning"><b>{{$d->status}}</b></h6>
+                                    @else
+                                    <h6 class="text-danger"><b>{{$d->status}}</b></h6>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('lantais/'.$d->idjenis_lantai.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idjenis_lantai}}')">&nbsp&nbsp&nbspHapus</button>
+                                            <a href="{{url('listings/'.$d->kode_listing)}}"><button class="dropdown-item btn btn-primary">&nbsp&nbsp&nbspDetail</button></a><br>
+                                            <a href="{{url('listings/'.$d->kode_listing.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
+                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->kode_listing}}')">&nbsp&nbsp&nbspHapus</button>
                                         </div>
                                     </div>
                                 </td>
@@ -150,7 +162,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
                 </div>
             </div>
         </div>
@@ -190,22 +201,6 @@
 <script>
 $(document).ready( function () {
     $('#myTable').DataTable({
-        "scrollX": true
-    });
-} );
-$(document).ready( function () {
-    $('#myTable2').DataTable({
-        "scrollX": true
-    });
-} );
-$(document).ready( function () {
-    $('#myTable3').DataTable({
-        "scrollX": true
-    });
-} );
-$(document).ready( function () {
-    $('#myTable4').DataTable({
-        "scrollX": true
     });
 } );
 </script>

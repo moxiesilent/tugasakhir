@@ -144,7 +144,14 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
-        //
+        $data = $listing;
+        $jenislantai = Lantai::all();
+        $bentukharga = Bentukharga::all();
+        $jenissurat = Surat::all();
+        $tipeproperti = Tipeproperti::all();
+        $provinsi = Provinsi::all();
+        $kelurahan = Kelurahan::all();
+        return view("listing.edit",compact('data','jenislantai','bentukharga','jenissurat','tipeproperti','provinsi','kelurahan'));
     }
 
     /**
@@ -170,8 +177,26 @@ class ListingController extends Controller
         //
     }
 
-    public function kota($id){
-        $kota = DB::table('kotas')->where('provinsis_idprovinsi',$id)->get();
-        return view('listing.kota',compact('kota'));
+    public function getKota(Request $request){
+        $kota = DB::table('kotas')->where('provinsis_idprovinsi',$request->idprov)->get();
+        return response()->json([
+            'listkota' => $kota
+        ]);
     }
+
+    public function getKecamatan(Request $request){
+        $kecamatan = DB::table('kecamatans')->where('kotas_idkota',$request->idkota)->get();
+        return response()->json([
+            'listkecamatan' => $kecamatan
+        ]);
+    }
+
+    public function getKelurahan(Request $request){
+        $kelurahan = DB::table('kelurahans')->where('kecamatans_idkecamatan',$request->idkecamatan)->get();
+        return response()->json([
+            'listkelurahan' => $kelurahan
+        ]);
+    }
+
+
 }
