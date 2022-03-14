@@ -88,7 +88,7 @@ class ListingController extends Controller
             $data->carport = $request->get('carport');
             $data->garasi = $request->get('garasi');
             $data->hadap = $request->get('hadap');
-            $data->jenis_listing = $request->get('jenislisting');
+            $data->tipe_listing = $request->get('tipelisting');
             $data->air = $request->get('air');
             $data->pemegang_hak = $request->get('pemeganghak');
             $data->mulai_tanggal = $request->get('mulaitanggal');
@@ -105,6 +105,15 @@ class ListingController extends Controller
             $data->kelurahans_idkelurahan = $request->get('kelurahan');
             $data->catatan = $request->get('catatan');
             $data->status = 'available';
+            $data->jenis_listing = $request->get('jenislisting');
+            $data->judul = $request->get('judul');
+            if($request->hasFile('fotoutama')){
+                $file=$request->file('fotoutama');
+                $imgFolder='images/listing';
+                $imgFile=time().'_'.$file->getClientOriginalName();
+                $file->move($imgFolder,$imgFile);
+                $data->foto_utama=$imgFile;
+            }
             $data->save();
             
             if($request->hasFile('foto')){

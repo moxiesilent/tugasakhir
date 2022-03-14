@@ -137,7 +137,7 @@
                             <h6>Dimensi Tanah Panjang : <b>{{$data->dimensi_tanah_panjang}} m</b></h6>
                             <h6>Jenis Surat : <b>{{$data->surats->jenis_surat}}</b></h6>
                             <h6>Tipe Properti : <b>{{$data->tipepropertis->jenis_properti}}</b></h6>
-                            @if($data->tipe_apartemens_idtipe_apartemen != ''))
+                            @if($data->tipe_apartemens_idtipe_apartemen != '')
                             <h6>Tipe Apartemen : <b>{{$data->tipeapartemens->tipe_apartemen}}</b></h6>
                             <h6>Tower : <b>{{$data->tower}}</b></h6>
                             <h6>Nomor Lantai : <b>{{$data->nomor_lantai}}</b></h6>
@@ -151,7 +151,7 @@
                             <h6>Cluster : <b>{{$data->cluster}}</b></h6>
                             <h6>Posisi : <b>{{$data->posisi}}</b></h6>
                             <h6>Perabotan : <b>{{$data->perabotank}}</b></h6>
-                            <h6>Komisi : <b>{{$data->komisi}}</b></h6>
+                            <h6>Kelurahan : <b>{{$data->kelurahans->nama}}</b></h6>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8">
                             <h5><b>Data Pemilik Properti</b></h5><br>
@@ -172,13 +172,15 @@
                             <h6>Dapur : <b>{{$data->dapur}}</b></h6>
                             <h6>Carport : <b>{{$data->carport}}</b></h6>
                             <h6>Garasi : <b>{{$data->garasi}}</b></h6>
+                            @if($data->jenis_lantai_idjenis_lantai != '')
                             <h6>Jenis Lantai : <b>{{$data->lantais->nama}}</b></h6><br>
-                            <h6>Catatan : <b>{{$data->catatan}}</b></h6>
+                            @endif
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8">
                             <h5><b>Data Kantor</b></h5><br>
                             <h6>Jenis Listing : <b>{{$data->jenis_listing}}</b></h6>
                             <h6>Tipe Listing : <b>{{$data->tipe_listing}}</b></h6>
+                            <h6>Komisi : <b>{{$data->komisi}} %</b></h6>
                             <h6>Mulai Tanggal : <b>{{$data->mulai_tanggal}}</b></h6>
                             <h6>Berakhir Tanggal : <b>{{$data->berakhir_tanggal}}</b></h6>
                             <h6>Pasang Banner : <b>{{$data->pasang_banner}}</b></h6>
@@ -188,7 +190,11 @@
                             @else
                             <h6 class="">Status : <b>{{$data->status}}</b></h6>
                             @endif
-                            <h6>Kelurahan : <b>{{$data->kelurahans->nama}}</b></h6>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-7 col-md-6 col-sm-4 ">
+                            <h6>Catatan : </h6><h6><b>{!!$data->catatan!!}</b></h6>
                         </div>
                     </div><br>
                     <div class="row">

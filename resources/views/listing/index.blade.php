@@ -119,9 +119,11 @@
                         <thead>
                             <tr>
                                 <th>Kode Listing</th>
+                                <th>Jenis Listing</th>
                                 <th>L.Tanah</th>
                                 <th>L.Bangunan</th>
                                 <th>Harga</th>
+                                <th>Bentuk Harga</th>
                                 <th>Komisi</th>
                                 <th>Daerah</th>
                                 <th>Status</th>
@@ -132,9 +134,11 @@
                             @foreach($data as $d)
                             <tr>
                                 <td>{{$d->kode_listing}}</td>
+                                <td class="text-center"><b>{{$d->jenis_listing}}</b></td>
                                 <td>{{$d->luas_tanah}} m<sup>2</sup></td>
                                 <td>{{$d->luas_bangunan}} m<sup>2</sup></td>
                                 <td class="text-right"><b>{{number_format($d->harga)}}</b></td>
+                                <td>{{$d->bentukhargas->bentuk_harga}}</td>
                                 <td>{{$d->komisi}} %</td>
                                 <td>{{$d->kelurahans->nama}}</td>
                                 <td>
@@ -201,6 +205,7 @@
 <script>
 $(document).ready( function () {
     $('#myTable').DataTable({
+        "scrollX": true
     });
 } );
 </script>

@@ -19,9 +19,9 @@
         </a>
     </li>
 
-    <li class="menu">
+    <li class="menu active">
         <a href="{{url('listing')}}" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
+            <div class="active">
                 <i data-feather="box"></i>
                 <span> Listing</span>
             </div>
@@ -57,8 +57,8 @@
         </ul>
     </li>
 
-    <li class="menu active">
-        <a href="#submenu2" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+    <li class="menu ">
+        <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             <div class="">
                 <i data-feather="shield"></i>
                 <span> Primary</span>
@@ -67,8 +67,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </div>
         </a>
-        <ul class="collapse submenu list-unstyled show" id="submenu2" data-parent="#accordionExample">
-            <li class="active">
+        <ul class="collapse submenu list-unstyled" id="submenu2" data-parent="#accordionExample">
+            <li class="">
                 <a href="{{url('primary')}}"> List </a>
             </li>
             <li>
@@ -118,6 +118,23 @@
                                 <input id="agen" type="text" value="{{$data->agens->nama}}" class="form-control" disabled>
                             </div>
                         </div>                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group">
+                                <label>Jenis Listing</label><br>
+                                <select class="selectpicker" data-width="100%" name="jenislisting">
+                                    <option value="">-- Pilih Jenis Listing --</option>
+                                    @if($data->jenis_listing == 'JUAL')
+                                    <option value="jual" selected>Jual</option>
+                                    <option value="sewa">Sewa</option>
+                                    @else
+                                    <option value="jual" >Jual</option>
+                                    <option value="sewa" selected>Sewa</option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
@@ -259,18 +276,19 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>View (apartemen)</label><br>
-                                <div class="n-chk">
-                                    <label class="new-control new-radio radio-primary">
-                                        <input type="radio" class="new-control-input" name="view" value="city">
-                                        <span class="new-control-indicator"></span>City
-                                    </label>
-                                </div>
-                                <div class="n-chk">
-                                    <label class="new-control new-radio radio-primary">
-                                        <input type="radio" class="new-control-input" name="view" value="pool">
-                                        <span class="new-control-indicator"></span>Pool
-                                    </label>
-                                </div>
+                                <select class="selectpicker" data-width="100%" name="view">
+                                    <option value="">-- Pilih View (khusus apartemen)--</option>
+                                    @if($data->view == 'city')
+                                    <option value="city" selected>City</option>
+                                    <option value="pool">Pool</option>
+                                    @elseif($data->view == 'pool')
+                                    <option value="city" >City</option>
+                                    <option value="pool" selected>Pool</option>
+                                    @else
+                                    <option value="city">City</option>
+                                    <option value="pool">Pool</option>
+                                    @endif
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -311,20 +329,18 @@
                             <div class="form-group">
                                 <label>Hadap</label><br>
                                 <select class="selectpicker" data-width="100%" name="hadap" data-placeholder="Hadap">
-                                    <option value="timur">Timur</option>
-                                    <option value="utara">Utara</option>
-                                    <option value="barat">Barat</option>
-                                    <option value="selatan">Selatan</option>
-                                    <option value="timur laut">Timur Laut</option>
-                                    <option value="barat laut">Barat Laut</option>
-                                    <option value="barat daya">Barat Daya</option>
-                                    <option value="tenggara">Tenggara</option>
-                                    <option value="utara dan selatan">Utara dan Selatan</option>
-                                    <option value="utara dan timur">Utara dan Timur</option>
-                                    <option value="utara dan barat">Utara dan Barat</option>
-                                    <option value="timur dan barat">Timur dan Barat</option>
-                                    <option value="timur dan selatan">Timur dan Selatan</option>
-                                    <option value="barat dan selatan">Barat dan Selatan</option>
+                                    <option value="">-- Pilih Hadap --</option>
+                                    <?php 
+                                        $hadap = ['Timur', 'Utara', 'Barat', 'Selatan', 'Timur Laut', 'Barat Laut', 'Barat Daya', 'Tenggara', 'Utara dan Selatan',
+                                        'Utara dan Timur', 'Utara dan Barat', 'Timur dan Barat', 'Timur dan Selatan', 'Barat dan Selatan'];                               
+                                    ?>
+                                    @foreach($hadap as $h)
+                                        @if($h == $data->hadap)
+                                            <option value="{{$h}}" selected>{{$h}}</option>
+                                        @else
+                                            <option value="{{$h}}">{{$h}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -334,9 +350,9 @@
                             <div class="form-group">
                                 <label>Jenis Listing</label><br>
                                 <select class="selectpicker" data-width="100%" name="jenislisting" data-placeholder="Jenis Listing" required>
-                                    <option value="open">Open</option>
-                                    <option value="open khusus">Open Khusus</option>
-                                    <option value="ekslusif">Ekslusif</option>
+                                    <option value="Open">Open</option>
+                                    <option value="Open Khusus">Open Khusus</option>
+                                    <option value="Ekslusif">Ekslusif</option>
                                 </select>
                             </div>
                         </div>
@@ -347,8 +363,8 @@
                                 <label>Air</label><br>
                                 <select class="selectpicker" data-width="100%" name="air" data-placeholder="air" required>
                                     <option value="PDAM">PDAM</option>
-                                    <option value="sumur">Sumur</option>
-                                    <option value="PDAM dan sumur">PDAM dan Sumur</option>
+                                    <option value="Sumur">Sumur</option>
+                                    <option value="PDAM dan Sumur">PDAM dan Sumur</option>
                                 </select>
                             </div>
                         </div>
@@ -358,11 +374,11 @@
                             <div class="form-group">
                                 <label>Pemegang Hak</label><br>
                                 <select class="selectpicker" data-width="100%" name="pemeganghak" data-placeholder="pemeganghak" required>
-                                    <option value="perorangan">Perorangan</option>
-                                    <option value="pt/cv">PT atau CV</option>
-                                    <option value="ahli waris (sudah balik nama)">Ahli Waris (sudah balik nama)</option>
-                                    <option value="ahli waris (belum balik nama)">Ahli Waris (belum balik nama)</option>
-                                    <option value="ahli waris (dalam proses)">Ahli Waris (dalam proses)</option>
+                                    <option value="Perorangan">Perorangan</option>
+                                    <option value="PT/CV">PT atau CV</option>
+                                    <option value="Ahli waris (sudah balik nama)">Ahli Waris (sudah balik nama)</option>
+                                    <option value="Ahli waris (belum balik nama)">Ahli Waris (belum balik nama)</option>
+                                    <option value="Ahli waris (dalam proses)">Ahli Waris (dalam proses)</option>
                                 </select>
                             </div>
                         </div>
@@ -396,9 +412,9 @@
                             <div class="form-group">
                                 <label>Posisi</label><br>
                                 <select class="selectpicker" data-width="100%" name="posisi" data-placeholder="posisi" required>
-                                    <option value="kotak (badan)">Kotak (badan)</option>
-                                    <option value="hook (corner)">Hook (corner)</option>
-                                    <option value="ngantong">Ngantong</option>
+                                    <option value="Kotak (badan)">Kotak (badan)</option>
+                                    <option value="Hook (corner)">Hook (corner)</option>
+                                    <option value="Ngantong">Ngantong</option>
                                 </select>
                             </div>
                         </div>
@@ -408,9 +424,9 @@
                             <div class="form-group">
                                 <label>Perabotan</label><br>
                                 <select class="selectpicker" data-width="100%" name="perabotan" data-placeholder="perabotan" required>
-                                    <option value="full furnished">Full Furnished</option>
-                                    <option value="non furnished">Non Furnished</option>
-                                    <option value="semi furnished">Semi Furnished</option>
+                                    <option value="Full furnished">Full Furnished</option>
+                                    <option value="Non furnished">Non Furnished</option>
+                                    <option value="Semi furnished">Semi Furnished</option>
                                 </select>
                             </div>
                         </div>
@@ -525,13 +541,32 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
+                                <label for="judul">Judul</label> <span style="color:red"><b>*</b></span>
+                                <input id="judul" type="text" name="judul" value="{{$data->judul}}" class="form-control" maxlength="100" required>
+                                <small id="sh-text1" class="form-text text-muted">Maks. 100 karakter</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group">
                                 <label for="catatan">Catatan</label>
-                                <textarea id="catatan" name="catatan">{{$data->keterangan}}"</textarea>
+                                <textarea id="catatan" name="catatan">{{$data->keterangan}}</textarea>
                             </div>
                         </div>                                   
                     </div>
+                    <div class="custom-file-container" data-upload-id="myFirstImage">
+                        <label>Upload Foto Utama (akan ditampilkan pada bagian depan) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <small id="sh-text1" class="form-text text-muted">Apabila tidak ingin mengganti maka tidak perlu di upload</small>
+                        <label class="custom-file-container__custom-file" >
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="fotoutama">
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
+                    </div>
                     <div class="custom-file-container" data-upload-id="mySecondImage">
-                        <label>Upload (Allow Multiple) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <label>Upload Semua Foto (termasuk foto utama) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <small id="sh-text1" class="form-text text-muted">Apabila tidak ingin mengganti maka tidak perlu di upload</small>
                         <label class="custom-file-container__custom-file" >
                             <input type="file" class="custom-file-container__custom-file__custom-file-input" name="foto[]" multiple>
                             <span class="custom-file-container__custom-file__custom-file-control"></span>
@@ -569,6 +604,7 @@ $(document).ready(function() {
 <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
 <script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
 <script>
+    var firstUpload = new FileUploadWithPreview('myFirstImage')
     var secondUpload = new FileUploadWithPreview('mySecondImage')
 </script>
 @endsection

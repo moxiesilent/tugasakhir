@@ -128,7 +128,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Jenis Listing</label><br>
-                                <select class="selectpicker" data-width="100%" name="view">
+                                <select class="selectpicker" data-width="100%" name="jenislisting">
                                     <option value="">-- Pilih Jenis Listing --</option>
                                     <option value="jual">Jual</option>
                                     <option value="sewa">Sewa</option>
@@ -344,7 +344,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Tipe Listing</label><br>
-                                <select class="selectpicker" data-width="100%" name="jenislisting" data-placeholder="Jenis Listing">
+                                <select class="selectpicker" data-width="100%" name="tipelisting" data-placeholder="Jenis Listing">
                                     <option value="">-- Pilih Tipe Listing --</option>
                                     <option value="open">Open</option>
                                     <option value="open khusus">Open Khusus</option>
@@ -453,8 +453,8 @@
                                 <label for="tipeapartemen">Tipe Apartemen (khusus apartemen)</label>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih bentuk harga" name="tipeapartemen">
                                     <option value="0">-- Pilih tipe apartemen (khusus apartemen) --</option>
-                                    @foreach($bentukharga as $bh)
-                                        <option value="{{$bh->idbentuk_harga}}">{{$bh->bentuk_harga}}</option>
+                                    @foreach($tipeapartemen as $ta)
+                                        <option value="{{$ta->idtipe_apartemen}}">{{$ta->tipe_apartemen}}</option>
                                     @endforeach
                                 </select>
                             </div>
