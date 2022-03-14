@@ -103,7 +103,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="nama">Nama Lengkap</label>
+                                <label for="nama">Nama Lengkap</label> <span style="color:red"><b>*</b></span>
                                 <input id="nama" type="text" name="nama" placeholder="Nama lengkap" class="form-control" required>
                             </div>
                         </div>                                        
@@ -111,7 +111,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="kode">Kode Agen</label>
+                                <label for="kode">Kode Agen</label> <span style="color:red"><b>*</b></span>
                                 <input id="kode" type="text" name="kode" placeholder="Kode agen" class="form-control" required>
                             </div>
                         </div>                                        
@@ -119,7 +119,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">Email</label> <span style="color:red"><b>*</b></span>
                                 <input id="email" type="email" name="email" placeholder="example@gmail.com" class="form-control" required>
                             </div>
                         </div>                                        
@@ -127,7 +127,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="jabatan">Jabatan</label>
+                                <label for="jabatan">Jabatan</label> <span style="color:red"><b>*</b></span>
                                 <input id="jabatan" type="text" name="jabatan" placeholder="jabatan" class="form-control" required>
                             </div>
                         </div>                                        
@@ -143,7 +143,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="hp">No HP</label>
+                                <label for="hp">No HP</label> <span style="color:red"><b>*</b></span>
                                 <input id="hp" type="text" name="hp" placeholder="08xxxxxxxxx" class="form-control" required>
                             </div>
                         </div>                                        
@@ -180,17 +180,17 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
-                                <input id="alamat" type="text" name="alamat" placeholder="Alamat" class="form-control" required>
+                                <input id="alamat" type="text" name="alamat" placeholder="Alamat" class="form-control">
                             </div>
                         </div>                                        
                     </div>
-                    <div class="row">
-                        <div class="col-12 mx-auto mb-3">
-                            <div class="form-group">
-                                <label for="foto">Foto</label>
-                                <input type="file" class="form-control" id="foto" name="foto">     
-                            </div>
-                        </div>                                        
+                    <div class="custom-file-container" data-upload-id="myFirstImage">
+                        <label>Upload Foto <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <label class="custom-file-container__custom-file" >
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="foto">
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
                     </div>
                 </div>
                 <a href="{{url('agens')}}" class="btn btn-secondary-light"> Kembali</a>
@@ -207,4 +207,7 @@
 @section('javascript')
 <script src="{{asset('plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
 <script src="{{asset('plugins/file-upload/file-upload-with-preview.min.js')}}"></script>
+<script>
+    var firstUpload = new FileUploadWithPreview('myFirstImage')
+</script>
 @endsection

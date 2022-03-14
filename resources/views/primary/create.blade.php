@@ -103,7 +103,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="project">Nama Primary Project</label>
+                                <label for="project">Nama Primary Project</label> <span style="color:red"><b>*</b></span>
                                 <input id="project" type="text" name="namaproject" placeholder="Primary project..." class="form-control" required>
                             </div>
                         </div>                                        
@@ -111,7 +111,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="developer">Developer</label>
+                                <label for="developer">Developer</label> <span style="color:red"><b>*</b></span>
                                 <input id="developer" type="text" name="developer" placeholder="Developer..." class="form-control" required>
                             </div>
                         </div>                                        
@@ -119,7 +119,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="blt">BLT</label>
+                                <label for="blt">BLT</label> <span style="color:red"><b>*</b></span>
                                 <input id="blt" type="text" name="blt" placeholder="Jumlah BLT(angka)" class="form-control" required>
                             </div>
                         </div>                                        
@@ -127,7 +127,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="komisi">Komisi (%)</label>
+                                <label for="komisi">Komisi (%)</label> <span style="color:red"><b>*</b></span>
                                 <input id="komisi" type="text" name="komisi" placeholder="(dalam persen)" class="form-control" required>
                             </div>
                         </div>                                        
@@ -140,13 +140,13 @@
                             </div>
                         </div>                                   
                     </div>
-                    <div class="row">
-                        <div class="col-12 mx-auto mb-3">
-                            <div class="form-group">
-                                <label for="foto">Foto</label>
-                                <input type="file" class="form-control" id="foto" name="foto">     
-                            </div>
-                        </div>                                        
+                    <div class="custom-file-container" data-upload-id="myFirstImage">
+                        <label>Upload Foto<a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <label class="custom-file-container__custom-file" >
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="foto">
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
                     </div>
                 </div>
                 <a href="{{url('primarys')}}" class="btn btn-secondary-light"> Kembali</a>
@@ -161,6 +161,10 @@
 
 @endsection
 @section('javascript')
+<script src="{{asset('plugins/file-upload/file-upload-with-preview.min.js')}}"></script>
+<script>
+    var firstUpload = new FileUploadWithPreview('myFirstImage')
+</script>
 <script>
     CKEDITOR.replace( 'keterangan' );
 </script>

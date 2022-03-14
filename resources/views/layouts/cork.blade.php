@@ -41,6 +41,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap-select/bootstrap-select.min.css')}}">
     <link href="{{asset('plugins/file-upload/file-upload-with-preview.min.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
+    
+    <link href="{{asset('assets/css/components/custom-carousel.css')}}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
     
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->

@@ -44,6 +44,7 @@ Route::post('/hapusbentukharga', [ BentukhargaController::class, "hapusbentukhar
 Route::post('/hapuslantai', [ LantaiController::class, "hapuslantai" ])->name('hapuslantai');
 Route::post('/hapusagen', [ AgenController::class, "hapusagen" ])->name('hapusagen');
 Route::post('/hapuslisting', [ ListingController::class, "hapuslisting" ])->name('hapuslisting');
+Route::post('/juallisting', [ ListingController::class, "juallisting" ])->name('juallisting');
 Route::post('/hapustipeapartemen', [ TipeapartemenController::class, "hapustipeapartemen" ])->name('hapustipeapartemen');
 
 Route::get('/surat', [ SuratController::class, "index" ])->name('surat');

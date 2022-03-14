@@ -138,14 +138,13 @@
                             </div>
                         </div>                                   
                     </div>
-                    <div class="row">
-                        <div class="col-12 mx-auto mb-3">
-                            <div class="form-group">
-                                <label for="foto">Foto</label>
-                                <input type="file" class="form-control" id="foto" name="foto">
-                                <img src="{{asset('images/primary/'.$data->foto)}}" height='100px'/>
-                            </div>
-                        </div>                                        
+                    <div class="custom-file-container" data-upload-id="myFirstImage">
+                        <label>Upload Foto (tidak perlu disii apabila tidak ingin mengganti)<a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <label class="custom-file-container__custom-file" >
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="foto">
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
                     </div>
                 </div>
                 <a href="{{url('primarys')}}" class="btn btn-secondary-light"> Kembali</a>
@@ -159,6 +158,10 @@
 
 @endsection
 @section('javascript')
+<script src="{{asset('plugins/file-upload/file-upload-with-preview.min.js')}}"></script>
+<script>
+    var firstUpload = new FileUploadWithPreview('myFirstImage')
+</script>
 <script>
     CKEDITOR.replace( 'keterangan' );
 </script>

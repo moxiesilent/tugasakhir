@@ -13,6 +13,7 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Bentukharga;
 use App\Models\Tipeproperti;
+use App\Models\Tipeapartemen;
 use Illuminate\Http\Request;
 use Illuminate\Facade\File;
 use DB;
@@ -42,9 +43,10 @@ class ListingController extends Controller
         $bentukharga = Bentukharga::all();
         $jenissurat = Surat::all();
         $tipeproperti = Tipeproperti::all();
+        $tipeapartemen = Tipeapartemen::all();
         $provinsi = Provinsi::all();
         $kelurahan = Kelurahan::all();
-        return view("listing.create",compact('agen','jenislantai','bentukharga','jenissurat','tipeproperti','provinsi','kelurahan'));
+        return view("listing.create",compact('agen','jenislantai','bentukharga','jenissurat','tipeproperti','tipeapartemen','provinsi','kelurahan'));
     }
 
     /**
@@ -133,7 +135,9 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
-        //
+        $data = $listing;
+        $foto = DB::table('fotos')->where('listing_kode_listing',$listing->kode_listing)->get();
+        return view("listing.show",compact('data','foto'));
     }
 
     /**
@@ -149,9 +153,10 @@ class ListingController extends Controller
         $bentukharga = Bentukharga::all();
         $jenissurat = Surat::all();
         $tipeproperti = Tipeproperti::all();
+        $tipeapartemen = Tipeapartemen::all();
         $provinsi = Provinsi::all();
         $kelurahan = Kelurahan::all();
-        return view("listing.edit",compact('data','jenislantai','bentukharga','jenissurat','tipeproperti','provinsi','kelurahan'));
+        return view("listing.edit",compact('data','jenislantai','bentukharga','jenissurat','tipeproperti','tipeapartemen','provinsi','kelurahan'));
     }
 
     /**
@@ -177,6 +182,18 @@ class ListingController extends Controller
         //
     }
 
+    public function hapuslisting(Request $request){
+        try{
+            $listing = Listing::find($request->kode_listing);
+            $listing->delete();
+            return redirect()->route('listings.index')->with('status','data berhasil dihapus');       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('listings.index')->with('error', $msg);
+        }
+    }
+
     public function getKota(Request $request){
         $kota = DB::table('kotas')->where('provinsis_idprovinsi',$request->idprov)->get();
         return response()->json([
@@ -197,6 +214,4 @@ class ListingController extends Controller
             'listkelurahan' => $kelurahan
         ]);
     }
-
-
 }

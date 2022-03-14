@@ -19,9 +19,9 @@
         </a>
     </li>
 
-    <li class="menu">
+    <li class="menu active">
         <a href="{{url('listing')}}" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
+            <div class="active">
                 <i data-feather="box"></i>
                 <span> Listing</span>
             </div>
@@ -57,8 +57,8 @@
         </ul>
     </li>
 
-    <li class="menu active">
-        <a href="#submenu2" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+    <li class="menu">
+        <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             <div class="">
                 <i data-feather="shield"></i>
                 <span> Primary</span>
@@ -67,8 +67,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </div>
         </a>
-        <ul class="collapse submenu list-unstyled show" id="submenu2" data-parent="#accordionExample">
-            <li class="active">
+        <ul class="collapse submenu list-unstyled" id="submenu2" data-parent="#accordionExample">
+            <li class="">
                 <a href="{{url('primary')}}"> List </a>
             </li>
             <li>
@@ -111,7 +111,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="agen">Agen</label>
+                                <label for="agen">Agen</label> <span style="color:red"><b>*</b></span>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="idagen" required>
                                     @foreach($agen as $ag)
                                         @if($ag->nama == 'admin')
@@ -123,6 +123,18 @@
                                 </select>
                             </div>
                         </div>                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group">
+                                <label>Jenis Listing</label><br>
+                                <select class="selectpicker" data-width="100%" name="view">
+                                    <option value="">-- Pilih Jenis Listing --</option>
+                                    <option value="jual">Jual</option>
+                                    <option value="sewa">Sewa</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
@@ -159,7 +171,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="tower">Tower</label>
+                                <label for="tower">Tower (apartemen)</label>
                                 <input id="tower" type="text" name="tower" placeholder="Tower (apartemen)" class="form-control">
                             </div>
                         </div>
@@ -175,8 +187,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="lt">Luas Tanah (dalam meter persegi)</label>
-                                <input id="lt" type="number" step="0.1" name="lt" placeholder="Luas tanah (angka)" class="form-control">
+                                <label for="lt">Luas Tanah (dalam meter persegi)</label> <span style="color:red"><b>*</b></span>
+                                <input id="lt" type="number" step="0.1" name="lt" placeholder="Luas tanah (angka)" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -208,7 +220,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="kt">Jumlah Kamar Tidur</label>
-                                <input id="kt" type="number" step="1" name="kt" placeholder="Jumlah kamar tidur (angka)" class="form-control" required>
+                                <input id="kt" type="number" step="1" name="kt" placeholder="Jumlah kamar tidur (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -216,7 +228,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="km">Jumlah Kamar Mandi</label>
-                                <input id="km" type="number" step="1" name="km" placeholder="Jummlah kamar mandi (angka)" class="form-control" required>
+                                <input id="km" type="number" step="1" name="km" placeholder="Jummlah kamar mandi (angka)" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -264,18 +276,11 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>View (apartemen)</label><br>
-                                <div class="n-chk">
-                                    <label class="new-control new-radio radio-primary">
-                                        <input type="radio" class="new-control-input" name="view" value="city">
-                                        <span class="new-control-indicator"></span>City
-                                    </label>
-                                </div>
-                                <div class="n-chk">
-                                    <label class="new-control new-radio radio-primary">
-                                        <input type="radio" class="new-control-input" name="view" value="pool">
-                                        <span class="new-control-indicator"></span>Pool
-                                    </label>
-                                </div>
+                                <select class="selectpicker" data-width="100%" name="view">
+                                    <option value="">-- Pilih View (khusus apartemen) --</option>
+                                    <option value="city">City</option>
+                                    <option value="pool">Pool</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -316,6 +321,7 @@
                             <div class="form-group">
                                 <label>Hadap</label><br>
                                 <select class="selectpicker" data-width="100%" name="hadap" data-placeholder="Hadap">
+                                    <option value="">-- Pilih Hadap --</option>
                                     <option value="timur">Timur</option>
                                     <option value="utara">Utara</option>
                                     <option value="barat">Barat</option>
@@ -337,8 +343,9 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label>Jenis Listing</label><br>
-                                <select class="selectpicker" data-width="100%" name="jenislisting" data-placeholder="Jenis Listing" required>
+                                <label>Tipe Listing</label><br>
+                                <select class="selectpicker" data-width="100%" name="jenislisting" data-placeholder="Jenis Listing">
+                                    <option value="">-- Pilih Tipe Listing --</option>
                                     <option value="open">Open</option>
                                     <option value="open khusus">Open Khusus</option>
                                     <option value="ekslusif">Ekslusif</option>
@@ -350,7 +357,8 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Air</label><br>
-                                <select class="selectpicker" data-width="100%" name="air" data-placeholder="air" required>
+                                <select class="selectpicker" data-width="100%" name="air" data-placeholder="air">
+                                    <option value="">-- Pilih Air --</option>
                                     <option value="PDAM">PDAM</option>
                                     <option value="sumur">Sumur</option>
                                     <option value="PDAM dan sumur">PDAM dan Sumur</option>
@@ -362,7 +370,8 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Pemegang Hak</label><br>
-                                <select class="selectpicker" data-width="100%" name="pemeganghak" data-placeholder="pemeganghak" required>
+                                <select class="selectpicker" data-width="100%" name="pemeganghak" data-placeholder="pemeganghak">
+                                    <option value="">-- Pilih Status Pemegang Hak --</option>
                                     <option value="perorangan">Perorangan</option>
                                     <option value="pt/cv">PT atau CV</option>
                                     <option value="ahli waris (sudah balik nama)">Ahli Waris (sudah balik nama)</option>
@@ -391,8 +400,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="harga">Harga</label>
-                                <input id="harga" type="number" name="harga" placeholder="Harga (angka)" step="100000000" min="0" class="form-control">
+                                <label for="harga">Harga</label> <span style="color:red"><b>*</b></span>
+                                <input id="harga" type="number" name="harga" placeholder="Harga (angka)" min="0" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -400,7 +409,8 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Posisi</label><br>
-                                <select class="selectpicker" data-width="100%" name="posisi" data-placeholder="posisi" required>
+                                <select class="selectpicker" data-width="100%" name="posisi" data-placeholder="posisi">
+                                    <option value="">-- Pilih posisi --</option>
                                     <option value="kotak (badan)">Kotak (badan)</option>
                                     <option value="hook (corner)">Hook (corner)</option>
                                     <option value="ngantong">Ngantong</option>
@@ -412,7 +422,8 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Perabotan</label><br>
-                                <select class="selectpicker" data-width="100%" name="perabotan" data-placeholder="perabotan" required>
+                                <select class="selectpicker" data-width="100%" name="perabotan" data-placeholder="perabotan">
+                                    <option value="">-- Pilih perabotan --</option>
                                     <option value="full furnished">Full Furnished</option>
                                     <option value="non furnished">Non Furnished</option>
                                     <option value="semi furnished">Semi Furnished</option>
@@ -423,8 +434,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="komisi">Komisi (dalam persen)</label>
-                                <input id="komisi" type="number" name="komisi" placeholder="Komisi (angka)" step="0.01" min="0" class="form-control">
+                                <label for="komisi">Komisi (dalam persen)</label> <span style="color:red"><b>*</b></span>
+                                <input id="komisi" type="number" name="komisi" placeholder="Komisi (angka)" step="0.01" min="0" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -452,8 +463,9 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="bentukharga">Harga Dalam Bentuk</label>
-                                <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih bentuk harga" name="idbh" required>
+                                <label for="bentukharga">Harga Dalam Bentuk</label> <span style="color:red"><b>*</b></span>
+                                <select class="form-control basic" data-toggle="select" title="Simple select" name="idbh" required>
+                                    <option value="">-- Pilih bentuk harga --</option>
                                     @foreach($bentukharga as $bh)
                                         <option value="{{$bh->idbentuk_harga}}">{{$bh->bentuk_harga}}</option>
                                     @endforeach
@@ -464,8 +476,9 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="jenissurat">Jenis Surat</label>
+                                <label for="jenissurat">Jenis Surat</label> <span style="color:red"><b>*</b></span>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih jenis surat" name="idjs" required>
+                                    <option value="">-- Pilih jenis surat --</option>
                                     @foreach($jenissurat as $js)
                                         <option value="{{$js->idjenis_surat}}">{{$js->jenis_surat}}</option>
                                     @endforeach
@@ -476,8 +489,9 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="tipeproperti">Tipe Properti</label>
+                                <label for="tipeproperti">Tipe Properti</label> <span style="color:red"><b>*</b></span>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih tipe properti" name="idtp" required>
+                                    <option value="">-- Pilih tipe properti --</option>
                                     @foreach($tipeproperti as $tp)
                                         <option value="{{$tp->idtipe_properti}}">{{$tp->jenis_properti}}</option>
                                     @endforeach
@@ -490,6 +504,7 @@
                             <div class="form-group">
                                 <label for="jenislantai">Jenis Lantai</label>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih jenis lantai" name="idjl">
+                                    <option value="">-- Pilih jenis lantai --</option>
                                     @foreach($jenislantai as $jl)
                                         <option value="{{$jl->idjenis_lantai}}">{{$jl->nama}}</option>
                                     @endforeach
@@ -500,8 +515,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="provinsi">Provinsi</label>
-                                <select id="provinsi" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih provinsi">
+                                <label for="provinsi">Provinsi</label> <span style="color:red"><b>*</b></span>
+                                <select id="provinsi" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih provinsi" required>
                                     <option value="-">-- Pilih Provinsi --</option>
                                     @foreach($provinsi as $pr)
                                         <option value="{{$pr->idprovinsi}}">{{$pr->nama}}</option>
@@ -513,8 +528,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group" id="pilihKota">
-                                <label for="kota">Kabupaten atau Kota</label>
-                                <select id="kota" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih kabupaten atau kota">
+                                <label for="kota">Kabupaten atau Kota</label> <span style="color:red"><b>*</b></span>
+                                <select id="kota" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih kabupaten atau kota" required>
                                     <option value="-">-- Pilih Kota --</option>
                                 </select>
                             </div>
@@ -523,8 +538,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group" id="pilihKecamatan">
-                                <label for="kecamatan">Kecamatan</label>
-                                <select id="kecamatan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah">
+                                <label for="kecamatan">Kecamatan</label> <span style="color:red"><b>*</b></span>
+                                <select id="kecamatan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah" required>
                                     <option value="-">-- Pilih Kecamatan --</option>
                                 </select>
                             </div>
@@ -533,8 +548,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group" id="pilihKelurahan">
-                                <label for="kelurahan">Kelurahan</label>
-                                <select id="kelurahan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah" name="kelurahan">
+                                <label for="kelurahan">Kelurahan</label> <span style="color:red"><b>*</b></span>
+                                <select id="kelurahan" class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah" name="kelurahan" required>
                                     <option value="-">-- Pilih Kelurahan --</option>
                                 </select>
                             </div>
@@ -543,10 +558,26 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
+                                <label for="judul">Judul</label> <span style="color:red"><b>*</b></span>
+                                <input id="judul" type="text" name="judul" placeholder="DIJUAL Rumah xxx !!! (maks 100 karakter)" class="form-control" maxlength="100" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group">
                                 <label for="catatan">Catatan</label>
                                 <textarea id="catatan" name="catatan"></textarea>
                             </div>
                         </div>                                   
+                    </div>
+                    <div class="custom-file-container" data-upload-id="myFirstImage">
+                        <label>Upload (Single File) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <label class="custom-file-container__custom-file" >
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="fotoutama">
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
                     </div>
                     <div class="custom-file-container" data-upload-id="mySecondImage">
                         <label>Upload (Allow Multiple) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
@@ -587,6 +618,7 @@ $(document).ready(function() {
 <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
 <script src="{{asset('plugins/select2/custom-select2.js')}}"></script>
 <script>
+    var firstUpload = new FileUploadWithPreview('myFirstImage')
     var secondUpload = new FileUploadWithPreview('mySecondImage')
 </script>
 <script>

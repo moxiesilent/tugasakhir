@@ -98,7 +98,7 @@ class AgenController extends Controller
      */
     public function update(Request $request, User $agen)
     {
-        try{
+        // try{
             if($request->hasFile('foto')){
                 $dest='images/agen/'.$agen->foto;
                 if(file_exists($dest)){
@@ -110,18 +110,21 @@ class AgenController extends Controller
                 $file->move($imgFolder,$imgFile);
                 $agen->foto=$imgFile;
             }
-            $agen->nama_project = $request->get('namaproject');
-            $agen->developer = $request->get('developer');
-            $agen->blt = $request->get('blt');
-            $agen->komisi = $request->get('komisi');
-            $agen->keterangan = $request->get('keterangan');
+            $agen->kode = $request->get('kode');
+            $agen->nama = $request->get('nama');
+            $agen->email = $request->get('email');
+            $agen->tanggallahir = $request->get('tanggallahir');
+            $agen->jabatan = $request->get('jabatan');
+            $agen->hp = $request->get('hp');
+            $agen->alamat = $request->get('alamat');
+            $agen->agama = $request->get('agama');
             $agen->save();
             return redirect()->route('agens.index')->with('status','data berhasil diubah');     
-        }
-        catch(\PDOException $e){
-            $msg ="Gagal mengubah data. ";
-            return redirect()->route('agens.index')->with('error', $msg);
-        }
+        // }
+        // catch(\PDOException $e){
+        //     $msg ="Gagal mengubah data. ";
+        //     return redirect()->route('agens.index')->with('error', $msg);
+        // }
     }
 
     /**
