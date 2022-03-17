@@ -21,7 +21,7 @@
 
     <li class="menu active">
         <a href="{{url('listing')}}" aria-expanded="true" class="dropdown-toggle">
-            <div class="">
+            <div class="active">
                 <i data-feather="box"></i>
                 <span> Listing</span>
             </div>
@@ -38,7 +38,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </div>
         </a>
-        <ul class="collapse submenu recent-submenu list-unstyled show" id="submenu" data-parent="#accordionExample">
+        <ul class="collapse submenu recent-submenu list-unstyled" id="submenu" data-parent="#accordionExample">
             <li>
                 <a href="{{url('tipeproperti')}}"> Tipe Properti </a>
             </li>
@@ -51,7 +51,7 @@
             <li>
                 <a href="{{url('bentukharga')}}"> Bentuk Harga </a>
             </li>
-            <li class="active">
+            <li class="">
                 <a href="{{url('lantai')}}"> Lantai </a>
             </li>                           
         </ul>

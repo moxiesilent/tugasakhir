@@ -95,20 +95,81 @@
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
                 <div style="margin-bottom:20px;">
-                    <h3>Detail Primary</h3>
+                    <div class="text-center">
+                        <h4><b>Data Primary</b></4>
+                    </div><br>
+                    <div class="row center">
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
+                            <h3><b>{{$data->nama_project}}</b></h3><br>
+                            <h6>Developer : <b>{{$data->developer}}</b></h6>
+                            <h6>BLT : <b>Rp. {{number_format($data->blt)}}</b></h6>
+                            <h6>Komisi : <b>{{$data->komisi}} %</b></h6>
+                            <h6>Keterangan : </h6>
+                            <?php echo $data->keterangan ?>
+                        </div>
+                        <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-center">
+                            <img style="border-radius: 15px;" src="{{asset('images/primary/'.$data->foto)}}" height='250px'/>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
+                            <a href="{{url('primarys/'.$data->idprimary.'/edit')}}"><button class="btn btn-warning">Ubah</button></a>
+                            <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idprimary}}')">Hapus</button>
+                            @if($data->website != "")
+                            <a href="{{$data->website}}" target="blank"><button class="btn btn-dark">Website</button></a>
+                            @endif
+                        </div>
+                        <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
+                            <a href="{{url('primarys')}}" class="btn btn-secondary-light"> Kembali</a>
+                        </div>
+                    </div>
                 </div>
-                <img src="{{asset('images/primary/'.$data->foto)}}" height='250px'/><br><br>
-                <h3>{{$data->nama_project}}</h3><br>
-                <h4>{{$data->developer}}</h4><br>
-                {{$data->blt}}<br>
-                {{$data->komisi}} %<br>
-                <?php echo $data->keterangan ?>
-                
-                <a href="{{url('primarys')}}" class="btn btn-secondary-light"> Kembali</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+@endsection
+@section('javascript')
+<script>
+    function hapus(token,id){
+        swal({
+        title: "Yakin Ingin Menghapus Data? ",
+        text: "Data yang ada akan hilang sepenuhnya",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#FF5722",
+        confirmButtonText: "Ya, Hapus!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+        closeOnCancel: true,
+        showLoaderOnConfirm: true
+    }).then(function (result) {
+        if (result.value) {
+            var act = '/hapusprimary';
+            $.post(act, {
+
+                _token: token,
+                id:id,
+                },
+            function (data) {
+                swal(
+                'Berhasil!',
+                'Data berhasil dihapus.',
+                'success'
+                ).then(function () {
+                    location.reload();
+                })
+            });
+        } else if(result.dismiss) {
+            swal(
+                'Hapus Data Dibatalkan!',
+                '',
+                'error'
+            )
+        }
+    })
+}
+</script>
 @endsection

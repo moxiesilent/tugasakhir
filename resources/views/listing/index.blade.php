@@ -21,7 +21,7 @@
 
     <li class="menu active">
         <a href="{{url('listing')}}" aria-expanded="true" class="dropdown-toggle">
-            <div class="">
+            <div class="active">
                 <i data-feather="box"></i>
                 <span> Listing</span>
             </div>
@@ -134,7 +134,13 @@
                             @foreach($data as $d)
                             <tr>
                                 <td>{{$d->kode_listing}}</td>
-                                <td class="text-center"><b>{{$d->jenis_listing}}</b></td>
+                                <td class="text-center">
+                                    @if($d->jenis_listing == 'JUAL')
+                                    <b class="text-primary">{{$d->jenis_listing}}</b>
+                                    @else
+                                    <b class="text-warning">{{$d->jenis_listing}}</b>
+                                    @endif
+                                </td>
                                 <td>{{$d->luas_tanah}} m<sup>2</sup></td>
                                 <td>{{$d->luas_bangunan}} m<sup>2</sup></td>
                                 <td class="text-right"><b>{{number_format($d->harga)}}</b></td>
@@ -142,9 +148,9 @@
                                 <td>{{$d->komisi}} %</td>
                                 <td>{{$d->kelurahans->nama}}</td>
                                 <td>
-                                    @if($d->status == 'available')
+                                    @if($d->status == 'Available')
                                     <h6 class="text-success"><b>{{$d->status}}</b></h6>
-                                    @elseif($d->status == 'pending')
+                                    @elseif($d->status == 'Pending')
                                     <h6 class="text-warning"><b>{{$d->status}}</b></h6>
                                     @else
                                     <h6 class="text-danger"><b>{{$d->status}}</b></h6>

@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/halamanutama', [ ApiController::class, "tampilHalamanUtama" ]);
 Route::get('/halamanlisting', [ ApiController::class, "tampilHalamanListing" ]);
+Route::post('/halamanprofil', [ ApiController::class, "tampilHalamanProfil" ]);
+Route::post('/login', [ ApiController::class, "prosesLogin" ]);

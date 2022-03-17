@@ -175,9 +175,82 @@ class ListingController extends Controller
      * @param  \App\Models\Listing  $listing
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Listing $listing)
+    public function update(Request $request, Listing $listing, Foto $foto)
     {
-        //
+        $kode = $request->get('kode');
+        $listing->kode_listing = $request->get('kode');
+        $listing->agen_idagen = $request->get('idagen');
+        $listing->alamat_domisili = $request->get('alamatdomisili');
+        $listing->nomor_hp_pemilik = $request->get('hppemilik');
+        $listing->surat_kepemilikan_atasnama = $request->get('skan');
+        $listing->alamat_properti = $request->get('alamatproperti');
+        if($request->get('tipeapartemen') != '0'){
+            $listing->tipe_apartemens_idtipe_apartemen = $request->get('tipeapartemen');
+        }
+        $listing->tower = $request->get('tower');
+        $listing->cluster = $request->get('cluster');
+        $listing->luas_tanah = $request->get('lt');
+        $listing->luas_bangunan = $request->get('lb');
+        $listing->dimensi_tanah_lebar = $request->get('dtl');
+        $listing->dimensi_tanah_panjang = $request->get('dtp');
+        $listing->kamar_tidur = $request->get('kt');
+        $listing->kamar_mandi = $request->get('km');
+        $listing->kamar_tidur_pembantu = $request->get('ktp');
+        $listing->kamar_mandi_pembantu = $request->get('kmp');
+        $listing->jumlah_lantai = $request->get('jumlahlantai');
+        $listing->nomor_lantai = $request->get('nomorlantai');
+        $listing->nomor_unit = $request->get('nomorunit');
+        $listing->view = $request->get('view');
+        $listing->listrik = $request->get('listrik');
+        $listing->dapur = $request->get('dapur');
+        $listing->carport = $request->get('carport');
+        $listing->garasi = $request->get('garasi');
+        $listing->hadap = $request->get('hadap');
+        $listing->tipe_listing = $request->get('tipelisting');
+        $listing->air = $request->get('air');
+        $listing->pemegang_hak = $request->get('pemeganghak');
+        $listing->mulai_tanggal = $request->get('mulaitanggal');
+        $listing->harga = $request->get('harga');
+        $listing->berakhir_tanggal = $request->get('berakhirtanggal');
+        $listing->posisi = $request->get('posisi');
+        $listing->perabotan = $request->get('perabotan');
+        $listing->komisi = $request->get('komisi');
+        $listing->pasang_banner = $request->get('banner');
+        $listing->bentuk_harga_idbentuk_harga = $request->get('idbh');
+        $listing->jenis_surat_idjenis_surat = $request->get('idjs');
+        $listing->tipe_properti_idtipe_properti = $request->get('idtp');
+        $listing->jenis_lantai_idjenis_lantai = $request->get('idjl');
+        $listing->kelurahans_idkelurahan = $request->get('kelurahan');
+        $listing->catatan = $request->get('catatan');
+        $listing->status = 'available';
+        $listing->jenis_listing = $request->get('jenislisting');
+        $listing->judul = $request->get('judul');
+        if($request->hasFile('fotoutama')){
+            $dest='images/listing/'.$listing->foto_utama;
+            if(file_exists($dest)){
+                @unlink($dest); 
+            }
+            $file=$request->file('fotoutama');
+            $imgFolder='images/listing/';
+            $imgFile=time().'_'.$file->getClientOriginalName();
+            $file->move($imgFolder,$imgFile);
+            $listing->foto_utama=$imgFile;
+        }
+        $listing->save();
+
+        if($request->hasFile('foto')){
+            foreach($request->file('foto') as $key => $file){
+                $foto = new Foto();
+                $foto->listing_kode_listing = $request->get('kode');
+                $imgFolder='images/listing';
+                $imgFile=time().'_'.$file->getClientOriginalName();
+                $file->move($imgFolder,$imgFile);
+                $foto->path=$imgFile;
+                $foto->save();
+            }
+        }
+
+        return redirect()->route('listings.index')->with('status','data berhasil diubah');
     }
 
     /**
@@ -222,5 +295,12 @@ class ListingController extends Controller
         return response()->json([
             'listkelurahan' => $kelurahan
         ]);
+    }
+
+    public function viewFrontEnd($id){
+        $listing = Listing::find($id);
+        // dd($listing);
+        $foto = DB::table('fotos')->where('listing_kode_listing',$id)->get();
+        return view("front.index",compact('listing','foto'));
     }
 }

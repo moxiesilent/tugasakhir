@@ -38,4 +38,16 @@ class ApiController extends Controller
         return response()->json(['message' => 'success', 'agen' => $agen]);
     }
 
+    public function prosesLogin(Request $request)
+    {
+        $password = Hash::make($request->password);
+        $user = User::where('email',$request->email)->where('password',$password)->first();
+
+        if($user != null)
+        {
+            //Jalan
+        }else{
+            //error
+        }
+    }
 }
