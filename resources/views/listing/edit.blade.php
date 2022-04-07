@@ -348,8 +348,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label>Jenis Listing</label><br>
-                                <select class="selectpicker" data-width="100%" name="jenislisting" data-placeholder="Jenis Listing" required>
+                                <label>Tipe Listing</label><br>
+                                <select class="selectpicker" data-width="100%" name="tipelisting" data-placeholder="Tipe Listing" required>
                                     <option value="Open">Open</option>
                                     <option value="Open Khusus">Open Khusus</option>
                                     <option value="Ekslusif">Ekslusif</option>
@@ -504,36 +504,6 @@
                                     @foreach($jenislantai as $jl)
                                         <option value="{{$jl->idjenis_lantai}}">{{$jl->nama}}</option>
                                     @endforeach
-                                </select>
-                            </div>
-                        </div>                                        
-                    </div>
-                    <div class="row">
-                        <div class="col-12 mx-auto mb-3">
-                            <div class="form-group">
-                                <label for="provinsi">Provinsi</label>
-                                <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih provinsi" name="idprovinsi">
-                                    
-                                </select>
-                            </div>
-                        </div>                                        
-                    </div>
-                    <div class="row">
-                        <div class="col-12 mx-auto mb-3">
-                            <div class="form-group">
-                                <label for="kabupaten">Kabupaten atau Kota</label>
-                                <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih kabupaten atau kota" name="idprovinsi">
-                                    
-                                </select>
-                            </div>
-                        </div>                                        
-                    </div>
-                    <div class="row">
-                        <div class="col-12 mx-auto mb-3">
-                            <div class="form-group">
-                                <label for="wilayah">Wilayah (khusus Surabaya)</label>
-                                <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih wilayah" name="idprovinsi">
-                                    
                                 </select>
                             </div>
                         </div>                                        

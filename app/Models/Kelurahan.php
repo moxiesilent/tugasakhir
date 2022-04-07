@@ -15,4 +15,8 @@ class Kelurahan extends Model
     public function listings(){
         return $this->hasMany("App\Models\Listing","kelurahans_idkelurahan","idkelurahan");
     }
+
+    public function kecamatans(){
+        return $this->belongsTo("App\Models\Kecamatan","kecamatans_idkecamatan");
+    }
 }

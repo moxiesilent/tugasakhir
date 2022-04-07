@@ -120,6 +120,7 @@
                             <tr>
                                 <th>Kode Listing</th>
                                 <th>Jenis Listing</th>
+                                <th>Tipe Properti</th>
                                 <th>L.Tanah</th>
                                 <th>L.Bangunan</th>
                                 <th>Harga</th>
@@ -141,8 +142,15 @@
                                     <b class="text-warning">{{$d->jenis_listing}}</b>
                                     @endif
                                 </td>
+                                <td>{{$d->tipePropertis->jenis_properti}}</td>
                                 <td>{{$d->luas_tanah}} m<sup>2</sup></td>
-                                <td>{{$d->luas_bangunan}} m<sup>2</sup></td>
+                                <td class="text-center">
+                                    @if($d->luas_bangunan != '')
+                                    {{$d->luas_bangunan}} m<sup>2</sup>
+                                    @else
+                                    -
+                                    @endif
+                                </td>
                                 <td class="text-right"><b>{{number_format($d->harga)}}</b></td>
                                 <td>{{$d->bentukhargas->bentuk_harga}}</td>
                                 <td>{{$d->komisi}} %</td>

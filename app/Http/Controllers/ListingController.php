@@ -178,8 +178,6 @@ class ListingController extends Controller
     public function update(Request $request, Listing $listing, Foto $foto)
     {
         $kode = $request->get('kode');
-        $listing->kode_listing = $request->get('kode');
-        $listing->agen_idagen = $request->get('idagen');
         $listing->alamat_domisili = $request->get('alamatdomisili');
         $listing->nomor_hp_pemilik = $request->get('hppemilik');
         $listing->surat_kepemilikan_atasnama = $request->get('skan');
@@ -220,7 +218,6 @@ class ListingController extends Controller
         $listing->jenis_surat_idjenis_surat = $request->get('idjs');
         $listing->tipe_properti_idtipe_properti = $request->get('idtp');
         $listing->jenis_lantai_idjenis_lantai = $request->get('idjl');
-        $listing->kelurahans_idkelurahan = $request->get('kelurahan');
         $listing->catatan = $request->get('catatan');
         $listing->status = 'available';
         $listing->jenis_listing = $request->get('jenislisting');

@@ -11,4 +11,12 @@ class Kota extends Model
     protected $primaryKey = 'idkota';
     protected $table = "kotas";
     public $timestamps=false;
+
+    public function provinsis(){
+        return $this->belongsTo("App\Models\Provinsi","provinsis_idprovinsi");
+    }
+
+    public function kemacatans(){
+        return $this->hasMany("App\Models\Kecamatan","kecamatans","idkecamatan");
+    }
 }

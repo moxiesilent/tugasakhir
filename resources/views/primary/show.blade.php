@@ -108,7 +108,7 @@
                             <?php echo $data->keterangan ?>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-center">
-                            <img style="border-radius: 15px;" src="{{asset('images/primary/'.$data->foto)}}" height='250px'/>
+                            <img style="border-radius: 15px;" src="{{asset('images/primary/'.$data->foto_utama)}}" height='250px'/>
                         </div>
                     </div><br>
                     <div class="row">

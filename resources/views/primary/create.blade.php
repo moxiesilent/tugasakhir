@@ -140,6 +140,14 @@
                             </div>
                         </div>                                   
                     </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group">
+                                <label for="website">Website</label> <span style="color:red"><b>*</b></span>
+                                <input id="website" type="text" name="website" placeholder="https://www.example.com" class="form-control">
+                            </div>
+                        </div>                                        
+                    </div>
                     <div class="custom-file-container" data-upload-id="myFirstImage">
                         <label>Upload Foto<a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                         <label class="custom-file-container__custom-file" >

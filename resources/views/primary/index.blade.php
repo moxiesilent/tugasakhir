@@ -132,7 +132,7 @@
                                 <td>{{$d->nama_project}}</td>
                                 <td>{{$d->developer}}</td>
                                 <td class="text-right"><b>{{number_format($d->blt)}}</b></td>
-                                <td><img src="{{asset('images/primary/'.$d->foto)}}" height='100px'/></td>
+                                <td><img src="{{asset('images/primary/'.$d->foto_utama)}}" height='100px'/></td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
