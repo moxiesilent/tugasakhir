@@ -14,8 +14,10 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Tipeapartemen;
 use App\Models\Surat;
+use App\Models\Foto;
 use App\Models\Calonpembeli;
 use App\Models\User;
+use DB;
 
 class ApiController extends Controller
 {
@@ -40,7 +42,8 @@ class ApiController extends Controller
 
     public function tampilDetailListing($kode){
         $listing = Listing::find($kode);
-        return response()->json(['message' => 'Success', 'listing'=> $listing]);
+        $foto = DB::table('fotos')->where('listing_kode_listing',$kode)->get();
+        return response()->json(['message' => 'Success', 'listing'=> $listing, 'foto'=> $foto]);
     }
 
     public function prosesLogin(Request $request)
