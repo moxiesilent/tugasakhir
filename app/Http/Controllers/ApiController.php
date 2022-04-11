@@ -35,7 +35,12 @@ class ApiController extends Controller
 
     public function tampilHalamanprofil(){
         $agen = DB::table('agens')->where('email')->value('');
-        return response()->json(['message' => 'success', 'agen' => $agen]);
+        return response()->json(['message' => 'Success', 'agen' => $agen]);
+    }
+
+    public function tampilDetailListing($kode){
+        $listing = Listing::find($kode);
+        return response()->json(['message' => 'Success', 'listing'=> $listing]);
     }
 
     public function prosesLogin(Request $request)
