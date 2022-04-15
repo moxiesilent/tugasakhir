@@ -53,9 +53,9 @@ class ApiController extends Controller
 
         if($user != null)
         {
-            //Jalan
-        }else{
-            //error
+            return response()->json(['message' => 'Success', 'user'=> $user]);
+        } else {
+            return response()->json(['message' => 'Error']);
         }
     }
 }
