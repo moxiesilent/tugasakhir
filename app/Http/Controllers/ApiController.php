@@ -43,7 +43,15 @@ class ApiController extends Controller
     public function tampilDetailListing($kode){
         $listing = Listing::find($kode);
         $foto = DB::table('fotos')->where('listing_kode_listing',$kode)->get();
-        return response()->json(['message' => 'Success', 'listing'=> $listing, 'foto'=> $foto]);
+        $jenislantai = $listing->lantais()->get();
+        $kelurahan = $listing->kelurahans()->get();
+        $agen = $listing->agens()->get();
+        $bentukharga = $listing->bentukhargas()->get();
+        $tipeapartemen = $listing->tipeapartemens()->get();
+        $jenissurat = $listing->surats()->get();
+        $tipeproperti = $listing->tipepropertis()->get();
+        return response()->json(['message' => 'Success', 'listing'=> $listing, 'foto'=> $foto, 'lantai'=> $jenislantai, 'tipeproperti'=> $tipeproperti,
+        'kelurahan'=> $kelurahan, 'jenissurat'=> $jenissurat, 'bentukharga'=> $bentukharga, 'tipeapartemen'=> $tipeapartemen, 'agen'=> $agen]);
     }
 
     public function prosesLogin(Request $request)
