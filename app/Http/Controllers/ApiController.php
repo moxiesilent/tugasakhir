@@ -35,9 +35,20 @@ class ApiController extends Controller
         return response()->json(['message' => 'Success', 'listing'=> $listing]);
     }
 
+    public function tampilListingTipeproperti($idtipeproperti){
+        $listing = DB::table('listings')->where('tipe_properti_idtipe_properti',$idtipeproperti)->get();
+        return response()->json(['message'=> 'Success', 'listing'=> $listing]);
+    }
+
     public function tampilHalamanprofil(){
         $agen = DB::table('agens')->where('email')->value('');
         return response()->json(['message' => 'Success', 'agen' => $agen]);
+    }
+
+    public function tampilDetailPrimary($idprimary){
+        $primary = Primary::find($idprimary);
+        $foto = DB::table('foto_primarys')->where('primarys_idprimary',$idprimary)->get();
+        return response()->json(['message'=> 'Success', 'primary'=>$primary, 'foto'=>$foto]);
     }
 
     public function tampilDetailListing($kode){

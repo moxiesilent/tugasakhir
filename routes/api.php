@@ -22,4 +22,6 @@ Route::get('/halamanutama', [ ApiController::class, "tampilHalamanUtama" ]);
 Route::get('/halamanlisting', [ ApiController::class, "tampilHalamanListing" ]);
 Route::post('/halamanprofil', [ ApiController::class, "tampilHalamanProfil" ]);
 Route::get('/detaillisting/{kode}', [ApiController::class, "tampilDetailListing"]);
+Route::get('/detailprimary/{idprimary}', [ApiController::class, "tampilDetailPrimary"]);
+Route::get('/listingtipeproperti/{idtipeproperti}', [ApiController::class, "tampilListingTipeproperti"]);
 Route::post('/login', [ ApiController::class, "prosesLogin" ]);
