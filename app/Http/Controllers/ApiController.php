@@ -45,6 +45,11 @@ class ApiController extends Controller
         return response()->json(['message' => 'Success', 'agen' => $agen]);
     }
 
+    public function tampilHalamanListPrimary(){
+        $primary = Primary::all();
+        return response()->json(['message'=>'Success', 'primary'=>$primary]);
+    }
+
     public function tampilDetailPrimary($idprimary){
         $primary = Primary::find($idprimary);
         $foto = DB::table('foto_primarys')->where('primarys_idprimary',$idprimary)->get();
