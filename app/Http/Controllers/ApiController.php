@@ -56,6 +56,11 @@ class ApiController extends Controller
         return response()->json(['message'=> 'Success', 'primary'=>$primary, 'foto'=>$foto]);
     }
 
+    public function tampilMyListing($idagen){
+        $listing = DB::table('listings')->where('agen_idagen', $idagen)->get();
+        return response()->json(['message'=>"Success", 'listing'=>$listing]);
+    }
+
     public function tampilDetailListing($kode){
         $listing = Listing::find($kode);
         $foto = DB::table('fotos')->where('listing_kode_listing',$kode)->get();
