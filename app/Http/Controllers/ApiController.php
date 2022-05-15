@@ -77,6 +77,7 @@ class ApiController extends Controller
 
     public function prosesLogin(Request $request)
     {
+        dd($request);
         $password = Hash::make($request->password);
         $user = User::where('email',$request->email)->where('password',$password)->first();
 
