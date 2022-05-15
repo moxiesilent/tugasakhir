@@ -61,6 +61,26 @@ class ApiController extends Controller
         return response()->json(['message'=>"Success", 'listing'=>$listing]);
     }
 
+    public function getProvinsi(){
+        $provinsi = Provinsi::all();
+        return response()->json(['message'=>"Success", 'provinsi'=>$provinsi]);
+    }
+
+    public function getKota($idprovinsi){
+        $kota = DB::table('kotas')->where('provinsis_idprovinsi',$idprovinsi)->get();
+        return response()->json(['message'=>"Success", 'kota'=>$kota]);
+    }
+
+    public function getKecamatan($idkota){
+        $kecamatan = DB::table('kecamatans')->where('kotas_idkota',$idkota)->get();
+        return response()->json(['message'=>"Success", 'kecamatan'=>$kecamatan]);
+    }
+
+    public function getKelurahan($idkecamatan){
+        $kelurahan = DB::table('kelurahans')->where('kecamatans_idkecamatan',$idkecamatan)->get();
+        return response()->json(['message'=>"Success", 'kelurahan'=>$kelurahan]);
+    }
+
     public function tampilDetailListing($kode){
         $listing = Listing::find($kode);
         $foto = DB::table('fotos')->where('listing_kode_listing',$kode)->get();

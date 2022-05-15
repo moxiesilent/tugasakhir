@@ -29,3 +29,8 @@ Route::get('/listingtipeproperti/{idtipeproperti}', [ApiController::class, "tamp
 Route::get('/mylisting/{idagen}', [ ApiController::class, "tampilMyListing"]);
 Route::post('/login', [ ApiController::class, "prosesLogin" ]);
 Route::post('/listings', [ ListingApiController::class, "store"] );
+
+Route::get('/provinsis',[ ApiController::class, "getProvinsi"] );
+Route::get('/kotas/{idprovinsi}', [ ApiController::class, "getKota"] );
+Route::get('/kecamatans/{idkota}', [ ApiController::class, "getKecamatan"] );
+Route::get('/kelurahans/{idkecamatan}', [ ApiController::class, "getKelurahan"] );
