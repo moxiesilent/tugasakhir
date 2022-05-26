@@ -98,20 +98,21 @@ class ApiController extends Controller
 
     public function prosesLogin(Request $request)
     {
-        $user = User::where('email',$request->email)->first();
+        return response()->json(['message' => $request->email]);
+        // $user = User::where('email',$request->email)->first();
 
-        if($user != null)
-        {
-            $cekPassword = Hash::check($request->password, $user->password);
-            if($cekPassword == true){
-                return response()->json(['message' => 'Success', 'user'=> $user]);
-            }
-            else {
-                return response()->json(['message' => 'Error']);
-            }
-        } else {
-            return response()->json(['message' => 'Error']);
-        }
+        // if($user != null)
+        // {
+        //     $cekPassword = Hash::check($request->password, $user->password);
+        //     if($cekPassword == true){
+        //         return response()->json(['message' => 'Success', 'user'=> $user]);
+        //     }
+        //     else {
+        //         return response()->json(['message' => 'Error']);
+        //     }
+        // } else {
+        //     return response()->json(['message' => 'Error']);
+        // }
     }
 
     // public function prosesLogin($email, $password)
