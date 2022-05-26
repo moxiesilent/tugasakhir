@@ -91,10 +91,36 @@
 @section('content')
 <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
-        <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
-            <div class="widget-content widget-content-area br-6">
+        <div class="col-xl-8 col-lg-8 col-sm-8 layout-spacing row">
 
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                <div class="widget widget-one bg-secondary">
+                    <div class="widget-heading">
+                        <h6 class="text-white">Agen</h6>
+                    </div>
+                    <div class="widget-content row col-md-12">
+                        <div class="w-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h2 class="ml-3 text-white">28</h2>
+                    </div>
+                </div>
             </div>
+
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                <div class="widget widget-one bg-danger">
+                    <div class="widget-heading">
+                        <h6 class="text-white">Listing</h6>
+                    </div>
+                    <div class="widget-content row col-md-12">
+                        <div class="w-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h2 class="ml-3 text-white">45</h2>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -103,44 +129,5 @@
 @section('javascript')
 <script src="{{asset('plugins/table/datatable/datatables.js')}}"></script>
 <script src="{{asset('plugins/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
-<script>
-$('#tipeProperti').DataTable({
-    "dom": "<'inv-list-top-section'<'row'<'col-sm-12 col-md-6 d-flex justify-content-md-start justify-content-center'l<'dt-action-buttons align-self-center'B>><'col-sm-12 col-md-6 d-flex justify-content-md-end justify-content-center mt-md-0 mt-3'f<'toolbar align-self-center'>>>>" +
-        "<'table-responsive'tr>" +
-        "<'inv-list-bottom-section d-sm-flex justify-content-sm-between text-center'<'inv-list-pages-count  mb-sm-0 mb-3'i><'inv-list-pagination'p>>",
 
-    headerCallback:function(e, a, t, n, s) {
-        e.getElementsByTagName("th")[0].innerHTML='<label class="new-control new-checkbox checkbox-primary m-auto">\n<input type="checkbox" class="new-control-input chk-parent select-customers-info" id="customer-all-info">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
-    },
-    columnDefs:[ {
-        targets:0,
-        width:"30px",
-        className:"",
-        orderable:!1,
-        render:function(e, a, t, n) {
-            return'<label class="new-control new-checkbox checkbox-primary  m-auto">\n<input type="checkbox" class="new-control-input child-chk select-customers-info" id="customer-all-info">\n<span class="new-control-indicator"></span><span style="visibility:hidden">c</span>\n</label>'
-        },
-    }],
-    buttons: [
-        {
-            text: 'Add New',
-            className: 'btn btn-primary btn-sm',
-            action: function(e, dt, node, config ) {
-                window.location = 'apps_invoice-add.html';
-            }
-        }
-    ],
-    "order": [[ 1, "asc" ]],
-    "oLanguage": {
-        "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-        "sInfo": "Showing page _PAGE_ of _PAGES_",
-        "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-        "sSearchPlaceholder": "Search...",
-        "sLengthMenu": "Results :  _MENU_",
-    },
-    "stripeClasses": [],
-    "lengthMenu": [7, 10, 20, 50],
-    "pageLength": 7
-});    
-</script>
 @endsection

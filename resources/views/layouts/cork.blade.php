@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/plugins.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/dashboard/dash_2.css')}}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/elements/alert.css')}}">
 
@@ -31,6 +32,8 @@
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 
     <link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}">
+
+    <link href="{{asset('assets/css/components/cards/card.css')}}" rel="stylesheet" type="text/css" />
 
     <link href="{{asset('plugins/flatpickr/flatpickr.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('plugins/noUiSlider/nouislider.min.css')}}" rel="stylesheet" type="text/css">
@@ -72,7 +75,7 @@
             <ul class="navbar-nav theme-brand flex-row  text-center">
                 <li class="nav-item theme-logo">
                     <a href="index.html">
-                        <img src="{{asset('assets/img/cork-logo.png')}}" class="navbar-logo" alt="logo">
+                        <img src="{{asset('images/tg_logo.png')}}" class="navbar-logo" alt="logo">
                     </a>
                 </li>
                 <li class="nav-item theme-text">
@@ -91,7 +94,7 @@
                     <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                         <div class="user-profile-section">
                             <div class="media mx-auto">
-                                <img src="{{asset('assets/img/90x90.jpg')}}" class="img-fluid mr-2" alt="avatar">
+                                <img src="{{asset('assets/img/icon_person.jpg')}}" class="img-fluid mr-2" alt="avatar">
                                 <div class="media-body">
                                     <h5>Ferdian</h5>
                                     <p>Admin</p>
@@ -136,7 +139,7 @@
                 <div class="profile-info">
                     <figure class="user-cover-image"></figure>
                     <div class="user-info">
-                        <img src="{{asset('assets/img/arrow-down.png')}}" alt="avatar">
+                        <img src="{{asset('assets/img/icon_person.svg')}}" alt="avatar">
                         <h6 class="">Admin</h6>
                         <p class="">Admin</p>
                     </div>

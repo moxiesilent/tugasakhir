@@ -35,6 +35,7 @@ Route::resource('lantais',LantaiController::class);
 Route::resource('calonpembelis',CalonpembeliController::class);
 Route::resource('bentukhargas',BentukhargaController::class);
 Route::resource('agens',AgenController::class);
+Route::resource('reminders',ReminderController::class);
 Route::resource('listings',ListingController::class);
 
 Route::post('/hapussurat', [ SuratController::class, "hapussurat" ])->name('hapussurat');

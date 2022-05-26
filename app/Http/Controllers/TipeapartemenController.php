@@ -37,10 +37,16 @@ class TipeapartemenController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Tipeapartemen();
-        $data->tipe_apartemen = $request->get('tipeapartemen');
-        $data->save();
-        return redirect()->route('tipeapartemens.index')->with('status','data baru telah ditambahkan');
+        try{
+            $data = new Tipeapartemen();
+            $data->tipe_apartemen = $request->get('tipeapartemen');
+            $data->save();
+            return redirect()->route('tipeapartemens.index')->with('status','data baru telah ditambahkan');
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menyimpan data.";
+            return redirect()->route('tipeapartemens.index')->with('error', $msg);
+        }
     }
 
     /**

@@ -17,6 +17,7 @@ use App\Models\Surat;
 use App\Models\Foto;
 use App\Models\Calonpembeli;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use DB;
 
 class ApiController extends Controller
@@ -97,15 +98,32 @@ class ApiController extends Controller
 
     public function prosesLogin(Request $request)
     {
-        dd($request);
-        $password = Hash::make($request->password);
-        $user = User::where('email',$request->email)->where('password',$password)->first();
+        $user = User::where('email',$request->email)->first();
 
         if($user != null)
         {
-            return response()->json(['message' => 'Success', 'user'=> $user]);
+            $cekPassword = Hash::check($request->password, $user->password);
+            if($cekPassword == true){
+                return response()->json(['message' => 'Success', 'user'=> $user]);
+            }
+            else {
+                return response()->json(['message' => 'Error']);
+            }
         } else {
             return response()->json(['message' => 'Error']);
         }
     }
+
+    // public function prosesLogin($email, $password)
+    // {
+    //     $user = User::where('email',$email)->first();
+    //     $pass = Hash::check($password, $user->password);
+    //     // dd($pass,$user);
+    //     if($user != null)
+    //     {
+    //         return response()->json(['message' => 'Success', 'user'=> $user]);
+    //     } else {
+    //         return response()->json(['message' => 'Error']);
+    //     }
+    // }
 }

@@ -134,49 +134,17 @@
                         <div class="form-group col-md-6">
                             <label>Agama</label><br>
                             <select class="selectpicker" data-width="75%" name="agama">
-                                @if($data->agama == 'konghucu')
-                                <option value="kristen" >Kristen</option>
-                                <option value="katolik">Katolik</option>
-                                <option value="islam">Islam</option>
-                                <option value="buddha">Buddha</option>
-                                <option value="hindu">Hindu</option>
-                                <option value="konghucu" selected>Konghucu</option>
-                                @elseif($data->agama == 'katolik')
-                                <option value="kristen" >Kristen</option>
-                                <option value="katolik" selected>Katolik</option>
-                                <option value="islam">Islam</option>
-                                <option value="buddha">Buddha</option>
-                                <option value="hindu">Hindu</option>
-                                <option value="konghucu">Konghucu</option>
-                                @elseif($data->agama == 'islam')
-                                <option value="kristen" >Kristen</option>
-                                <option value="katolik" >Katolik</option>
-                                <option value="islam" selected>Islam</option>
-                                <option value="buddha">Buddha</option>
-                                <option value="hindu">Hindu</option>
-                                <option value="konghucu">Konghucu</option>
-                                @elseif($data->agama == 'buddha')
-                                <option value="kristen" >Kristen</option>
-                                <option value="katolik" >Katolik</option>
-                                <option value="islam">Islam</option>
-                                <option value="buddha" selected>Buddha</option>
-                                <option value="hindu">Hindu</option>
-                                <option value="konghucu">Konghucu</option>
-                                @elseif($data->agama == 'hindu')
-                                <option value="kristen" >Kristen</option>
-                                <option value="katolik" >Katolik</option>
-                                <option value="islam" >Islam</option>
-                                <option value="buddha">Buddha</option>
-                                <option value="hindu" selected>Hindu</option>
-                                <option value="konghucu">Konghucu</option>
-                                @else
-                                <option value="kristen" selected>Kristen</option>
-                                <option value="katolik" >Katolik</option>
-                                <option value="islam" >Islam</option>
-                                <option value="buddha">Buddha</option>
-                                <option value="hindu" >Hindu</option>
-                                <option value="konghucu" >Konghucu</option>
-                                @endif
+                                <option value="">-- Pilih Agama --</option>
+                                <?php 
+                                    $agama = ['Kristen','Katolik','Islam','Konghucu','Buddha','Hindu'];                               
+                                ?>
+                                @foreach($agama as $a)
+                                    @if($a == $data->agama)
+                                        <option value="{{$a}}" selected>{{$a}}</option>
+                                    @else
+                                        <option value="{{$a}}">{{$a}}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-6">

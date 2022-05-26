@@ -56,4 +56,8 @@ class User extends Authenticatable
     public function listings(){
         return $this->hasMany("App\Models\Listing","agen_idagen","idagen");
     }
+
+    public function reminders(){
+        return $this->hasMany("App\Models\Reminder","agens_idagen","idagen");
+    }
 }

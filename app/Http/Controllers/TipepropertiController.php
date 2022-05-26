@@ -37,10 +37,17 @@ class TipepropertiController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Tipeproperti();
-        $data->jenis_properti = $request->get('jenisproperti');
-        $data->save();
-        return redirect()->route('tipepropertis.index')->with('status','data baru telah ditambahkan');
+        try{
+            $data = new Tipeproperti();
+            $data->jenis_properti = $request->get('jenisproperti');
+            $data->save();
+            return redirect()->route('tipepropertis.index')->with('status','data baru telah ditambahkan');
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menyimpan data.";
+            return redirect()->route('tipepropertis.index')->with('error', $msg);
+        }
+        
     }
 
     /**

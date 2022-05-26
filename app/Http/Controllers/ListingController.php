@@ -264,8 +264,10 @@ class ListingController extends Controller
     public function hapuslisting(Request $request){
         try{
             $listing = Listing::find($request->kode_listing);
-            $listing->delete();
-            return redirect()->route('listings.index')->with('status','data berhasil dihapus');       
+            $foto = Foto::where('listing_kode_listing',$listing->kode_listing)->get();
+            dd($foto);
+            // $listing->delete();
+            // return redirect()->route('listings.index')->with('status','data berhasil dihapus');       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";

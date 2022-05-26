@@ -37,10 +37,16 @@ class SuratController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Surat();
-        $data->jenis_surat = $request->get('jenissurat');
-        $data->save();
-        return redirect()->route('surats.index')->with('status','data baru telah ditambahkan');
+        try{
+            $data = new Surat();
+            $data->jenis_surat = $request->get('jenissurat');
+            $data->save();
+            return redirect()->route('surats.index')->with('status','data baru telah ditambahkan');
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal mengubah data.";
+            return redirect()->route('surats.index')->with('error', $msg);
+        }
     }
 
     /**
