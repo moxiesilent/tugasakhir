@@ -27,7 +27,7 @@ Route::get('/detaillisting/{kode}', [ApiController::class, "tampilDetailListing"
 Route::get('/detailprimary/{idprimary}', [ApiController::class, "tampilDetailPrimary"]);
 Route::get('/listingtipeproperti/{idtipeproperti}', [ApiController::class, "tampilListingTipeproperti"]);
 Route::get('/mylisting/{idagen}', [ ApiController::class, "tampilMyListing"]);
-Route::post('/login', [ ApiController::class, "prosesLogin" ]);
+Route::post('/cobalogin', [ ApiController::class, "prosesLogin" ]);
 Route::post('/listings', [ ListingApiController::class, "store"] );
 
 Route::get('/provinsis',[ ApiController::class, "getProvinsi"] );
