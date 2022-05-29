@@ -103,7 +103,7 @@ class ApiController extends Controller
     }
 
     public function getJenissurat(){
-        $jenissurat = Jenissurat::all();
+        $jenissurat = Surat::all();
         return response()->json(['message'=>"Success", 'jenissurat'=>$jenissurat]);
     }
 
