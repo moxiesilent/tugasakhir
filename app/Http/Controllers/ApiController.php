@@ -84,27 +84,27 @@ class ApiController extends Controller
 
     public function getTipeproperti(){
         $tipeproperti = Tipeproperti::all();
-        return responsr()->json(['message'=>"Success", 'tipeproperti'=>$tipeproperti]);
+        return response()->json(['message'=>"Success", 'tipeproperti'=>$tipeproperti]);
     }
     
     public function getTipeapartemen(){
         $tipeapartemen = Tipeapartemen::all();
-        return responsr()->json(['message'=>"Success", 'tipeapartemen'=>$tipeapartemen]);
+        return response()->json(['message'=>"Success", 'tipeapartemen'=>$tipeapartemen]);
     }
     
     public function getLantai(){
         $lantai = Lantai::all();
-        return responsr()->json(['message'=>"Success", 'lantai'=>$lantai]);
+        return response()->json(['message'=>"Success", 'lantai'=>$lantai]);
     }
 
     public function getBentukharga(){
         $bentukharga = Bentukharga::all();
-        return responsr()->json(['message'=>"Success", 'bentukharga'=>$bentukharga]);
+        return response()->json(['message'=>"Success", 'bentukharga'=>$bentukharga]);
     }
 
     public function getJenissurat(){
         $jenissurat = Jenissurat::all();
-        return responsr()->json(['message'=>"Success", 'jenissurat'=>$jenissurat]);
+        return response()->json(['message'=>"Success", 'jenissurat'=>$jenissurat]);
     }
 
     public function tampilDetailListing($kode){
