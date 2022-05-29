@@ -17,6 +17,8 @@ use App\Models\Surat;
 use App\Models\Foto;
 use App\Models\Calonpembeli;
 use App\Models\User;
+use App\Models\Kpr;
+use App\Models\Estimasi;
 use Illuminate\Support\Facades\Hash;
 use DB;
 
@@ -136,6 +138,40 @@ class ApiController extends Controller
             }
         } else {
             return response()->json(['message' => 'Error']);
+        }
+    }
+
+    public function addKpr(Request $request){
+        try{
+            $data = new Kpr();
+            $data->tanggal = $request->get('tanggal');
+            $data->agen_idagen = $request->get('idagen');
+            $data->catatan = $request->get('catatan');
+            $data->nominal_pinjaman = $request->get('nominalPinjaman');
+            $data->suku_bunga = $request->get('sukuBunga');
+            $data->waktu_pinjaman = $request->get('waktuPinjaman');
+            $data->save();
+            return response()->json(['message' => 'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menambah data";
+            return response()->json(['message' => 'Error'.$msg]);
+        }
+    }
+
+    public function addEstimasi(Request $request){
+        try{
+            $data = new Estimasi();
+            $data->tanggal = $request->get('tanggal');
+            $data->agen_idagen = $request->get('idagen');
+            $data->catatan = $request->get('catatan');
+            $data->harga_jual = $request->get('hargaJual');
+            $data->komisi = $request->get('komisi');
+            $data->biaya_notaris = $request->get('biayaNotaris');
+            $data->save();
+            return response()->json(['message' => 'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menambah data";
+            return response()->json(['message' => 'Error'.$msg]);
         }
     }
 
