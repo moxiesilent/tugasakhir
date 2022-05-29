@@ -19,6 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/tipepropertis', [ ApiController::class, "getTipeproperti" ]);
+Route::get('/tipeapartemens', [ ApiController::class, "getTipeapartemen" ]);
+Route::get('/lantais', [ ApiController::class, "getLantai" ]);
+Route::get('/bentukhargas', [ ApiController::class, "getBentukharga" ]);
+Route::get('/jenissurats', [ ApiController::class, "getJenissurat" ]);
+
 Route::get('/halamanutama', [ ApiController::class, "tampilHalamanUtama" ]);
 Route::get('/halamanlisting', [ ApiController::class, "tampilHalamanListing" ]);
 Route::post('/halamanprofil', [ ApiController::class, "tampilHalamanProfil" ]);
@@ -28,7 +34,7 @@ Route::get('/detailprimary/{idprimary}', [ApiController::class, "tampilDetailPri
 Route::get('/listingtipeproperti/{idtipeproperti}', [ApiController::class, "tampilListingTipeproperti"]);
 Route::get('/mylisting/{idagen}', [ ApiController::class, "tampilMyListing"]);
 Route::post('/cobalogin', [ ApiController::class, "prosesLogin" ]);
-// Route::post('/listings', [ ListingApiController::class, "store"] );
+Route::post('/addlisting', [ ApiController::class, "addListing"] );
 
 Route::get('/provinsis',[ ApiController::class, "getProvinsi"] );
 Route::get('/kotas/{idprovinsi}', [ ApiController::class, "getKota"] );

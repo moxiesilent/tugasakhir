@@ -82,6 +82,31 @@ class ApiController extends Controller
         return response()->json(['message'=>"Success", 'kelurahan'=>$kelurahan]);
     }
 
+    public function getTipeproperti(){
+        $tipeproperti = Tipeproperti::all();
+        return responsr()->json(['message'=>"Success", 'tipeproperti'=>$tipeproperti]);
+    }
+    
+    public function getTipeapartemen(){
+        $tipeapartemen = Tipeapartemen::all();
+        return responsr()->json(['message'=>"Success", 'tipeapartemen'=>$tipeapartemen]);
+    }
+    
+    public function getLantai(){
+        $lantai = Lantai::all();
+        return responsr()->json(['message'=>"Success", 'lantai'=>$lantai]);
+    }
+
+    public function getBentukharga(){
+        $bentukharga = Bentukharga::all();
+        return responsr()->json(['message'=>"Success", 'bentukharga'=>$bentukharga]);
+    }
+
+    public function getJenissurat(){
+        $jenissurat = Jenissurat::all();
+        return responsr()->json(['message'=>"Success", 'jenissurat'=>$jenissurat]);
+    }
+
     public function tampilDetailListing($kode){
         $listing = Listing::find($kode);
         $foto = DB::table('fotos')->where('listing_kode_listing',$kode)->get();
@@ -98,7 +123,6 @@ class ApiController extends Controller
 
     public function prosesLogin(Request $request)
     {
-        // return response()->json(['message' => $request->email]);
         $user = User::where('email',$request->email)->first();
 
         if($user != null)
@@ -115,16 +139,84 @@ class ApiController extends Controller
         }
     }
 
-    // public function prosesLogin($email, $password)
-    // {
-    //     $user = User::where('email',$email)->first();
-    //     $pass = Hash::check($password, $user->password);
-    //     // dd($pass,$user);
-    //     if($user != null)
-    //     {
-    //         return response()->json(['message' => 'Success', 'user'=> $user]);
-    //     } else {
-    //         return response()->json(['message' => 'Error']);
-    //     }
-    // }
+    public function addListing(Request $request){
+        try{
+            $data = new Listing();
+
+            $data->kode_listing = $request->get('kode');
+            $data->agen_idagen = $request->get('idagen');
+            $data->alamat_domisili = $request->get('alamatdomisili');
+            $data->nomor_hp_pemilik = $request->get('hppemilik');
+            $data->surat_kepemilikan_atasnama = $request->get('skan');
+            $data->alamat_properti = $request->get('alamatproperti');
+            if($request->get('tipeapartemen') != '0'){
+                $data->tipe_apartemens_idtipe_apartemen = $request->get('tipeapartemen');
+            }
+            $data->tower = $request->get('tower');
+            $data->cluster = $request->get('cluster');
+            $data->luas_tanah = $request->get('lt');
+            $data->luas_bangunan = $request->get('lb');
+            $data->dimensi_tanah_lebar = $request->get('dtl');
+            $data->dimensi_tanah_panjang = $request->get('dtp');
+            $data->kamar_tidur = $request->get('kt');
+            $data->kamar_mandi = $request->get('km');
+            $data->kamar_tidur_pembantu = $request->get('ktp');
+            $data->kamar_mandi_pembantu = $request->get('kmp');
+            $data->jumlah_lantai = $request->get('jumlahlantai');
+            $data->nomor_lantai = $request->get('nomorlantai');
+            $data->nomor_unit = $request->get('nomorunit');
+            $data->view = $request->get('view');
+            $data->listrik = $request->get('listrik');
+            $data->dapur = $request->get('dapur');
+            $data->carport = $request->get('carport');
+            $data->garasi = $request->get('garasi');
+            $data->hadap = $request->get('hadap');
+            $data->tipe_listing = $request->get('tipelisting');
+            $data->air = $request->get('air');
+            $data->pemegang_hak = $request->get('pemeganghak');
+            $data->mulai_tanggal = $request->get('mulaitanggal');
+            $data->harga = $request->get('harga');
+            $data->berakhir_tanggal = $request->get('berakhirtanggal');
+            $data->posisi = $request->get('posisi');
+            $data->perabotan = $request->get('perabotan');
+            $data->komisi = $request->get('komisi');
+            $data->pasang_banner = $request->get('banner');
+            $data->bentuk_harga_idbentuk_harga = $request->get('idbh');
+            $data->jenis_surat_idjenis_surat = $request->get('idjs');
+            $data->tipe_properti_idtipe_properti = $request->get('idtp');
+            $data->jenis_lantai_idjenis_lantai = $request->get('idjl');
+            $data->kelurahans_idkelurahan = $request->get('kelurahan');
+            $data->catatan = $request->get('catatan');
+            $data->status = 'available';
+            $data->jenis_listing = $request->get('jenislisting');
+            $data->judul = $request->get('judul');
+            if($request->hasFile('fotoutama')){
+                $file=$request->file('fotoutama');
+                $imgFolder='images/listing';
+                $imgFile=time().'_'.$file->getClientOriginalName();
+                $file->move($imgFolder,$imgFile);
+                $data->foto_utama=$imgFile;
+            }
+            $data->save();
+            
+            if($request->hasFile('foto')){
+                foreach($request->file('foto') as $key => $file){
+                    $foto = new Foto();
+                    $foto->listing_kode_listing = $request->get('kode');
+                    $imgFolder='images/listing';
+                    $imgFile=time().'_'.$file->getClientOriginalName();
+                    $file->move($imgFolder,$imgFile);
+                    $foto->path=$imgFile;
+                    $foto->save();
+                }
+            }
+            
+            return response()->json(['message' => 'Success']);        
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menambah data. ";
+            return response()->json(['message' => 'Error '. $msg]);
+        }
+    }   
+
 }
