@@ -109,6 +109,16 @@ class ApiController extends Controller
         return response()->json(['message'=>"Success", 'jenissurat'=>$jenissurat]);
     }
 
+    public function getKpr($idagen){
+        $kpr = Kpr::where('agen_idagen',$idagen)->get();
+        return response()->json(['message'=>"Success", 'kpr'=>$kpr]);
+    }
+
+    public function getEstimasi($idagen){
+        $estimasi = Estimasi::where('agens_idagen',$idagen)->get();
+        return response()->json(['message'=>"Success", 'estimasi'=>$estimasi]);
+    }
+
     public function tampilDetailListing($kode){
         $listing = Listing::find($kode);
         $foto = DB::table('fotos')->where('listing_kode_listing',$kode)->get();

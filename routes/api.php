@@ -25,6 +25,9 @@ Route::get('/lantais', [ ApiController::class, "getLantai" ]);
 Route::get('/bentukhargas', [ ApiController::class, "getBentukharga" ]);
 Route::get('/jenissurats', [ ApiController::class, "getJenissurat" ]);
 
+Route::get('/kprs/{idagen}', [ApiController::class, "getKpr"]);
+Route::get('/estimasis/{idagen}', [ApiController::class, "getEstimasi"]);
+
 Route::get('/halamanutama', [ ApiController::class, "tampilHalamanUtama" ]);
 Route::get('/halamanlisting', [ ApiController::class, "tampilHalamanListing" ]);
 Route::post('/halamanprofil', [ ApiController::class, "tampilHalamanProfil" ]);
