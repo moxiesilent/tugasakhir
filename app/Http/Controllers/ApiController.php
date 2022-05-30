@@ -116,7 +116,7 @@ class ApiController extends Controller
     }
 
     public function getEstimasi($idagen){
-        $estimasi = Estimasi::where('agens_idagen',$idagen)->orderBy('idkpr','desc')->get();
+        $estimasi = Estimasi::where('agens_idagen',$idagen)->orderBy('idestimasi','desc')->get();
         return response()->json(['message'=>"Success", 'estimasi'=>$estimasi]);
     }
 
