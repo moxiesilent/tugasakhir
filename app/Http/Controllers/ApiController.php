@@ -166,7 +166,7 @@ class ApiController extends Controller
     public function clearAllKpr($idagen){
         try{
             $kpr = Kpr::where('agen_idagen',$idagen)->get();
-            $kpr->truncate();
+            $kpr->delete();
             return response()->json(['message'=>'Success']);
         } catch (\PDOException $e){
             $msg = "Gagal menghapus data";
