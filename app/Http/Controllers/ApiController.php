@@ -216,7 +216,7 @@ class ApiController extends Controller
         try{
             $data = new Estimasi();
             $data->tanggal = Carbon::today();
-            $data->agen_idagen = $request->get('idagen');
+            $data->agens_idagen = $request->get('idagen');
             $data->catatan = $request->get('catatan');
             $data->harga_jual = $request->get('hargaJual');
             $data->komisi = $request->get('komisi');
