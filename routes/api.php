@@ -26,7 +26,11 @@ Route::get('/bentukhargas', [ ApiController::class, "getBentukharga" ]);
 Route::get('/jenissurats', [ ApiController::class, "getJenissurat" ]);
 
 Route::get('/kprs/{idagen}', [ApiController::class, "getKpr"]);
+Route::get('/clearkpr/{idkpr}', [ApiController::class, "clearKpr"]);
+Route::get('/clearallkpr/{idagen}', [ApiController::class, "clearAllKpr"]);
 Route::get('/estimasis/{idagen}', [ApiController::class, "getEstimasi"]);
+Route::get('/clearestimasi/{idestimasi}', [ApiController::class, "clearEstimasi"]);
+Route::get('/clearallestimasi/{idagen}', [ApiController::class, "clearAllEstimasi"]);
 
 Route::get('/halamanutama', [ ApiController::class, "tampilHalamanUtama" ]);
 Route::get('/halamanlisting', [ ApiController::class, "tampilHalamanListing" ]);

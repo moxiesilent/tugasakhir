@@ -19,6 +19,7 @@ use App\Models\Calonpembeli;
 use App\Models\User;
 use App\Models\Kpr;
 use App\Models\Estimasi;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use DB;
 
@@ -151,15 +152,60 @@ class ApiController extends Controller
         }
     }
 
+    public function clearKpr($idkpr){
+        try{
+            $kpr = Kpr::find($idkpr);
+            $kpr->delete();
+            return response()->json(['message'=>'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menghapus data";
+            return response()->json(['message' => 'Error'.$msg]);
+        }
+    }
+
+    public function clearAllKpr($idagen){
+        try{
+            $kpr = Kpr::where('agen_idagen',$idagen)->get();
+            $kpr->truncate();
+            return response()->json(['message'=>'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menghapus data";
+            return response()->json(['message' => 'Error'.$msg]);
+        }
+    }
+
+    public function clearEstimasi($idestimasi){
+        try{
+            $estimasi = Estimasi::find($idestimasi);
+            $estimasi->delete();
+            return response()->json(['message'=>'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menghapus data";
+            return response()->json(['message' => 'Error'.$msg]);
+        }
+    }
+
+    public function clearAllEstimasi($idagen){
+        try{
+            $estimasi = Estimasi::where('agens_idagen',$idagen)->get();
+            $estimasi->truncate();
+            return response()->json(['message'=>'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menghapus data";
+            return response()->json(['message' => 'Error'.$msg]);
+        }
+    }
+
     public function addKpr(Request $request){
         try{
             $data = new Kpr();
-            $data->tanggal = $request->get('tanggal');
+            $data->tanggal = Carbon::today();
             $data->agen_idagen = $request->get('idagen');
             $data->catatan = $request->get('catatan');
             $data->nominal_pinjaman = $request->get('nominalPinjaman');
             $data->suku_bunga = $request->get('sukuBunga');
             $data->waktu_pinjaman = $request->get('waktuPinjaman');
+            $data->cicilan = $request->get('cicilan');
             $data->save();
             return response()->json(['message' => 'Success']);
         } catch (\PDOException $e){
@@ -171,12 +217,13 @@ class ApiController extends Controller
     public function addEstimasi(Request $request){
         try{
             $data = new Estimasi();
-            $data->tanggal = $request->get('tanggal');
+            $data->tanggal = Carbon::today();
             $data->agen_idagen = $request->get('idagen');
             $data->catatan = $request->get('catatan');
             $data->harga_jual = $request->get('hargaJual');
             $data->komisi = $request->get('komisi');
             $data->biaya_notaris = $request->get('biayaNotaris');
+            $data->total = $request->get('total');
             $data->save();
             return response()->json(['message' => 'Success']);
         } catch (\PDOException $e){
