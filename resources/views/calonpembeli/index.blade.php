@@ -130,7 +130,7 @@
                                 <td>{{$d->idpelanggan}}</td>
                                 <td>{{$d->nama}}</td>
                                 <td>{{$d->hp}}</td>
-                                <td>{{$d->agens->idagen}}</td>
+                                <td>{{$d->agens->nama}}</td>
                                 <td>{{$d->keterangan}}</td>
                                 <td>
                                     <div class="dropdown">
