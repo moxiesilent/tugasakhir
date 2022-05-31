@@ -11,4 +11,8 @@ class Calonpembeli extends Model
     protected $primaryKey = 'idpelanggan';
     protected $table = "calon_pembelis";
     public $timestamps=false;
+
+    public function agens(){
+        return $this->belongsTo("App\Models\User","agen_idagen");
+    }
 }

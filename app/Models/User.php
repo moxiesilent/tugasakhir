@@ -60,4 +60,8 @@ class User extends Authenticatable
     public function reminders(){
         return $this->hasMany("App\Models\Reminder","agens_idagen","idagen");
     }
+
+    public function calonpembelis(){
+        return $this->hasMany("App\Models\Calonpembeli","agen_idagen","idagen");
+    }
 }
