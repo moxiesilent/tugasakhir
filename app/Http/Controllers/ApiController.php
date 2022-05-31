@@ -44,9 +44,10 @@ class ApiController extends Controller
         return response()->json(['message'=> 'Success', 'listing'=> $listing]);
     }
 
-    public function tampilHalamanprofil(){
-        $agen = DB::table('agens')->where('email')->value('');
-        return response()->json(['message' => 'Success', 'agen' => $agen]);
+    public function tampilHalamanprofil($idagen){
+        $calonpembeli = Calonpembeli::where('agen_idagen',$idagen)->count('idpelanggan');
+        $listing = Listing::where('agen_idagen', $idagen)->count('idlisting');
+        return response()->json(['message' => 'Success', 'calonpembeli' => $calonpembeli, 'listing'=>$listing]);
     }
 
     public function tampilHalamanListPrimary(){
