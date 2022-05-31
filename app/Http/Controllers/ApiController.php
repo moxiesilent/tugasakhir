@@ -120,6 +120,11 @@ class ApiController extends Controller
         return response()->json(['message'=>"Success", 'estimasi'=>$estimasi]);
     }
 
+    public function getCalonpembeli($idagen){
+        $calonpembeli = Calonpembeli::where('agen_idagen',$idagen)->orderBy('idpelanggan','desc')->get();
+        return response()->json(['message'=>"Success", 'calonpembeli'=>$calonpembeli]);
+    }
+
     public function tampilDetailListing($kode){
         $listing = Listing::find($kode);
         $foto = DB::table('fotos')->where('listing_kode_listing',$kode)->get();
@@ -226,6 +231,31 @@ class ApiController extends Controller
             return response()->json(['message' => 'Success']);
         } catch (\PDOException $e){
             $msg = "Gagal menambah data";
+            return response()->json(['message' => 'Error'.$msg]);
+        }
+    }
+
+    public function addCalonPembeli(Request $request){
+        try{
+            $data = new Calonpembeli();
+            $data->agen_idagen = $request->get('idagen');
+            $data->nama = $request->get('nama');
+            $data->hp = $request->get('hp');
+            $data->keterangan = $request->get('keterangan');
+            $data->save();
+            return response()->json(['message' => 'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menambah data";
+            return response()->json(['message' => 'Error'.$msg]);
+        }
+    }
+
+    public function deleteCalonPembeli($idcalonpembeli){
+        try{
+            Calonpembeli::where('idpelanggan',$idcalonpembeli)->delete();
+            return response()->json(['message'=>'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menghapus data";
             return response()->json(['message' => 'Error'.$msg]);
         }
     }

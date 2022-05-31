@@ -24,6 +24,7 @@ Route::get('/tipeapartemens', [ ApiController::class, "getTipeapartemen" ]);
 Route::get('/lantais', [ ApiController::class, "getLantai" ]);
 Route::get('/bentukhargas', [ ApiController::class, "getBentukharga" ]);
 Route::get('/jenissurats', [ ApiController::class, "getJenissurat" ]);
+Route::get('/calonpembelis', [ ApiController::class, "getCalonpembeli" ]);
 
 Route::get('/kprs/{idagen}', [ApiController::class, "getKpr"]);
 Route::get('/clearkpr/{idkpr}', [ApiController::class, "clearKpr"]);
@@ -44,6 +45,8 @@ Route::post('/cobalogin', [ ApiController::class, "prosesLogin" ]);
 Route::post('/addlisting', [ ApiController::class, "addListing"] );
 Route::post('/addkpr', [ ApiController::class, "addKpr"] );
 Route::post('/addestimasi', [ ApiController::class, "addEstimasi"] );
+Route::post('/addcalonpembeli', [ ApiController::class, "addCalonPembeli" ]);
+Route::get('/deletecalonpembeli', [ ApiController::class, "deleteCalonPembeli" ]);
 
 Route::get('/provinsis',[ ApiController::class, "getProvinsi"] );
 Route::get('/kotas/{idprovinsi}', [ ApiController::class, "getKota"] );
