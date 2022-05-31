@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Listing extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'kode_listing';
+    protected $primaryKey = 'idlisting';
     protected $table = "listings";
-    public $incrementing = false; 
+    // public $incrementing = false;
 
     public function agens(){
         return $this->belongsTo("App\Models\User","agen_idagen");

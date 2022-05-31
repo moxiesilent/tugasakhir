@@ -263,7 +263,8 @@ class ListingController extends Controller
 
     public function hapuslisting(Request $request){
         try{
-            $listing = Listing::find($request->kode_listing);
+            $listing = Listing::find($request->id);
+            dd($listing);
             $foto = Foto::where('listing_kode_listing',$listing->kode_listing)->get();
             dd($foto);
             // $listing->delete();

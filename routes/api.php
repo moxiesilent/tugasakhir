@@ -46,7 +46,11 @@ Route::post('/addlisting', [ ApiController::class, "addListing"] );
 Route::post('/addkpr', [ ApiController::class, "addKpr"] );
 Route::post('/addestimasi', [ ApiController::class, "addEstimasi"] );
 Route::post('/addcalonpembeli', [ ApiController::class, "addCalonPembeli" ]);
+Route::post('/updatecalonpembeli', [ ApiController::class, "updateCalonPembeli" ]);
 Route::get('/deletecalonpembeli/{idcalonpembeli}', [ ApiController::class, "deleteCalonPembeli" ]);
+
+Route::get('/profils/{idagen}', [ ApiController::class, "getProfil" ]);
+Route::post('/updateprofil', [ ApiController::class, "updateProfil" ]);
 
 Route::get('/provinsis',[ ApiController::class, "getProvinsi"] );
 Route::get('/kotas/{idprovinsi}', [ ApiController::class, "getKota"] );

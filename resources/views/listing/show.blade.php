@@ -199,9 +199,9 @@
                     </div><br>
                     <div class="row">
                         <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
-                            <a href="{{url('listings/'.$data->kode_listing.'/edit')}}"><button class="btn btn-warning">Ubah</button></a>
-                            <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->kode_listing}}')">Hapus</button>
-                            <button class="btn btn-dark" onclick="terjual('{{csrf_token()}}','{{$data->kode_listing}}')">Terjual</button>
+                            <a href="{{url('listings/'.$data->idlisting.'/edit')}}"><button class="btn btn-warning">Ubah</button></a>
+                            <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idlisting}}')">Hapus</button>
+                            <button class="btn btn-dark" onclick="terjual('{{csrf_token()}}','{{$data->idlisting}}')">Terjual</button>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
                             <a href="{{url('listings')}}" class="btn btn-secondary-light"> Kembali</a>
