@@ -158,8 +158,9 @@ class ApiController extends Controller
         foreach($getidlisting as $idl){
             $listing[] = Listing::find($idl->listings_idlisting);
         }
+        $l = $listing;
 
-        return response()->json(['message'=>'Success', 'listing'=>$listing]);
+        return response()->json(['message'=>'Success', 'listing'=>$l]);
     }
 
     public function tampilDetailListing($kode){
