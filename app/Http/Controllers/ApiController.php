@@ -172,8 +172,9 @@ class ApiController extends Controller
         $tipeapartemen = $listing->tipeapartemens()->get();
         $jenissurat = $listing->surats()->get();
         $tipeproperti = $listing->tipepropertis()->get();
+        $bookmark = DB::table('bookmarks')->where('listings_idlisting',$kode)->where('agen_idagen',$agen->idagen)->get();
         return response()->json(['message' => 'Success', 'listing'=> $listing, 'foto'=> $foto, 'lantai'=> $jenislantai, 'tipeproperti'=> $tipeproperti,
-        'kelurahan'=> $kelurahan, 'jenissurat'=> $jenissurat, 'bentukharga'=> $bentukharga, 'tipeapartemen'=> $tipeapartemen, 'agen'=> $agen]);
+        'kelurahan'=> $kelurahan, 'jenissurat'=> $jenissurat, 'bentukharga'=> $bentukharga, 'tipeapartemen'=> $tipeapartemen, 'agen'=> $agen, 'bookmark'=>$bookmark]);
     }
 
     public function prosesLogin(Request $request)
