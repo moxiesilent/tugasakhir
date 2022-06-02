@@ -33,10 +33,37 @@ class ApiController extends Controller
         return response()->json(['message' => 'Success', 'tipeproperti' => $tipeproperti, 'listing'=> $listing, 'primary'=> $primary]);
     }
 
-    public function tampilHalamanListing()
+    public function addBookmark(Request $request){
+        try{
+            DB::table('bookmarks')->insert([
+                'agen_idagen' => $request->get('idagen'),
+                'listings_idlisting' => $request->get('idlisting')
+            ]);
+            return response()->json(['message'=>'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menambah data";
+            return response()->json(['message' => 'Error'.$msg]);
+        }
+    }
+
+    public function deleteBookmark(Request $request){
+        try{
+            $idagen = $request->get('idagen');
+            $idlisting = $request->get('idlisting');
+            DB::table('bookmarks')->where('agen_idagen',$idagen)->where('listings_idlisting',$idlisting)->delete();
+            return response()->json(['message'=>'Success']);
+        } catch (\PDOException $e){
+            $msg = "Gagal menghapus data";
+            return response()->json(['message' => 'Error'.$msg]);
+        }
+    }    
+    
+
+    public function tampilHalamanListing($idagen)
     {
         $listing = Listing::all();
-        return response()->json(['message' => 'Success', 'listing'=> $listing]);
+        $bookmark = DB::table('bookmarks')->where('agen_idagen',$idagen)->get();
+        return response()->json(['message' => 'Success', 'listing'=> $listing, 'bookmark'=>$bookmark]);
     }
 
     public function tampilListingTipeproperti($idtipeproperti){
@@ -124,6 +151,15 @@ class ApiController extends Controller
     public function getCalonpembeli($idagen){
         $calonpembeli = Calonpembeli::where('agen_idagen',$idagen)->orderBy('idpelanggan','desc')->get();
         return response()->json(['message'=>"Success", 'calonpembeli'=>$calonpembeli]);
+    }
+
+    public function bookmark($idagen){
+        $getidlisting = DB::table('bookmarks')->where('agen_idagen',$idagen)->get();
+        foreach($getidlisting as $idl){
+            $listing[] = Listing::find($idl->listings_idlisting);
+        }
+
+        return response()->json(['message'=>'Success', 'listing'=>$listing]);
     }
 
     public function tampilDetailListing($kode){

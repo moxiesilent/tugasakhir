@@ -34,7 +34,7 @@ Route::get('/clearestimasi/{idestimasi}', [ApiController::class, "clearEstimasi"
 Route::get('/clearallestimasi/{idagen}', [ApiController::class, "clearAllEstimasi"]);
 
 Route::get('/halamanutama', [ ApiController::class, "tampilHalamanUtama" ]);
-Route::get('/halamanlisting', [ ApiController::class, "tampilHalamanListing" ]);
+Route::get('/halamanlisting/{idagen}', [ ApiController::class, "tampilHalamanListing" ]);
 Route::get('/halamanprofil/{idagen}', [ ApiController::class, "tampilHalamanProfil" ]);
 Route::get('/halamanlistprimary',[ ApiController::class, "tampilHalamanListPrimary"]);
 Route::get('/detaillisting/{kode}', [ApiController::class, "tampilDetailListing"]);
@@ -43,6 +43,8 @@ Route::get('/listingtipeproperti/{idtipeproperti}', [ApiController::class, "tamp
 Route::get('/mylisting/{idagen}', [ ApiController::class, "tampilMyListing"]);
 Route::post('/cobalogin', [ ApiController::class, "prosesLogin" ]);
 Route::post('/addlisting', [ ApiController::class, "addListing"] );
+Route::post('/addbookmark', [ ApiController::class, "addBookmark"] );
+Route::post('/deletebookmark', [ ApiController::class, "deleteBookmark"] );
 Route::post('/addkpr', [ ApiController::class, "addKpr"] );
 Route::post('/addestimasi', [ ApiController::class, "addEstimasi"] );
 Route::post('/addcalonpembeli', [ ApiController::class, "addCalonPembeli" ]);
@@ -51,6 +53,8 @@ Route::get('/deletecalonpembeli/{idcalonpembeli}', [ ApiController::class, "dele
 
 Route::get('/profils/{idagen}', [ ApiController::class, "getProfil" ]);
 Route::post('/updateprofil', [ ApiController::class, "updateProfil" ]);
+
+Route::get('/bookmark/{idagen}', [ ApiController::class, "bookmark" ]);
 
 Route::get('/provinsis',[ ApiController::class, "getProvinsi"] );
 Route::get('/kotas/{idprovinsi}', [ ApiController::class, "getKota"] );
