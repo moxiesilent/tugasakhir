@@ -164,7 +164,7 @@ class ApiController extends Controller
 
     public function tampilDetailListing($idagen, $kode){
         $listing = Listing::find($kode);
-        $foto = DB::table('fotos')->where('listing_kode_listing',$kode)->get();
+        $foto = DB::table('fotos')->where('listings_idlisting',$kode)->get();
         $jenislantai = $listing->lantais()->get();
         $kelurahan = $listing->kelurahans()->get();
         $agen = $listing->agens()->get();
@@ -398,7 +398,7 @@ class ApiController extends Controller
             if($request->hasFile('foto')){
                 foreach($request->file('foto') as $key => $file){
                     $foto = new Foto();
-                    $foto->listing_kode_listing = $request->get('kode');
+                    $foto->listings_idlisting = $request->get('idlisting');
                     $imgFolder='images/listing';
                     $imgFile=time().'_'.$file->getClientOriginalName();
                     $file->move($imgFolder,$imgFile);
@@ -474,11 +474,13 @@ class ApiController extends Controller
                 $data->foto_utama=$imgFile;
             }
             $data->save();
+
+            $idlisting = Listing::latest()->first()->get('idlisting');
             
             if($request->hasFile('foto')){
                 foreach($request->file('foto') as $key => $file){
                     $foto = new Foto();
-                    $foto->listing_kode_listing = $request->get('kode');
+                    $foto->listings_idlisting = $idlisting;
                     $imgFolder='images/listing';
                     $imgFile=time().'_'.$file->getClientOriginalName();
                     $file->move($imgFolder,$imgFile);

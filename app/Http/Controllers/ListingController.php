@@ -115,11 +115,11 @@ class ListingController extends Controller
                 $data->foto_utama=$imgFile;
             }
             $data->save();
-            
+            $idlisting = Listing::latest()->get('idlisting');
             if($request->hasFile('foto')){
                 foreach($request->file('foto') as $key => $file){
                     $foto = new Foto();
-                    $foto->listing_kode_listing = $request->get('kode');
+                    $foto->listings_idlisting = $idlisting;
                     $imgFolder='images/listing';
                     $imgFile=time().'_'.$file->getClientOriginalName();
                     $file->move($imgFolder,$imgFile);
@@ -145,7 +145,7 @@ class ListingController extends Controller
     public function show(Listing $listing)
     {
         $data = $listing;
-        $foto = DB::table('fotos')->where('listing_kode_listing',$listing->kode_listing)->get();
+        $foto = DB::table('fotos')->where('listings_idlisting',$listing->idlisting)->get();
         return view("listing.show",compact('data','foto'));
     }
 
@@ -177,7 +177,7 @@ class ListingController extends Controller
      */
     public function update(Request $request, Listing $listing, Foto $foto)
     {
-        $kode = $request->get('kode');
+        $idlisting = $request->get('idlisting');
         $listing->alamat_domisili = $request->get('alamatdomisili');
         $listing->nomor_hp_pemilik = $request->get('hppemilik');
         $listing->surat_kepemilikan_atasnama = $request->get('skan');
@@ -238,7 +238,7 @@ class ListingController extends Controller
         if($request->hasFile('foto')){
             foreach($request->file('foto') as $key => $file){
                 $foto = new Foto();
-                $foto->listing_kode_listing = $request->get('kode');
+                $foto->listings_idlisting = $idlisting;
                 $imgFolder='images/listing';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
@@ -265,7 +265,7 @@ class ListingController extends Controller
         try{
             $listing = Listing::find($request->id);
             dd($listing);
-            $foto = Foto::where('listing_kode_listing',$listing->kode_listing)->get();
+            $foto = Foto::where('listings_idlisting',$request->id)->get();
             dd($foto);
             // $listing->delete();
             // return redirect()->route('listings.index')->with('status','data berhasil dihapus');       
@@ -300,7 +300,7 @@ class ListingController extends Controller
     public function viewFrontEnd($id){
         $listing = Listing::find($id);
         // dd($listing);
-        $foto = DB::table('fotos')->where('listing_kode_listing',$id)->get();
+        $foto = DB::table('fotos')->where('listings_idlisting',$id)->get();
         return view("front.index",compact('listing','foto'));
     }
 }
