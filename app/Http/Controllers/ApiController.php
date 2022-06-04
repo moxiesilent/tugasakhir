@@ -338,6 +338,7 @@ class ApiController extends Controller
     public function updateListing(Request $request){
         try{
             $idlisting = $request->get('idlisting');
+            $listing = Listing::find($idlisting);
             $listing->alamat_domisili = $request->get('alamatdomisili');
             $listing->nomor_hp_pemilik = $request->get('hppemilik');
             $listing->surat_kepemilikan_atasnama = $request->get('skan');
