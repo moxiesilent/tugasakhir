@@ -68,8 +68,73 @@ class ApiController extends Controller
 
     public function tampilHalamanListing(Request $request)
     {
-        $cari = $request->get('cari');
-        $listing = Listing::where('judul','LIKE','%'.$cari.'%')->get();
+        // $cari = $request->get('cari');
+        // $listing = Listing::where('judul','LIKE','%'.$cari.'%')->get();
+        $listing = Listing::query();
+        
+        if($request->get('cari') != ""){
+            $listing = $listing->where('judul','LIKE','%'.$request->get('cari').'%');
+        }
+        if ($request->get('minharga') != 0 && $request->get('maxharga')!= 0) {
+            $listing = $listing->where('harga', '>=', $request->get('minharga'))
+                               ->where('harga', '<=', $request->get('maxharga'));
+        }
+        if ($request->get('minluastanah') != 0 && $request->get('maxluastanah') != 0) {
+            $listing = $listing->where('luas_tanah', '>=', $request->get('minluastanah'))
+                               ->where('luas_tanah', '<=', $request->get('maxluastanah'));
+        }
+        if ($request->get('minluasbangunan') != 0 && $request->get('maxluasbangunan') != 0) {
+            $listing = $listing->where('luas_bangunan', '>=', $request->get('minluasbangunan'))
+                               ->where('luas_bangunan', '<=', $request->get('maxluasbangunan'));
+        }
+        if ($request->get('kamartidur') != 0){
+            if($request->get('kamartidur') >= 4){
+                $listing = $listing->where('kamar_tidur','>=', 4);
+            } else {
+                $listing = $listing->where('kamar_tidur', $request->get('kamartidur'));
+            }
+        }
+        if ($request->get('minkamarmandi') != 0){
+            $listing = $listing->where('kamar_mandi', $request->get('minkamarmandi'));
+        }
+        if ($request->get('mindimensi_tl') != 0){
+            $listing = $listing->where('dimensi_tanah_lebar',">=",$request->get('mindimensi_tl'));
+        }
+        if ($request->get('mindimensi_tp') != 0){
+            $listing = $listing->where('dimensi_tanah_panjang',">=",$request->get('mindimensi_tp'));
+        }
+        if ($request->get('jumlahlantai') != 0){
+            $listing = $listing->where('jumlah_lantai', $request->get('jumlahlantai'));
+        }
+        if ($request->get('mincarport') != 0) {
+            $listing = $listing->where('carport', '>=', $request->get('mincarport'));
+        }
+        if ($request->get('hadap') != "") {
+            $listing = $listing->where('hadap', 'LIKE','%'.$request->get('hadap').'%');
+        }
+        if ($request->get('perabotan') != "") {
+            $listing = $listing->where('perabotan', $request->get('perabotan'));
+        }
+        if ($request->get('posisi') != "") {
+            $listing = $listing->where('posisi', $request->get('posisi'));
+        }
+        if ($request->get('jenissurat') != 0) {
+            $listing = $listing->where('jenis_surat_idjenis_surat', $request->get('jenissurat'));
+        }
+        if ($request->get('tipeproperti' != 0)) {
+            $listing = $listing->where('tipe_properti_idtipe_properti', $request->get('tipeproperti'));
+        }
+        if ($request->get('jenislantai' != 0)) {
+            $listing = $listing->where('jenis_lantai_idjenis_lantai', $request->get('jenislantai'));
+        }
+        if ($request->get('tipeapartemen' != 0)) {
+            $listing = $listing->where('tipe_apartemens_idtipe_apartemen', $request->get('tipeapartemen'));
+        }
+        if ($request->get('jenislisting' != "")) {
+            $listing = $listing->where('jenis_listing', $request->get('jenislisting'));
+        }
+
+        $listing = $listing->get();
         return response()->json(['message' => 'Success', 'listing'=> $listing]);
     }
 
