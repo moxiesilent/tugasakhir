@@ -59,11 +59,18 @@ class ApiController extends Controller
     }    
     
 
-    public function tampilHalamanListing($idagen)
+    // public function tampilHalamanListing($idagen)
+    // {
+    //     $listing = Listing::all();
+    //     $bookmark = DB::table('bookmarks')->where('agen_idagen',$idagen)->get();
+    //     return response()->json(['message' => 'Success', 'listing'=> $listing, 'bookmark'=>$bookmark]);
+    // }
+
+    public function tampilHalamanListing(Request $request)
     {
-        $listing = Listing::all();
-        $bookmark = DB::table('bookmarks')->where('agen_idagen',$idagen)->get();
-        return response()->json(['message' => 'Success', 'listing'=> $listing, 'bookmark'=>$bookmark]);
+        $cari = $request->get('cari');
+        $listing = Listing::where('judul','LIKE','%'.$cari.'%')->get();
+        return response()->json(['message' => 'Success', 'listing'=> $listing]);
     }
 
     public function tampilListingTipeproperti($idtipeproperti){
@@ -497,5 +504,9 @@ class ApiController extends Controller
             return response()->json(['message' => 'Error '. $msg]);
         }
     }   
+
+    public function filter(){
+        
+    }
 
 }

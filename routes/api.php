@@ -34,7 +34,8 @@ Route::get('/clearestimasi/{idestimasi}', [ApiController::class, "clearEstimasi"
 Route::get('/clearallestimasi/{idagen}', [ApiController::class, "clearAllEstimasi"]);
 
 Route::get('/halamanutama', [ ApiController::class, "tampilHalamanUtama" ]);
-Route::get('/halamanlisting/{idagen}', [ ApiController::class, "tampilHalamanListing" ]);
+// Route::get('/halamanlisting/{idagen}', [ ApiController::class, "tampilHalamanListing" ]);
+Route::post('/halamanlisting', [ ApiController::class, "tampilHalamanListing" ]);
 Route::get('/halamanprofil/{idagen}', [ ApiController::class, "tampilHalamanProfil" ]);
 Route::get('/halamanlistprimary',[ ApiController::class, "tampilHalamanListPrimary"]);
 Route::get('/detaillisting/{idagen}/{kode}', [ApiController::class, "tampilDetailListing"]);
