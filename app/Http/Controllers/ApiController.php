@@ -335,9 +335,9 @@ class ApiController extends Controller
         }
     }
 
-    public function updateListing(Request $request){
+    public function updateListing(Request $request, $idlisting){
         try{
-            $idlisting = $request->get('idlisting');
+            // $idlisting = $request->get('idlisting');
             $listing = Listing::find($idlisting);
             $listing->alamat_domisili = $request->get('alamatdomisili');
             $listing->nomor_hp_pemilik = $request->get('hppemilik');
