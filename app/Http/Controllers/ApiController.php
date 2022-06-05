@@ -121,16 +121,16 @@ class ApiController extends Controller
         if ($request->get('jenissurat') != 0) {
             $listing = $listing->where('jenis_surat_idjenis_surat', $request->get('jenissurat'));
         }
-        if ($request->get('tipeproperti' != 0)) {
+        if ($request->get('tipeproperti') != 0) {
             $listing = $listing->where('tipe_properti_idtipe_properti', $request->get('tipeproperti'));
         }
-        if ($request->get('jenislantai' != 0)) {
+        if ($request->get('jenislantai') != 0) {
             $listing = $listing->where('jenis_lantai_idjenis_lantai', $request->get('jenislantai'));
         }
-        if ($request->get('tipeapartemen' != 0)) {
+        if ($request->get('tipeapartemen') != 0) {
             $listing = $listing->where('tipe_apartemens_idtipe_apartemen', $request->get('tipeapartemen'));
         }
-        if ($request->get('jenislisting' != "")) {
+        if ($request->get('jenislisting') != "") {
             $listing = $listing->where('jenis_listing', $request->get('jenislisting'));
         }
 
