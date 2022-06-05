@@ -335,9 +335,9 @@ class ApiController extends Controller
         }
     }
 
-    public function updateListing(Request $request, $idlisting){
+    public function updateListing(Request $request){
         try{
-            // $idlisting = $request->get('idlisting');
+            $idlisting = $request->get('idlisting');
             $listing = Listing::find($idlisting);
             $listing->alamat_domisili = $request->get('alamatdomisili');
             $listing->nomor_hp_pemilik = $request->get('hppemilik');
@@ -383,30 +383,30 @@ class ApiController extends Controller
             $listing->status = 'available';
             $listing->jenis_listing = $request->get('jenislisting');
             $listing->judul = $request->get('judul');
-            if($request->hasFile('fotoutama')){
-                $dest='images/listing/'.$listing->foto_utama;
-                if(file_exists($dest)){
-                    @unlink($dest); 
-                }
-                $file=$request->file('fotoutama');
-                $imgFolder='images/listing/';
-                $imgFile=time().'_'.$file->getClientOriginalName();
-                $file->move($imgFolder,$imgFile);
-                $listing->foto_utama=$imgFile;
-            }
+            // if($request->hasFile('fotoutama')){
+            //     $dest='images/listing/'.$listing->foto_utama;
+            //     if(file_exists($dest)){
+            //         @unlink($dest); 
+            //     }
+            //     $file=$request->file('fotoutama');
+            //     $imgFolder='images/listing/';
+            //     $imgFile=time().'_'.$file->getClientOriginalName();
+            //     $file->move($imgFolder,$imgFile);
+            //     $listing->foto_utama=$imgFile;
+            // }
             $listing->save();
 
-            if($request->hasFile('foto')){
-                foreach($request->file('foto') as $key => $file){
-                    $foto = new Foto();
-                    $foto->listings_idlisting = $idlisting;
-                    $imgFolder='images/listing';
-                    $imgFile=time().'_'.$file->getClientOriginalName();
-                    $file->move($imgFolder,$imgFile);
-                    $foto->path=$imgFile;
-                    $foto->save();
-                }
-            }
+            // if($request->hasFile('foto')){
+            //     foreach($request->file('foto') as $key => $file){
+            //         $foto = new Foto();
+            //         $foto->listings_idlisting = $idlisting;
+            //         $imgFolder='images/listing';
+            //         $imgFile=time().'_'.$file->getClientOriginalName();
+            //         $file->move($imgFolder,$imgFile);
+            //         $foto->path=$imgFile;
+            //         $foto->save();
+            //     }
+            // }
             
             return response()->json(['message' => 'Success']);        
         }

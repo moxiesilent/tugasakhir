@@ -43,7 +43,7 @@ Route::get('/listingtipeproperti/{idtipeproperti}', [ApiController::class, "tamp
 Route::get('/mylisting/{idagen}', [ ApiController::class, "tampilMyListing"]);
 Route::post('/cobalogin', [ ApiController::class, "prosesLogin" ]);
 Route::post('/addlisting', [ ApiController::class, "addListing"] );
-Route::put('/updatelisting/{$idlisting}', [ ApiController::class, "updateListing"] );
+Route::post('/updatelisting', [ ApiController::class, "updateListing"] );
 Route::post('/addbookmark', [ ApiController::class, "addBookmark"] );
 Route::post('/deletebookmark', [ ApiController::class, "deleteBookmark"] );
 Route::post('/addkpr', [ ApiController::class, "addKpr"] );
