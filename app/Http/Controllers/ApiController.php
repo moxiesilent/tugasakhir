@@ -336,7 +336,7 @@ class ApiController extends Controller
     }
 
     public function updateListing(Request $request){
-        try{
+        // try{
             $idlisting = $request->get('idlisting');
             $listing = Listing::find($idlisting);
             $listing->alamat_domisili = $request->get('alamatdomisili');
@@ -409,11 +409,11 @@ class ApiController extends Controller
             // }
             
             return response()->json(['message' => 'Success']);        
-        }
-        catch(\PDOException $e){
-            $msg ="Gagal menambah data. " + $e;
-            return response()->json(['message' => 'Error '. $msg]);
-        }
+        // }
+        // catch(\PDOException $e){
+        //     $msg ="Gagal menambah data. " + $e;
+        //     return response()->json(['message' => 'Error '. $msg]);
+        // }
     }   
 
     public function addListing(Request $request){
