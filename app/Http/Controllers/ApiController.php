@@ -95,7 +95,11 @@ class ApiController extends Controller
             }
         }
         if ($request->get('minkamarmandi') != 0){
-            $listing = $listing->where('kamar_mandi', $request->get('minkamarmandi'));
+            if($request->get('minkamarmandi') >= 3){
+                $listing = $listing->where('kamar_mandi','>=', 3);
+            } else {
+                $listing = $listing->where('kamar_mandi', $request->get('minkamarmandi'));
+            }
         }
         if ($request->get('mindimensi_tl') != 0){
             $listing = $listing->where('dimensi_tanah_lebar',">=",$request->get('mindimensi_tl'));
@@ -104,10 +108,18 @@ class ApiController extends Controller
             $listing = $listing->where('dimensi_tanah_panjang',">=",$request->get('mindimensi_tp'));
         }
         if ($request->get('jumlahlantai') != 0){
-            $listing = $listing->where('jumlah_lantai', $request->get('jumlahlantai'));
+            if($request->get('jumlahlantai') >= 3){
+                $listing = $listing->where('jumlah_lantai','>=', 3);
+            } else {
+                $listing = $listing->where('jumlah_lantai', $request->get('jumlahlantai'));
+            }
         }
         if ($request->get('mincarport') != 0) {
-            $listing = $listing->where('carport', '>=', $request->get('mincarport'));
+            if($request->get('mincarport') >= 3){
+                $listing = $listing->where('carport','>=', 3);
+            } else {
+                $listing = $listing->where('carport', $request->get('mincarport'));
+            }
         }
         if ($request->get('hadap') != "") {
             $listing = $listing->where('hadap', 'LIKE','%'.$request->get('hadap').'%');
@@ -455,30 +467,30 @@ class ApiController extends Controller
             $listing->status = 'available';
             $listing->jenis_listing = $request->get('jenislisting');
             $listing->judul = $request->get('judul');
-            // if($request->hasFile('fotoutama')){
-            //     $dest='images/listing/'.$listing->foto_utama;
-            //     if(file_exists($dest)){
-            //         @unlink($dest); 
-            //     }
-            //     $file=$request->file('fotoutama');
-            //     $imgFolder='images/listing/';
-            //     $imgFile=time().'_'.$file->getClientOriginalName();
-            //     $file->move($imgFolder,$imgFile);
-            //     $listing->foto_utama=$imgFile;
-            // }
+            if($request->hasFile('fotoutama')){
+                $dest='images/listing/'.$listing->foto_utama;
+                if(file_exists($dest)){
+                    @unlink($dest); 
+                }
+                $file=$request->file('fotoutama');
+                $imgFolder='images/listing/';
+                $imgFile=time().'_'.$file->getClientOriginalName();
+                $file->move($imgFolder,$imgFile);
+                $listing->foto_utama=$imgFile;
+            }
             $listing->save();
 
-            // if($request->hasFile('foto')){
-            //     foreach($request->file('foto') as $key => $file){
-            //         $foto = new Foto();
-            //         $foto->listings_idlisting = $idlisting;
-            //         $imgFolder='images/listing';
-            //         $imgFile=time().'_'.$file->getClientOriginalName();
-            //         $file->move($imgFolder,$imgFile);
-            //         $foto->path=$imgFile;
-            //         $foto->save();
-            //     }
-            // }
+            if($request->hasFile('foto')){
+                foreach($request->file('foto') as $key => $file){
+                    $foto = new Foto();
+                    $foto->listings_idlisting = $idlisting;
+                    $imgFolder='images/listing';
+                    $imgFile=time().'_'.$file->getClientOriginalName();
+                    $file->move($imgFolder,$imgFile);
+                    $foto->path=$imgFile;
+                    $foto->save();
+                }
+            }
             
             return response()->json(['message' => 'Success']);        
         // }
@@ -541,7 +553,7 @@ class ApiController extends Controller
             $data->judul = $request->get('judul');
             if($request->hasFile('fotoutama')){
                 $file=$request->file('fotoutama');
-                $imgFolder='images/listing';
+                $imgFolder='public/images/listing';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
                 $data->foto_utama=$imgFile;
