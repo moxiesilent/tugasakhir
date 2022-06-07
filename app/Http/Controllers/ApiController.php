@@ -506,15 +506,15 @@ class ApiController extends Controller
 
     public function addFotoListing(Request $request){
         $idlisting = $request->get('idlisting');
-        foreach($request->file('foto') as $key => $file){
-            $foto = new Foto();
-            $foto->listings_idlisting = $idlisting;
-            $imgFolder='public/images/listing';
-            $imgFile=time().'_'.$file->getClientOriginalName();
-            $file->move($imgFolder,$imgFile);
-            $foto->path=$imgFile;
-            $foto->save();
-        }
+
+        $foto = new Foto();
+        $foto->listings_idlisting = $idlisting;
+        $imgFolder='public/images/listing';
+        $imgFile=time().'_'.$file->getClientOriginalName();
+        $file->move($imgFolder,$imgFile);
+        $foto->path=$imgFile;
+        $foto->save();
+        
         return response()->json(['message' => 'Success']);
     }
 
