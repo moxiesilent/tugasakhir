@@ -508,7 +508,7 @@ class ApiController extends Controller
         $idlisting = $request->get('idlisting');
 
         $foto = new Foto();
-        $file = $request->get('foto');
+        $file = $request->file('foto');
         $foto->listings_idlisting = $idlisting;
         $imgFolder='public/images/listing';
         $imgFile=time().'_'.$file->getClientOriginalName();
