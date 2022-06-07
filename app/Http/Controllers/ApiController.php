@@ -420,7 +420,7 @@ class ApiController extends Controller
     }
 
     public function updateListing(Request $request){
-        // try{
+        try{
             $idlisting = $request->get('idlisting');
             $listing = Listing::find($idlisting);
             $listing->alamat_domisili = $request->get('alamatdomisili');
@@ -473,7 +473,7 @@ class ApiController extends Controller
                     @unlink($dest); 
                 }
                 $file=$request->file('fotoutama');
-                $imgFolder='images/listing/';
+                $imgFolder='public/images/listing/';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
                 $listing->foto_utama=$imgFile;
@@ -482,9 +482,13 @@ class ApiController extends Controller
 
             if($request->hasFile('foto')){
                 foreach($request->file('foto') as $key => $file){
-                    $foto = new Foto();
+                    $dest='public/images/listing/'.$foto->path;
+                    if(file_exists($dest)){
+                        @unlink($dest); 
+                    }
                     $foto->listings_idlisting = $idlisting;
-                    $imgFolder='images/listing';
+                    $file=$request->file('foto');
+                    $imgFolder='public/images/listing/';
                     $imgFile=time().'_'.$file->getClientOriginalName();
                     $file->move($imgFolder,$imgFile);
                     $foto->path=$imgFile;
@@ -493,12 +497,26 @@ class ApiController extends Controller
             }
             
             return response()->json(['message' => 'Success']);        
-        // }
-        // catch(\PDOException $e){
-        //     $msg ="Gagal menambah data. " + $e;
-        //     return response()->json(['message' => 'Error '. $msg]);
-        // }
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menambah data. " + $e;
+            return response()->json(['message' => 'Error '. $msg]);
+        }
     }   
+
+    public function addFotoListing(Request $request){
+        $idlisting = $request->get('idlisting');
+        foreach($request->file('foto') as $key => $file){
+            $foto = new Foto();
+            $foto->listings_idlisting = $idlisting;
+            $imgFolder='public/images/listing';
+            $imgFile=time().'_'.$file->getClientOriginalName();
+            $file->move($imgFolder,$imgFile);
+            $foto->path=$imgFile;
+            $foto->save();
+        }
+        return response()->json(['message' => 'Success']);
+    }
 
     public function addListing(Request $request){
         try{
@@ -566,7 +584,7 @@ class ApiController extends Controller
                 foreach($request->file('foto') as $key => $file){
                     $foto = new Foto();
                     $foto->listings_idlisting = $idlisting;
-                    $imgFolder='images/listing';
+                    $imgFolder='public/images/listing';
                     $imgFile=time().'_'.$file->getClientOriginalName();
                     $file->move($imgFolder,$imgFile);
                     $foto->path=$imgFile;
@@ -580,10 +598,6 @@ class ApiController extends Controller
             $msg ="Gagal menambah data. ";
             return response()->json(['message' => 'Error '. $msg]);
         }
-    }   
-
-    public function filter(){
-        
     }
 
 }
