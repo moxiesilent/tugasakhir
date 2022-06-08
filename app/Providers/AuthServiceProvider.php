@@ -27,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('admin',function($user){
-            return ($user->sebagai=='admin'
+            return ($user->jabatan=='admin'
                 ? Response::allow()
                 : Response::deny('Hanya admin yang dapat memasuki halaman ini')
             );

@@ -152,7 +152,9 @@
                                     @endif
                                 </td>
                                 <td class="text-right"><b>{{number_format($d->harga)}}</b></td>
-                                <td>{{$d->bentukHargas->bentuk_harga}}</td>
+                                <td>
+                                    {{$d->bentukHargas['bentuk_harga']}}
+                                </td>
                                 <td>{{$d->komisi}} %</td>
                                 <td>{{$d->kelurahans->nama}}</td>
                                 <td>

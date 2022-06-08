@@ -13,6 +13,6 @@ class Bentukharga extends Model
     public $timestamps=false;
 
     public function listings(){
-        return $this->hasMany("App\Models\Listing","bentuk_harga_idbentuk_harga","idbentuk_harga");
+        return $this->hasMany(Listing::class);
     }
 }

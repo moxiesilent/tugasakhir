@@ -25,7 +25,7 @@ class Listing extends Model
     }
 
     public function bentukHargas(){
-        return $this->belongsTo("App\Models\Bentukharga","bentuk_harga_idbentuk_harga");
+        return $this->belongsTo(Bentukharga::class,'bentuk_harga_idbentuk_harga','idbentuk_harga');
     }
 
     public function tipePropertis(){

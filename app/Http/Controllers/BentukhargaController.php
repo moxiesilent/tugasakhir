@@ -13,8 +13,12 @@ class BentukhargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = Bentukharga::all();
         return view('bentukharga.index',compact('data'));
     }
@@ -37,6 +41,9 @@ class BentukhargaController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = new Bentukharga();
         $data->bentuk_harga = $request->get('bentukharga');
         $data->save();
@@ -62,6 +69,9 @@ class BentukhargaController extends Controller
      */
     public function edit(Bentukharga $bentukharga)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $bentukharga;
         return view("bentukharga.edit",compact('data'));
     }
@@ -75,6 +85,9 @@ class BentukhargaController extends Controller
      */
     public function update(Request $request, Bentukharga $bentukharga)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $bentukharga->bentuk_harga = $request->get('bentukharga');
             $bentukharga->save();
@@ -94,18 +107,14 @@ class BentukhargaController extends Controller
      */
     public function destroy(Bentukharga $bentukharga)
     {
-        try{
-            $bentukharga->delete();
-            return redirect()->route('bentukhargas.index')->with('status','data berhasil dihapus');       
-        }
-        catch(\PDOException $e){
-            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('bentukhargas.index')->with('error', $msg);
-        }
+        
     }
 
     public function hapusbentukharga(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $bentukharga = Bentukharga::find($request->id);
             $bentukharga->delete();

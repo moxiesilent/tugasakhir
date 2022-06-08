@@ -27,6 +27,9 @@ class ListingController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = Listing::all();
         return view('listing.index',compact('data'));
     }
@@ -38,6 +41,9 @@ class ListingController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $agen = User::all();
         $jenislantai = Lantai::all();
         $bentukharga = Bentukharga::all();
@@ -57,6 +63,9 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         // try{
             $data = new Listing();
 
@@ -144,6 +153,9 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $listing;
         $foto = DB::table('fotos')->where('listings_idlisting',$listing->idlisting)->get();
         return view("listing.show",compact('data','foto'));
@@ -157,6 +169,9 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $listing;
         $jenislantai = Lantai::all();
         $bentukharga = Bentukharga::all();
@@ -177,6 +192,9 @@ class ListingController extends Controller
      */
     public function update(Request $request, Listing $listing, Foto $foto)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $idlisting = $request->get('idlisting');
         $listing->alamat_domisili = $request->get('alamatdomisili');
         $listing->nomor_hp_pemilik = $request->get('hppemilik');
@@ -261,7 +279,11 @@ class ListingController extends Controller
         //
     }
 
-    public function hapuslisting(Request $request){
+    public function hapuslisting(Request $request)
+    {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $listing = Listing::find($request->id);
             dd($listing);
@@ -277,6 +299,9 @@ class ListingController extends Controller
     }
 
     public function getKota(Request $request){
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $kota = DB::table('kotas')->where('provinsis_idprovinsi',$request->idprov)->get();
         return response()->json([
             'listkota' => $kota
@@ -284,6 +309,9 @@ class ListingController extends Controller
     }
 
     public function getKecamatan(Request $request){
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $kecamatan = DB::table('kecamatans')->where('kotas_idkota',$request->idkota)->get();
         return response()->json([
             'listkecamatan' => $kecamatan
@@ -291,16 +319,14 @@ class ListingController extends Controller
     }
 
     public function getKelurahan(Request $request){
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $kelurahan = DB::table('kelurahans')->where('kecamatans_idkecamatan',$request->idkecamatan)->get();
         return response()->json([
             'listkelurahan' => $kelurahan
         ]);
     }
 
-    public function viewFrontEnd($id){
-        $listing = Listing::find($id);
-        // dd($listing);
-        $foto = DB::table('fotos')->where('listings_idlisting',$id)->get();
-        return view("front.index",compact('listing','foto'));
-    }
+    
 }

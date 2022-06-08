@@ -15,8 +15,12 @@ class AgenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = User::all();
         return view('agen.index',compact('data'));
     }
@@ -28,6 +32,9 @@ class AgenController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         return view("agen.create");
     }
 
@@ -39,6 +46,9 @@ class AgenController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = new User();
         
         if($request->hasFile('foto')){
@@ -73,6 +83,9 @@ class AgenController extends Controller
      */
     public function show(User $agen)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $agen;
         return view("agen.show",compact('data'));
     }
@@ -85,6 +98,9 @@ class AgenController extends Controller
      */
     public function edit(User $agen)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $agen;
         return view("agen.edit",compact('data'));
     }
@@ -98,6 +114,9 @@ class AgenController extends Controller
      */
     public function update(Request $request, User $agen)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         // try{
             if($request->hasFile('foto')){
                 $dest='images/agen/'.$agen->foto;
@@ -140,6 +159,9 @@ class AgenController extends Controller
 
     public function hapusagen(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $agen = User::find($request->id);
             $agen->delete();

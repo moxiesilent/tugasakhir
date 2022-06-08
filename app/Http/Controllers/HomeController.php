@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Listing;
+use App\Models\User;
+use App\Models\Primary;
+use App\Models\Reminder;
+use Carbon\Carbon;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -24,5 +29,20 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function laporan(){
+        $listing = Listing::count('idlisting');
+        $user = User::count('idagen');
+        $terjual = Listing::where('status','sold')->count();
+        $primary = Primary::count('idprimary');
+        $hariIni = Carbon::today();
+        $satuMinggu = $hariIni->addDays(7);
+        $reminder = Reminder::where('tanggal','>=',$hariIni)->where('tanggal','<=',$satuMinggu)->get();
+        return view('index',compact('listing','user','terjual','primary','reminder'));
+    }
+
+    public function bukanAdmin(){
+        abort(403);
     }
 }

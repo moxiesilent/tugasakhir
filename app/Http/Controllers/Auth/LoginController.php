@@ -32,7 +32,7 @@ class LoginController extends Controller
         if ($user->jabatan == "admin") {
             return redirect('/');
         } else {
-            return redirect('/');
+            abort(403);
         }
     }
 

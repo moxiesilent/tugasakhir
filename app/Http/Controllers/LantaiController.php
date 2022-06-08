@@ -13,8 +13,13 @@ class LantaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = Lantai::all();
         return view('lantai.index',compact('data'));
     }
@@ -37,6 +42,9 @@ class LantaiController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = new Lantai();
         $data->nama = $request->get('jenislantai');
         $data->save();
@@ -62,6 +70,9 @@ class LantaiController extends Controller
      */
     public function edit(Lantai $lantai)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $lantai;
         return view("lantai.edit",compact('data'));
     }
@@ -75,6 +86,9 @@ class LantaiController extends Controller
      */
     public function update(Request $request, Lantai $lantai)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $lantai->nama = $request->get('jenislantai');
             $lantai->save();
@@ -94,18 +108,14 @@ class LantaiController extends Controller
      */
     public function destroy(Lantai $lantai)
     {
-        try{
-            $lantai->delete();
-            return redirect()->route('lantais.index')->with('status','data lantai berhasil dihapus');       
-        }
-        catch(\PDOException $e){
-            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('lantais.index')->with('error', $msg);
-        }
+
     }
 
     public function hapuslantai(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $lantai = Lantai::find($request->id);
             $lantai->delete();

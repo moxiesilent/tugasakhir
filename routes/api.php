@@ -43,7 +43,7 @@ Route::get('/detailprimary/{idprimary}', [ApiController::class, "tampilDetailPri
 Route::get('/listingtipeproperti/{idtipeproperti}', [ApiController::class, "tampilListingTipeproperti"]);
 Route::get('/mylisting/{idagen}', [ ApiController::class, "tampilMyListing"]);
 Route::post('/cobalogin', [ ApiController::class, "prosesLogin" ]);
-Route::post('/addlisting', [ ApiController::class, "addListing"] );
+Route::post('/cobaaddlisting', [ ApiController::class, "addListing"] );
 Route::post('/updatelisting', [ ApiController::class, "updateListing"] );
 Route::post('/addbookmark', [ ApiController::class, "addBookmark"] );
 Route::post('/deletebookmark', [ ApiController::class, "deleteBookmark"] );
