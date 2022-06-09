@@ -162,7 +162,6 @@ $(document).ready( function () {
     $('#myTable').DataTable();
 } );
 </script>
-
 <script>
     function hapus(token,id){
         swal({
@@ -176,28 +175,27 @@ $(document).ready( function () {
         closeOnConfirm: false,
         closeOnCancel: true,
         showLoaderOnConfirm: true
-    }).then(function () {
-        var act = '/hapusagen';
-        $.post(act, {
+    }).then(function (result) {
+        if(result.value){
+            var act = '/hapusagen';
+            $.post(act, {
 
-            _token: token,
-            id:id,
-            },
-        function (data) {
+                _token: token,
+                id:id,
+                },
+            function (data) {
+                swal(
+                'Terhapus!',
+                'Data berhasil dihapus.',
+                'success'
+                ).then(function () {
+                    location.reload();
+                })
+            });
+        } else if(result.dismiss){
             swal(
-            'Terhapus!',
-            'Data berhasil dihapus.',
-            'success'
-            ).then(function () {
-                location.reload();
-            })
-        });
-
-    }, function (dismiss) {
-        if (dismiss === 'cancel') {
-            swal(
-                'Batal',
-                'Langkah menghapus terhenti dan dibatalkan :)',
+                'Hapus Data Dibatalkan!',
+                '',
                 'error'
                 )
         }

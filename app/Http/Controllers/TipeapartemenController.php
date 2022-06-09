@@ -13,13 +13,11 @@ class TipeapartemenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = Tipeapartemen::all();
         return view('tipeapartemen.index',compact('data'));
     }
@@ -42,6 +40,9 @@ class TipeapartemenController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $data = new Tipeapartemen();
             $data->tipe_apartemen = $request->get('tipeapartemen');
@@ -73,6 +74,9 @@ class TipeapartemenController extends Controller
      */
     public function edit(Tipeapartemen $tipeapartemen)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $tipeapartemen;
         return view("tipeapartemen.edit",compact('data'));
     }
@@ -86,6 +90,9 @@ class TipeapartemenController extends Controller
      */
     public function update(Request $request, Tipeapartemen $tipeapartemen)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $tipeapartemen->tipe_apartemen = $request->get('jenisapartemen');
             $tipeapartemen->save();
@@ -108,7 +115,11 @@ class TipeapartemenController extends Controller
         //
     }
 
-    public function hapustipeapartemen(Request $request){
+    public function hapustipeapartemen(Request $request)
+    {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $tipeapartemen = Tipeapartemen::find($request->id);
             $tipeapartemen->delete();

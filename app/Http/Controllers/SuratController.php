@@ -13,13 +13,12 @@ class SuratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     
     public function index()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = Surat::all();
         return view('surat.index',compact('data'));
     }
@@ -42,6 +41,9 @@ class SuratController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $data = new Surat();
             $data->jenis_surat = $request->get('jenissurat');
@@ -73,6 +75,9 @@ class SuratController extends Controller
      */
     public function edit(Surat $surat)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $surat;
         return view("surat.edit",compact('data'));
     }
@@ -86,6 +91,9 @@ class SuratController extends Controller
      */
     public function update(Request $request, Surat $surat)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $surat->jenis_surat = $request->get('jenissurat');
             $surat->save();
@@ -110,6 +118,9 @@ class SuratController extends Controller
 
     public function hapussurat(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $surat = Surat::find($request->id);
             $surat->delete();

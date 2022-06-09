@@ -15,13 +15,12 @@ class ReminderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     
     public function index()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = Reminder::all();
         $agen = User::all();
         $primary = Primary::all();
@@ -46,6 +45,9 @@ class ReminderController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $data = new Reminder();
             $data->agens_idagen = $request->get('agen');
@@ -82,6 +84,9 @@ class ReminderController extends Controller
      */
     public function edit(Reminder $reminder)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $reminder;
         $agen = User::all();
         $primary = Primary::all();
@@ -97,6 +102,9 @@ class ReminderController extends Controller
      */
     public function update(Request $request, Reminder $reminder)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $reminder->agens_idagen = $request->get('agen');
             $reminder->primarys_idprimary = $request->get('primary');
@@ -126,6 +134,9 @@ class ReminderController extends Controller
 
     public function hapusreminder(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $reminder = Reminder::find($request->idreminder);
             $reminder->delete();

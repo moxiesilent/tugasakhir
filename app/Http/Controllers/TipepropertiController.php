@@ -13,13 +13,12 @@ class TipepropertiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     
     public function index()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = Tipeproperti::all();
         return view('tipeproperti.index',compact('data'));
     }
@@ -42,6 +41,9 @@ class TipepropertiController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $data = new Tipeproperti();
             $data->jenis_properti = $request->get('jenisproperti');
@@ -74,6 +76,9 @@ class TipepropertiController extends Controller
      */
     public function edit(Tipeproperti $tipeproperti)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $tipeproperti;
         return view("tipeproperti.edit",compact('data'));
     }
@@ -87,6 +92,9 @@ class TipepropertiController extends Controller
      */
     public function update(Request $request, Tipeproperti $tipeproperti)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $tipeproperti->jenis_properti = $request->get('jenisproperti');
             $tipeproperti->save();
@@ -109,7 +117,11 @@ class TipepropertiController extends Controller
         
     }
 
-    public function hapustipeproperti(Request $request){
+    public function hapustipeproperti(Request $request)
+    {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $tipeproperti = Tipeproperti::find($request->id);
             $tipeproperti->delete();

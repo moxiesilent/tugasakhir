@@ -237,6 +237,11 @@ class ApiController extends Controller
         return response()->json(['message'=>"Success", 'calonpembeli'=>$calonpembeli]);
     }
 
+    public function detailCalonPembeli($idcalonpembeli){
+        $calonpembeli = Calonpembeli::find($idcalonpembeli);
+        return response()->json(['message'=>'Success', 'calonpembeli'=>$calonpembeli]);
+    }
+
     public function bookmark($idagen){
         $getidlisting = DB::table('bookmarks')->where('agen_idagen',$idagen)->get();
         $listing = [];

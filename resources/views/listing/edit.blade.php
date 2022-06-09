@@ -99,7 +99,7 @@
                         <h3><b>Ubah Listing</b></3>
                     </div>
                 </div>
-                <form enctype="multipart/form-data" method="post" action="{{url('listings/'.$data->kode_listing)}}">
+                <form enctype="multipart/form-data" method="post" action="{{url('listings/'.$data->idlisting)}}">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -140,7 +140,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="alamat">Alamat Domisili Pemilik</label>
-                                <input id="alamat" type="text" name="alamatdomisili" value="{{$data->alamat_domisili}}" class="form-control" required>
+                                <input id="alamat" type="text" name="alamatdomisili" value="{{$data->alamat_domisili}}" class="form-control" >
                             </div>
                         </div>                                        
                     </div>
@@ -148,7 +148,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="hp">No HP Pemilik</label>
-                                <input id="hp" type="text" name="hppemilik" value="{{$data->nomor_hp_pemilik}}" class="form-control" required>
+                                <input id="hp" type="text" name="hppemilik" value="{{$data->nomor_hp_pemilik}}" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="suratkepemilikan">Surat Kepemilikan Atas Nama</label>
-                                <input id="suratkepemilikan" type="text" name="skan" value="{{$data->surat_kepemilikan_atasnama}}" class="form-control" required>
+                                <input id="suratkepemilikan" type="text" name="skan" value="{{$data->surat_kepemilikan_atasnama}}" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -164,7 +164,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="alamatproperti">Alamat Properti</label>
-                                <input id="alamatproperti" type="text" name="alamatproperti" value="{{$data->alamat_properti}}" class="form-control" required>
+                                <input id="alamatproperti" type="text" name="alamatproperti" value="{{$data->alamat_properti}}" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -220,7 +220,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="kt">Jumlah Kamar Tidur</label>
-                                <input id="kt" type="number" step="1" name="kt" value="{{$data->kamar_tidur}}" class="form-control" required>
+                                <input id="kt" type="number" step="1" name="kt" value="{{$data->kamar_tidur}}" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -228,7 +228,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="km">Jumlah Kamar Mandi</label>
-                                <input id="km" type="number" step="1" name="km" value="{{$data->kamar_mandi}}" class="form-control" required>
+                                <input id="km" type="number" step="1" name="km" value="{{$data->kamar_mandi}}" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -349,7 +349,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Tipe Listing</label><br>
-                                <select class="selectpicker" data-width="100%" name="tipelisting" data-placeholder="Tipe Listing" required>
+                                <select class="selectpicker" data-width="100%" name="tipelisting" data-placeholder="Tipe Listing" >
                                     <option value="Open">Open</option>
                                     <option value="Open Khusus">Open Khusus</option>
                                     <option value="Ekslusif">Ekslusif</option>
@@ -361,7 +361,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Air</label><br>
-                                <select class="selectpicker" data-width="100%" name="air" data-placeholder="air" required>
+                                <select class="selectpicker" data-width="100%" name="air" data-placeholder="air" >
                                     <option value="PDAM">PDAM</option>
                                     <option value="Sumur">Sumur</option>
                                     <option value="PDAM dan Sumur">PDAM dan Sumur</option>
@@ -373,7 +373,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Pemegang Hak</label><br>
-                                <select class="selectpicker" data-width="100%" name="pemeganghak" data-placeholder="pemeganghak" required>
+                                <select class="selectpicker" data-width="100%" name="pemeganghak" data-placeholder="pemeganghak" >
                                     <option value="Perorangan">Perorangan</option>
                                     <option value="PT/CV">PT atau CV</option>
                                     <option value="Ahli waris (sudah balik nama)">Ahli Waris (sudah balik nama)</option>
@@ -411,7 +411,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Posisi</label><br>
-                                <select class="selectpicker" data-width="100%" name="posisi" data-placeholder="posisi" required>
+                                <select class="selectpicker" data-width="100%" name="posisi" data-placeholder="posisi" >
                                     <option value="Kotak (badan)">Kotak (badan)</option>
                                     <option value="Hook (corner)">Hook (corner)</option>
                                     <option value="Ngantong">Ngantong</option>
@@ -423,7 +423,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label>Perabotan</label><br>
-                                <select class="selectpicker" data-width="100%" name="perabotan" data-placeholder="perabotan" required>
+                                <select class="selectpicker" data-width="100%" name="perabotan" data-placeholder="perabotan" >
                                     <option value="Full furnished">Full Furnished</option>
                                     <option value="Non furnished">Non Furnished</option>
                                     <option value="Semi furnished">Semi Furnished</option>

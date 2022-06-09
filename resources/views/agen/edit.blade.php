@@ -110,7 +110,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="kode">Kode Agen</label>
-                                <input id="kode" type="text" name="kode" value="{{$data->kode}}" class="form-control" required>
+                                <input id="kode" type="text" name="kode" value="{{$data->kode}}" class="form-control" required disabled>
                             </div>
                         </div>                                        
                     </div>

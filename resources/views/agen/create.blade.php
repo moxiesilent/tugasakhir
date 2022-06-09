@@ -184,6 +184,14 @@
                             </div>
                         </div>                                        
                     </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group">
+                                <label for="whatsapp">Alamat</label>
+                                <input id="whatsapp" type="text" name="whatsapp" placeholder="822xxxxxxxx" class="form-control">
+                            </div>
+                        </div>                                        
+                    </div>
                     <div class="custom-file-container" data-upload-id="myFirstImage">
                         <label>Upload Foto <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                         <label class="custom-file-container__custom-file" >

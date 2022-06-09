@@ -14,13 +14,12 @@ class PrimaryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     
     public function index()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = Primary::all();
         return view('primary.index',compact('data'));
     }
@@ -32,6 +31,9 @@ class PrimaryController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         return view("primary.create");
     }
 
@@ -43,6 +45,9 @@ class PrimaryController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $data = new Primary();
 
@@ -75,6 +80,9 @@ class PrimaryController extends Controller
      */
     public function show(Primary $primary)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $primary;
         return view("primary.show",compact('data'));
     }
@@ -87,6 +95,9 @@ class PrimaryController extends Controller
      */
     public function edit(Primary $primary)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         $data = $primary;
         return view("primary.edit",compact('data'));
     }
@@ -100,6 +111,9 @@ class PrimaryController extends Controller
      */
     public function update(Request $request, Primary $primary)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             if($request->hasFile('foto')){
                 $dest='images/primary/'.$primary->foto;
@@ -138,6 +152,9 @@ class PrimaryController extends Controller
     }
     public function hapusprimary(Request $request)
     {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
         try{
             $primary = Primary::find($request->id);
             $primary->delete();
