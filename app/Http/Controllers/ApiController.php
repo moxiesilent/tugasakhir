@@ -522,12 +522,6 @@ class ApiController extends Controller
         $foto->path=$imgFile;
         $foto->save();
 
-        // $file=$request->file('fotoutama');
-        // $imgFolder='public/images/listing';
-        // $imgFile=time().'_'.$file->getClientOriginalName();
-        // $file->move($imgFolder,$imgFile);
-        // $data->foto_utama=$imgFile;
-
         return response()->json(['message' => 'Success']);
     }
 
