@@ -587,19 +587,19 @@ class ApiController extends Controller
 
             $idlisting = Listing::latest()->first()->get('idlisting');
             
-            if($request->hasFile('foto')){
-                foreach($request->file('foto') as $key => $file){
-                    $foto = new Foto();
-                    $foto->listings_idlisting = $idlisting;
-                    $imgFolder='public/images/listing';
-                    $imgFile=time().'_'.$file->getClientOriginalName();
-                    $file->move($imgFolder,$imgFile);
-                    $foto->path=$imgFile;
-                    $foto->save();
-                }
-            }
+            // if($request->hasFile('foto')){
+            //     foreach($request->file('foto') as $key => $file){
+            //         $foto = new Foto();
+            //         $foto->listings_idlisting = $idlisting;
+            //         $imgFolder='public/images/listing';
+            //         $imgFile=time().'_'.$file->getClientOriginalName();
+            //         $file->move($imgFolder,$imgFile);
+            //         $foto->path=$imgFile;
+            //         $foto->save();
+            //     }
+            // }
             
-            return response()->json(['message' => 'Success']);        
+            return response()->json(['message' => 'Success', 'idlisting'=>$idlisting]);        
         }
         catch(\PDOException $e){
             $msg ="Gagal menambah data. ";

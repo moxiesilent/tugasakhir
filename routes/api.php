@@ -57,7 +57,7 @@ Route::get('/profils/{idagen}', [ ApiController::class, "getProfil" ]);
 Route::post('/updateprofil', [ ApiController::class, "updateProfil" ]);
 Route::get('/detailcalonpembeli/{idcalonpembeli}', [ ApiController::class, "detailCalonPembeli" ]);
 Route::get('/bookmark/{idagen}', [ ApiController::class, "bookmark" ]);
-Route::post('/addfotolisting', [ ApiController::class, "addFotoListing" ]);
+
 
 Route::get('/provinsis',[ ApiController::class, "getProvinsi"] );
 Route::get('/kotas/{idprovinsi}', [ ApiController::class, "getKota"] );
