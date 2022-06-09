@@ -585,8 +585,8 @@ class ApiController extends Controller
             }
             $data->save();
 
-            $idlisting = Listing::latest()->first()->get('idlisting');
-            
+            $idlisting = $data->idlisting;
+
             // if($request->hasFile('foto')){
             //     foreach($request->file('foto') as $key => $file){
             //         $foto = new Foto();
