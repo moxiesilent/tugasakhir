@@ -45,13 +45,17 @@ Route::get('/mylisting/{idagen}', [ ApiController::class, "tampilMyListing"]);
 Route::post('/cobalogin', [ ApiController::class, "prosesLogin" ]);
 Route::post('/cobaaddlisting', [ ApiController::class, "addListing"] );
 Route::post('/updatelisting', [ ApiController::class, "updateListing"] );
+Route::post('/deletelisting', [ ApiController::class, "deleteListing"]);
 Route::post('/addbookmark', [ ApiController::class, "addBookmark"] );
 Route::post('/deletebookmark', [ ApiController::class, "deleteBookmark"] );
+
 Route::post('/addkpr', [ ApiController::class, "addKpr"] );
 Route::post('/addestimasi', [ ApiController::class, "addEstimasi"] );
+
 Route::post('/addcalonpembeli', [ ApiController::class, "addCalonPembeli" ]);
 Route::post('/updatecalonpembeli', [ ApiController::class, "updateCalonPembeli" ]);
 Route::get('/deletecalonpembeli/{idcalonpembeli}', [ ApiController::class, "deleteCalonPembeli" ]);
+
 Route::post('/addfotolisting', [ ApiController::class, "addFotoListing"] );
 Route::get('/profils/{idagen}', [ ApiController::class, "getProfil" ]);
 Route::post('/updateprofil', [ ApiController::class, "updateProfil" ]);

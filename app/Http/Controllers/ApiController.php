@@ -525,6 +525,14 @@ class ApiController extends Controller
         return response()->json(['message' => 'Success']);
     }
 
+    public function deleteListing(Request $request){
+        $idlisting = $request->get('idlisting');
+        $listing = Listing::find($idlisting);
+        $foto = DB::table('fotos')->where('listings_idlisting', $idlisting)->delete();
+        $listing->delete();
+        return response()->json(['message' => 'Success']);
+    }
+
     public function addListing(Request $request){
         try{
             $data = new Listing();
@@ -586,18 +594,6 @@ class ApiController extends Controller
             $data->save();
 
             $idlisting = $data->idlisting;
-
-            // if($request->hasFile('foto')){
-            //     foreach($request->file('foto') as $key => $file){
-            //         $foto = new Foto();
-            //         $foto->listings_idlisting = $idlisting;
-            //         $imgFolder='public/images/listing';
-            //         $imgFile=time().'_'.$file->getClientOriginalName();
-            //         $file->move($imgFolder,$imgFile);
-            //         $foto->path=$imgFile;
-            //         $foto->save();
-            //     }
-            // }
             
             return response()->json(['message' => 'Success', 'idlisting'=>$idlisting]);        
         }
