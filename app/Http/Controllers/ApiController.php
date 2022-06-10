@@ -532,7 +532,8 @@ class ApiController extends Controller
         foreach($foto as $f){
             // $path = 'public/images/listing'.$foto->path;
             if(File::exists(public_path('public/images/listing/'.$f->path))){
-                File::delete($path);
+                File::delete(public_path('public/images/listing/'.$f->path));
+                $f->delete();
             }
         }
 
