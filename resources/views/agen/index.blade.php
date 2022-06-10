@@ -11,8 +11,8 @@
     </li>
 
     <li class="menu active">
-        <a href="{{url('agen')}}" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
+        <a href="{{url('agen')}}" aria-expanded="true" class="dropdown-toggle">
+            <div class="active">
                 <i data-feather="user"></i>
                 <span> Agen</span>
             </div>
@@ -29,7 +29,7 @@
     </li>
 
     <li class="menu">
-        <a href="#submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <a href="#subjenis" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             <div class="">
                 <i data-feather="file"></i>
                 <span> Jenis</span>
@@ -38,20 +38,20 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </div>
         </a>
-        <ul class="collapse submenu recent-submenu list-unstyled" id="submenu" data-parent="#accordionExample">
+        <ul class="collapse submenu recent-submenu list-unstyled" id="subjenis" data-parent="#accordionExample">
             <li>
                 <a href="{{url('tipeproperti')}}"> Tipe Properti </a>
             </li>
             <li class="">
                 <a href="{{url('tipeapartemen')}}"> Tipe Apartemen </a>
             </li>
-            <li class="">
+            <li>
                 <a href="{{url('surat')}}"> Surat </a>
             </li>
             <li>
                 <a href="{{url('bentukharga')}}"> Bentuk Harga </a>
             </li>
-            <li>
+            <li class="">
                 <a href="{{url('lantai')}}"> Lantai </a>
             </li>                           
         </ul>

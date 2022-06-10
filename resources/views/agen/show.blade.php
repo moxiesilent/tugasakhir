@@ -118,7 +118,7 @@
                         <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
                             <a href="{{url('agens/'.$data->idagen.'/edit')}}"><button class="btn btn-warning">Ubah</button></a>
                             <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idagen}}')">Hapus</button>
-                            <button class="btn btn-dark" onclick="resetpassword('{{$data->idagen}}')">Reset Password</button>
+                            <button class="btn btn-dark" onclick="resetpassword('{{csrf_token()}}','{{$data->idagen}}')">Reset Password</button>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
                             <a href="{{url('agens')}}" class="btn btn-secondary-light"> Kembali</a>
@@ -180,40 +180,41 @@ $(document).ready( function () {
 }
 </script>
 <script>
-    function resetpassword(id){
+    function resetpassword(token,id){
         swal({
         title: "Anda Yakin Ingin Mereset Password? ",
         text: "Jika reset password dilakukan maka akan kembali ke password default",
         type: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#4361ee",
+        confirmButtonColor: "#FF5722",
         confirmButtonText: "Reset Password!",
         cancelButtonText: "Tidak!",
         closeOnConfirm: false,
         closeOnCancel: true,
         showLoaderOnConfirm: true
-    }).then(function () {
-        var act = '/resetpassword';
-        $.post(act, {
-            id:id,
-            },
-        function (data) {
-            swal(
-            'Berhasil!',
-            'Password berhasil di reset.',
-            'success'
-            ).then(function () {
-                location.reload();
-            })
-        });
+    }).then(function (result) {
+        if (result.value) {
+            var url = '/resetpassword';
+            $.post(url, {
 
-    }, function (dismiss) {
-        if (dismiss === 'cancel') {
+                _token: token,
+                id:id,
+                },
+            function (data) {
+                swal(
+                'Berhasil!',
+                'Password berhasil di reset.',
+                'success'
+                ).then(function () {
+                    location.reload();
+                })
+            });
+        } else if(result.dismiss) {
             swal(
-                'Batal',
-                'Batal melakukan reset password.',
+                'Batal melakukan reset password!',
+                '',
                 'error'
-                )
+            )
         }
     })
 }

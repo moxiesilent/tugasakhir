@@ -28,7 +28,7 @@ class ApiController extends Controller
     public function tampilHalamanUtama()
     {
         $tipeproperti = Tipeproperti::all();
-        $listing = Listing::orderBy('created_at','desc')->limit(10)->get();
+        $listing = Listing::where('status','Available')->orderBy('created_at','desc')->limit(10)->get();
         $primary = Primary::orderBy('idprimary','desc')->limit(5)->get();
         return response()->json(['message' => 'Success', 'tipeproperti' => $tipeproperti, 'listing'=> $listing, 'primary'=> $primary]);
     }
@@ -68,9 +68,7 @@ class ApiController extends Controller
 
     public function tampilHalamanListing(Request $request)
     {
-        // $cari = $request->get('cari');
-        // $listing = Listing::where('judul','LIKE','%'.$cari.'%')->get();
-        $listing = Listing::query();
+        $listing = Listing::query()->where('status','Available');
         
         if($request->get('cari') != ""){
             $listing = $listing->where('judul','LIKE','%'.$request->get('cari').'%');
@@ -145,19 +143,46 @@ class ApiController extends Controller
         if ($request->get('jenislisting') != "") {
             $listing = $listing->where('jenis_listing', $request->get('jenislisting'));
         }
+        if ($request->get('provinsi') != 0){
+            if ($request->get('kota') != 0){
+                if ($request->get('kecamatan') != 0){
+                    if ($request->get('kelurahan') != 0){
+                        $listing = $listing->where('kelurahans_idkelurahan', $request->get('kelurahan'));
+                    } 
+                    else {
+                        $listing = $listing->join('kelurahans','listings.kelurahans_idkelurahan','=','kelurahans.idkelurahan')
+                        ->join('kecamatans','kecamatans.idkecamatan','=','kelurahans.kecamatans_idkecamatan')
+                        ->where('idkecamatan',$request->get('kecamatan'));
+                    }
+                } 
+                else{
+                    $listing = $listing->join('kelurahans','listings.kelurahans_idkelurahan','=','kelurahans.idkelurahan')
+                    ->join('kecamatans','kecamatans.idkecamatan','=','kelurahans.kecamatans_idkecamatan')
+                    ->join('kotas','kotas.idkota','=','kecamatans.kotas_idkota')
+                    ->where('idkota',$request->get('kota'));
+                }
+            } 
+            else {
+                $listing = $listing->join('kelurahans','listings.kelurahans_idkelurahan','=','kelurahans.idkelurahan')
+                ->join('kecamatans','kecamatans.idkecamatan','=','kelurahans.kecamatans_idkecamatan')
+                ->join('kotas','kotas.idkota','=','kecamatans.kotas_idkota')
+                ->join('provinsis','provinsis.idprovinsi','=','kotas.provinsis_idprovinsi')
+                ->where('idprovinsi',$request->get('provinsi'));
+            }
+        }
 
         $listing = $listing->get();
         return response()->json(['message' => 'Success', 'listing'=> $listing]);
     }
 
     public function tampilListingTipeproperti($idtipeproperti){
-        $listing = DB::table('listings')->where('tipe_properti_idtipe_properti',$idtipeproperti)->get();
+        $listing = DB::table('listings')->where('tipe_properti_idtipe_properti',$idtipeproperti)->where('status','Available')->get();
         return response()->json(['message'=> 'Success', 'listing'=> $listing]);
     }
 
     public function tampilHalamanprofil($idagen){
         $calonpembeli = Calonpembeli::where('agen_idagen',$idagen)->count('idpelanggan');
-        $listing = Listing::where('agen_idagen', $idagen)->count('idlisting');
+        $listing = Listing::where('agen_idagen', $idagen)->where('status','Available')->count('idlisting');
         return response()->json(['message' => 'Success', 'calonpembeli' => $calonpembeli, 'listing'=>$listing]);
     }
 
@@ -173,7 +198,7 @@ class ApiController extends Controller
     }
 
     public function tampilMyListing($idagen){
-        $listing = DB::table('listings')->where('agen_idagen', $idagen)->get();
+        $listing = DB::table('listings')->where('agen_idagen', $idagen)->where('status','Available')->get();
         return response()->json(['message'=>"Success", 'listing'=>$listing]);
     }
 
@@ -469,7 +494,6 @@ class ApiController extends Controller
             $listing->tipe_properti_idtipe_properti = $request->get('idtp');
             $listing->jenis_lantai_idjenis_lantai = $request->get('idjl');
             $listing->catatan = $request->get('catatan');
-            $listing->status = 'available';
             $listing->jenis_listing = $request->get('jenislisting');
             $listing->judul = $request->get('judul');
             if($request->hasFile('fotoutama')){
@@ -485,21 +509,21 @@ class ApiController extends Controller
             }
             $listing->save();
 
-            if($request->hasFile('foto')){
-                foreach($request->file('foto') as $key => $file){
-                    $dest='public/images/listing/'.$foto->path;
-                    if(file_exists($dest)){
-                        @unlink($dest); 
-                    }
-                    $foto->listings_idlisting = $idlisting;
-                    $file=$request->file('foto');
-                    $imgFolder='public/images/listing/';
-                    $imgFile=time().'_'.$file->getClientOriginalName();
-                    $file->move($imgFolder,$imgFile);
-                    $foto->path=$imgFile;
-                    $foto->save();
-                }
-            }
+            // if($request->hasFile('foto')){
+            //     foreach($request->file('foto') as $key => $file){
+            //         $dest='public/images/listing/'.$foto->path;
+            //         if(file_exists($dest)){
+            //             @unlink($dest); 
+            //         }
+            //         $foto->listings_idlisting = $idlisting;
+            //         $file=$request->file('foto');
+            //         $imgFolder='public/images/listing/';
+            //         $imgFile=time().'_'.$file->getClientOriginalName();
+            //         $file->move($imgFolder,$imgFile);
+            //         $foto->path=$imgFile;
+            //         $foto->save();
+            //     }
+            // }
             
             return response()->json(['message' => 'Success']);        
         }
@@ -529,6 +553,7 @@ class ApiController extends Controller
         $idlisting = $request->get('idlisting');
         $listing = Listing::find($idlisting);
         $foto = DB::table('fotos')->where('listings_idlisting', $idlisting)->delete();
+        $bookmark = DB::table('bookmarks')->where('listings_idlisting', $idlisting)->delete();
         $listing->delete();
         return response()->json(['message' => 'Success']);
     }
@@ -581,7 +606,7 @@ class ApiController extends Controller
             $data->jenis_lantai_idjenis_lantai = $request->get('idjl');
             $data->kelurahans_idkelurahan = $request->get('kelurahan');
             $data->catatan = $request->get('catatan');
-            $data->status = 'available';
+            $data->status = 'Available';
             $data->jenis_listing = $request->get('jenislisting');
             $data->judul = $request->get('judul');
             if($request->hasFile('fotoutama')){

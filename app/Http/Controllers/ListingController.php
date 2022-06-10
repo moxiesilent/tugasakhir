@@ -285,12 +285,12 @@ class ListingController extends Controller
             abort(403);
         }
         try{
-            $listing = Listing::find($request->id);
-            dd($listing);
-            $foto = Foto::where('listings_idlisting',$request->id)->get();
-            dd($foto);
-            // $listing->delete();
-            // return redirect()->route('listings.index')->with('status','data berhasil dihapus');       
+            $idlisting = $request->get('idlisting');
+            $listing = Listing::find($idlisting);
+            $foto = DB::table('fotos')->where('listings_idlisting', $idlisting)->delete();
+            $bookmark = DB::table('bookmarks')->where('listings_idlisting', $idlisting)->delete();
+            $listing->delete();
+            return redirect()->route('listings.index')->with('status','data berhasil dihapus');       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
@@ -328,5 +328,52 @@ class ListingController extends Controller
         ]);
     }
 
-    
+    public function jualListing(Request $request){
+        // dd($request);
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
+        try{
+            $listing = Listing::find($request->id);
+            $listing->status = 'Sold';
+            $listing->save();
+            return redirect('listings/'.$listing->id)->with('status','status listing berhasil diubah');
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('listings.index')->with('error', $msg);
+        }
+    }
+
+    public function availableListing(Request $request){
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
+        try{    
+            $listing = Listing::find($request->id);
+            $listing->status = 'Available';
+            $listing->save();
+            return redirect('listings/'.$listing->id)->with('status','status listing berhasil diubah');
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('listings.index')->with('error', $msg);
+        }
+    }
+
+    public function pendingListing(Request $request){
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
+        try{
+            $listing = Listing::find($request->id);
+            $listing->status = 'Pending';
+            $listing->save();
+            return redirect('listings/'.$listing->id)->with('status','status listing berhasil diubah');
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect()->route('listings.index')->with('error', $msg);
+        }
+    }
 }

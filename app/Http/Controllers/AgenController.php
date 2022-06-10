@@ -172,4 +172,20 @@ class AgenController extends Controller
             return redirect()->route('agens.index')->with('error', $msg);
         }
     }
+
+    public function resetpassword(Request $request){
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
+        try{
+            $agen = User::find($request->id);
+            $agen->password = Hash::make('12345678');
+            $agen->save();
+            return redirect('agens/'.$request->id)->with('status','data berhasil dihapus');       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return redirect('agens/'.$request->id)->with('error', $msg);
+        }
+    }
 }

@@ -2,7 +2,7 @@
 @section('side')
 <ul class="list-unstyled menu-categories" id="accordionExample">
     <li class="menu active">
-        <a href="{{url('/')}}" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{url('/')}}" aria-expanded="true" class="dropdown-toggle">
             <div class="active">
                 <i data-feather="home"></i>
                 <span> Dashboard</span>
@@ -108,7 +108,7 @@
             </div>
 
             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                <div class="widget widget-one bg-danger">
+                <div class="widget widget-one bg-primary">
                     <div class="widget-heading">
                         <h6 class="text-white">Listing</h6>
                     </div>
@@ -124,7 +124,7 @@
             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                 <div class="widget widget-one bg-success">
                     <div class="widget-heading">
-                        <h6 class="text-white">Sold</h6>
+                        <h6 class="text-white">Listing Sold</h6>
                     </div>
                     <div class="widget-content row col-md-12">
                         <div class="w-icon">
@@ -136,7 +136,7 @@
             </div>
 
             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                <div class="widget widget-one bg-dark">
+                <div class="widget widget-one bg-warning">
                     <div class="widget-heading">
                         <h6 class="text-white">Primary</h6>
                     </div>
@@ -145,6 +145,34 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                         </div>
                         <h2 class="ml-3 text-white">{{$primary}}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                <div class="widget widget-one bg-dark">
+                    <div class="widget-heading">
+                        <h6 class="text-white">Calon Pembeli</h6>
+                    </div>
+                    <div class="widget-content row col-md-12">
+                        <div class="w-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h2 class="ml-3 text-white">{{$calonpembeli}}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                <div class="widget widget-one bg-danger">
+                    <div class="widget-heading">
+                        <h6 class="text-white">Listing Pending</h6>
+                    </div>
+                    <div class="widget-content row col-md-12">
+                        <div class="w-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h2 class="ml-3 text-white">{{$listingpending}}</h2>
                     </div>
                 </div>
             </div>

@@ -184,7 +184,7 @@
                             <h6>Mulai Tanggal : <b>{{$data->mulai_tanggal}}</b></h6>
                             <h6>Berakhir Tanggal : <b>{{$data->berakhir_tanggal}}</b></h6>
                             <h6>Pasang Banner : <b>{{$data->pasang_banner}}</b></h6>
-                            <h6>Bentuk Harga : <b>{{$data->bentukhargas->bentuk_harga}}</b></h6>
+                            <h6>Bentuk Harga : <b>{{$data->bentukhargas['bentuk_harga']}}</b></h6>
                             @if($data->status == 'available')
                             <h6>Status : <b class="text-success">{{$data->status}}</b></h6>
                             @else
@@ -201,7 +201,9 @@
                         <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
                             <a href="{{url('listings/'.$data->idlisting.'/edit')}}"><button class="btn btn-warning">Ubah</button></a>
                             <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idlisting}}')">Hapus</button>
-                            <button class="btn btn-dark" onclick="terjual('{{csrf_token()}}','{{$data->idlisting}}')">Terjual</button>
+                            <button class="btn btn-dark" onclick="terjual('{{csrf_token()}}','{{$data->idlisting}}')">Sold</button>
+                            <button class="btn btn-info" onclick="pending('{{csrf_token()}}','{{$data->idlisting}}')">Pending</button>
+                            <button class="btn btn-success" onclick="available('{{csrf_token()}}','{{$data->idlisting}}')">Available</button>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
                             <a href="{{url('listings')}}" class="btn btn-secondary-light"> Kembali</a>
@@ -268,7 +270,7 @@ $(document).ready( function () {
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#FF5722",
-        confirmButtonText: "Ya, Hapus!",
+        confirmButtonText: "Ya!",
         cancelButtonText: "Tidak!",
         closeOnConfirm: false,
         closeOnCancel: true,
@@ -284,7 +286,87 @@ $(document).ready( function () {
             function (data) {
                 swal(
                 'Berhasil!',
-                'Data berhasil dihapus.',
+                'Status listing berhasil diganti.',
+                'success'
+                ).then(function () {
+                    location.reload();
+                })
+            });
+        } else if(result.dismiss) {
+            swal(
+                'Perubahan status dibatalkan!',
+                '',
+                'error'
+            )
+        }
+    })
+}
+</script>
+<script>
+    function pending(token,id){
+        swal({
+        title: "Apakah anda ingin mengganti status ini menjadi 'pending'? ",
+        text: "Data properti {{$data->kode_listing}} akan berganti status menjadi pending",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#FF5722",
+        confirmButtonText: "Ya!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+        closeOnCancel: true,
+        showLoaderOnConfirm: true
+    }).then(function (result) {
+        if (result.value) {
+            var url = '/pendinglisting';
+            $.post(url, {
+
+                _token: token,
+                id:id,
+                },
+            function (data) {
+                swal(
+                'Berhasil!',
+                'Status listing berhasil diganti.',
+                'success'
+                ).then(function () {
+                    location.reload();
+                })
+            });
+        } else if(result.dismiss) {
+            swal(
+                'Perubahan status dibatalkan!',
+                '',
+                'error'
+            )
+        }
+    })
+}
+</script>
+<script>
+    function available(token,id){
+        swal({
+        title: "Apakah anda ingin mengganti status ini menjadi available? ",
+        text: "Data properti {{$data->kode_listing}} akan berganti status menjadi available",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#FF5722",
+        confirmButtonText: "Ya!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+        closeOnCancel: true,
+        showLoaderOnConfirm: true
+    }).then(function (result) {
+        if (result.value) {
+            var url = '/availablelisting';
+            $.post(url, {
+
+                _token: token,
+                id:id,
+                },
+            function (data) {
+                swal(
+                'Berhasil!',
+                'Status listing berhasil diganti.',
                 'success'
                 ).then(function () {
                     location.reload();
