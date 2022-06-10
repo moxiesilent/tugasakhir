@@ -529,7 +529,7 @@ class ApiController extends Controller
     public function deleteFotoListing(Request $request){
         $idlisting = $request->get('idlisting');
         $foto = DB::table('fotos')->where('listings_idlisting',$idlisting)->get();
-        dd($foto);
+        dd($foto[0]->path);
         foreach($foto as $f){
             // $path = 'public/images/listing'.$foto->path;
             if(File::exists(public_path('public/images/listing'.$foto->path))){
