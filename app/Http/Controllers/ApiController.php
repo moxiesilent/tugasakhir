@@ -440,6 +440,9 @@ class ApiController extends Controller
             $agen->hp = $request->get('hp');
             $agen->alamat = $request->get('alamat');
             $agen->agama = $request->get('agama');
+            if($request->get('password') != ""){
+                $agen->password = Hash::make($request->get('password'));
+            }
             $agen->whatsapp = $request->get('whatsapp');
             $agen->save();
             return response()->json(['message'=>'Success']);
