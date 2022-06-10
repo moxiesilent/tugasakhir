@@ -21,6 +21,7 @@ use App\Models\Kpr;
 use App\Models\Estimasi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 use DB;
 
 class ApiController extends Controller
@@ -511,22 +512,6 @@ class ApiController extends Controller
                 $listing->foto_utama=$imgFile;
             }
             $listing->save();
-
-            // if($request->hasFile('foto')){
-            //     foreach($request->file('foto') as $key => $file){
-            //         $dest='public/images/listing/'.$foto->path;
-            //         if(file_exists($dest)){
-            //             @unlink($dest); 
-            //         }
-            //         $foto->listings_idlisting = $idlisting;
-            //         $file=$request->file('foto');
-            //         $imgFolder='public/images/listing/';
-            //         $imgFile=time().'_'.$file->getClientOriginalName();
-            //         $file->move($imgFolder,$imgFile);
-            //         $foto->path=$imgFile;
-            //         $foto->save();
-            //     }
-            // }
             
             return response()->json(['message' => 'Success']);        
         }
@@ -535,6 +520,24 @@ class ApiController extends Controller
             return response()->json(['message' => 'Error '. $msg]);
         }
     }   
+
+    public function getMultiFoto(Request $request){
+        $foto = DB::table('fotos')->where('listings_idlisting',$request->get('idlisting')->get());
+        return response()->json(['message'=>'Success', 'foto'=>$foto]);
+    }
+
+    public function deleteFotoListing(Request $request){
+        $idlisting = $request->get('idlisting');
+        $foto = DB::table('fotos')->where('listings_idlisting',$idlisting)->get();
+        foreach($foto as $f){
+            $path = 'public/images/listing'.$foto->path;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+        }
+
+        return response()->json(['message' => 'Success']);
+    }
 
     public function addFotoListing(Request $request){
         $idlisting = $request->get('idlisting');
