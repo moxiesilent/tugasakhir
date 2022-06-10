@@ -530,8 +530,8 @@ class ApiController extends Controller
         $idlisting = $request->get('idlisting');
         $foto = DB::table('fotos')->where('listings_idlisting',$idlisting)->get();
         foreach($foto as $f){
-            $path = 'public/images/listing'.$foto->path;
-            if(File::exists($path)){
+            // $path = 'public/images/listing'.$foto->path;
+            if(File::exists(public_path('public/images/listing'.$foto->path))){
                 File::delete($path);
             }
         }
