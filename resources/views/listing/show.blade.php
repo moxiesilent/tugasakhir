@@ -266,9 +266,10 @@
                             @else
                                 <h6>Bentuk Harga : <b>-</b></h6>
                             @endif
+
                             @if($data->status == 'Available')
                             <h6>Status : <b class="text-success">{{$data->status}}</b></h6>
-                            @else if($data->status == 'Pending')
+                            @elseif($data->status == 'Pending')
                             <h6>Status : <b class="text-warning">{{$data->status}}</b></h6>
                             @else
                             <h6>Status : <b class="text-danger">{{$data->status}}</b></h6>
