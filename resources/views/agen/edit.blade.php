@@ -125,6 +125,14 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" type="password" name="password" value="" class="form-control" >
+                            </div>
+                        </div>                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group">
                                 <label for="jabatan">Jabatan</label>
                                 <input id="jabatan" type="text" name="jabatan" value="{{$data->jabatan}}" class="form-control" required>
                             </div>
