@@ -117,7 +117,7 @@
                     <figure class="user-cover-image"></figure>
                     <div class="user-info">
                         @if(Auth::user()->foto != null)
-                        <img src="{{asset('images/agen/'.Auth::user()->foto)}}" alt="avatar">
+                        <img src="{{asset('images/agen/'.Auth::user()->foto)}}" alt="avatar" object-fit: none>
                         @else
                         <img src="{{asset('assets/img/icon_person.svg')}}" alt="avatar">
                         @endif
