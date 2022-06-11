@@ -73,13 +73,10 @@
                                     @else
                                         <p>Dimensi Tanah Lebar : <b>-</b></p>
                                     @endif
-
-                                    @if()
+                                    @if($listing->dimensi_tanah_panjang != 0)
+                                        <p>Dimensi Tanah Panjang : <b>{{$listing->dimensi_tanah_panjang}} m</b></p>
                                     @else
-                                    @endif
-                                    <p>Dimensi Tanah Panjang : <b>{{$listing->dimensi_tanah_panjang}} m</b></p>
-                                    @if()
-                                    @else
+                                        <p>Dimensi Tanah Panjang : <b>-</b></p>
                                     @endif
                                     <p>Jenis Surat : <b>{{$listing->surats->jenis_surat}}</b></p>
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
