@@ -121,7 +121,7 @@
                                 <th>Nama</th>
                                 <th>No Telp</th>
                                 <th>Agen</th>
-                                <th style="max-width: 20%">Keterangan</th>
+                                <th style="max-width: 5%">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
