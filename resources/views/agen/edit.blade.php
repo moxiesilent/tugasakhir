@@ -175,6 +175,19 @@
                                     <span class="new-control-indicator"></span>perempuan
                                 </label>
                             </div>
+                            @else
+                            <div class="n-chk">
+                                <label class="new-control new-radio radio-primary">
+                                    <input type="radio" class="new-control-input" name="jeniskelamin" value="laki-laki" >
+                                    <span class="new-control-indicator"></span>Laki-laki
+                                </label>
+                            </div>
+                            <div class="n-chk">
+                                <label class="new-control new-radio radio-primary">
+                                    <input type="radio" class="new-control-input" name="jeniskelamin" value="perempuan">
+                                    <span class="new-control-indicator"></span>perempuan
+                                </label>
+                            </div>
                             @endif
                         </div>
                     </div>
