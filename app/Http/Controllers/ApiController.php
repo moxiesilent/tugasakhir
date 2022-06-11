@@ -522,7 +522,7 @@ class ApiController extends Controller
     }   
 
     public function getMultiFoto(Request $request){
-        $foto = DB::table('fotos')->where('listings_idlisting',$request->get('idlisting')->get());
+        $foto = Foto::where('listings_idlisting',$request->get('idlisting')->get());
         return response()->json(['message'=>'Success', 'foto'=>$foto]);
     }
 
