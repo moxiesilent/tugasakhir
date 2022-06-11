@@ -80,7 +80,7 @@
                                     @endif
                                     <p>Jenis Surat : <b>{{$listing->surats->jenis_surat}}</b></p>
                                     @if($listing->bentukHargas['bentuk_harga'])
-                                        <p>Bentuk Harga : <b>{{$listing->bentukHargas[0]->bentuk_harga}}</b></p>
+                                        <p>Bentuk Harga : <b>{{$listing->bentukHargas['bentuk_harga']}}</b></p>
                                     @else
                                         <p>Bentuk Harga : <b>-</b></p>
                                     @endif
