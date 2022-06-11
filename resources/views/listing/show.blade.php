@@ -270,10 +270,8 @@
                             <h6>Status : <b class="text-success">{{$data->status}}</b></h6>
                             @else if($data->status == 'Pending')
                             <h6>Status : <b class="text-warning">{{$data->status}}</b></h6>
-                            @else if($data->status == 'Sold')
-                            <h6>Status : <b class="text-danger">{{$data->status}}</b></h6>
                             @else
-                            <h6 class="">Status : <b>{{$data->status}}</b></h6>
+                            <h6>Status : <b class="text-danger">{{$data->status}}</b></h6>
                             @endif
                         </div>
                     </div><br>
