@@ -143,7 +143,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="website">Website</label> <span style="color:red"><b>*</b></span>
+                                <label for="website">Website</label>
                                 <input id="website" type="text" name="website" placeholder="https://www.example.com" class="form-control">
                             </div>
                         </div>                                        

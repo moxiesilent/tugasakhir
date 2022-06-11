@@ -246,7 +246,7 @@ class ListingController extends Controller
                 @unlink($dest); 
             }
             $file=$request->file('fotoutama');
-            $imgFolder='images/listing/';
+            $imgFolder='public/images/listing/';
             $imgFile=time().'_'.$file->getClientOriginalName();
             $file->move($imgFolder,$imgFile);
             $listing->foto_utama=$imgFile;
@@ -257,7 +257,7 @@ class ListingController extends Controller
             foreach($request->file('foto') as $key => $file){
                 $foto = new Foto();
                 $foto->listings_idlisting = $idlisting;
-                $imgFolder='images/listing';
+                $imgFolder='public/images/listing';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
                 $foto->path=$imgFile;
@@ -285,7 +285,7 @@ class ListingController extends Controller
             abort(403);
         }
         try{
-            $idlisting = $request->get('idlisting');
+            $idlisting = $request->get('id');
             $listing = Listing::find($idlisting);
             $foto = DB::table('fotos')->where('listings_idlisting', $idlisting)->delete();
             $bookmark = DB::table('bookmarks')->where('listings_idlisting', $idlisting)->delete();
@@ -329,7 +329,6 @@ class ListingController extends Controller
     }
 
     public function jualListing(Request $request){
-        // dd($request);
         if(auth()->user()->jabatan != 'admin'){
             abort(403);
         }

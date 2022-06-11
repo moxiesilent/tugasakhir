@@ -53,7 +53,7 @@ class AgenController extends Controller
         
         if($request->hasFile('foto')){
             $file=$request->file('foto');
-            $imgFolder='images/agen/';
+            $imgFolder='public/images/agen/';
             $imgFile=time().'_'.$file->getClientOriginalName();
             $file->move($imgFolder,$imgFile);
             $data->foto=$imgFile;
@@ -119,12 +119,12 @@ class AgenController extends Controller
         }
         // try{
             if($request->hasFile('foto')){
-                $dest='images/agen/'.$agen->foto;
+                $dest='public/images/agen/'.$agen->foto;
                 if(file_exists($dest)){
                     @unlink($dest); 
                 }
                 $file=$request->file('foto');
-                $imgFolder='images/agen/';
+                $imgFolder='public/images/agen/';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
                 $agen->foto=$imgFile;

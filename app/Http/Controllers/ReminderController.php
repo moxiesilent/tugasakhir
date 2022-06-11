@@ -138,7 +138,7 @@ class ReminderController extends Controller
             abort(403);
         }
         try{
-            $reminder = Reminder::find($request->idreminder);
+            $reminder = Reminder::find($request->id);
             $reminder->delete();
             return redirect()->route('reminders.index')->with('status','data berhasil dihapus');       
         }

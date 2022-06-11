@@ -94,7 +94,7 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
-                <form method="post" action="{{url('surats/'.$data->idjenis_surat)}}">
+                <form method="post" action="{{url('reminders/'.$data->idreminder)}}">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -137,7 +137,7 @@
                         <label for="keterangan">Keterangan</label>
                         <textarea id="keterangan" name="keterangan">{{$data->keterangan}}</textarea>
                     </div>
-                    <a href="{{url('surats')}}" class="btn btn-secondary-light"> Kembali</a>
+                    <a href="{{url('reminders')}}" class="btn btn-secondary-light"> Kembali</a>
                     <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
                 </form>
                 </div>

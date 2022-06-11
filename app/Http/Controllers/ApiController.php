@@ -501,7 +501,7 @@ class ApiController extends Controller
             $listing->jenis_listing = $request->get('jenislisting');
             $listing->judul = $request->get('judul');
             if($request->hasFile('fotoutama')){
-                $dest='images/listing/'.$listing->foto_utama;
+                $dest='public/images/listing/'.$listing->foto_utama;
                 if(file_exists($dest)){
                     @unlink($dest); 
                 }
@@ -513,7 +513,7 @@ class ApiController extends Controller
             }
             $listing->save();
             
-            return response()->json(['message' => 'Success', 'idlisting'=>$idlisting]);        
+            return response()->json(['message' => 'Success']);        
         }
         catch(\PDOException $e){
             $msg ="Gagal menambah data. " + $e;

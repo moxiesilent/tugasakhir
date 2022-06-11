@@ -101,7 +101,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="project">Nama Primary Project</label>
+                                <label for="project">Nama Primary Project</label> <span style="color:red"><b>*</b></span>
                                 <input id="project" type="text" name="namaproject" value="{{$data->nama_project}}" class="form-control" required>
                             </div>
                         </div>                                        
@@ -109,7 +109,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="developer">Developer</label>
+                                <label for="developer">Developer</label> <span style="color:red"><b>*</b></span>
                                 <input id="developer" type="text" name="developer" value="{{$data->developer}}" class="form-control" required>
                             </div>
                         </div>                                        
@@ -117,7 +117,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="blt">BLT</label>
+                                <label for="blt">BLT</label> <span style="color:red"><b>*</b></span>
                                 <input id="blt" type="text" name="blt" value="{{$data->blt}}" class="form-control" required>
                             </div>
                         </div>                                        
@@ -125,7 +125,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="komisi">Komisi (%)</label>
+                                <label for="komisi">Komisi (%)</label> <span style="color:red"><b>*</b></span>
                                 <input id="komisi" type="text" name="komisi" value="{{$data->komisi}}" class="form-control" required>
                             </div>
                         </div>                                        

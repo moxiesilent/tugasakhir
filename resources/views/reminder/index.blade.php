@@ -135,7 +135,7 @@
                                 <td>{{date('d-m-Y',strtotime($d->tanggal))}}</td>
                                 <td>
                                     @if($d->keterangan != null)
-                                    {{$d->keterangan}}
+                                    <?php echo $d->keterangan;?>
                                     @else
                                     -
                                     @endif

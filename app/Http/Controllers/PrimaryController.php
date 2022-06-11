@@ -56,7 +56,7 @@ class PrimaryController extends Controller
                 $imgFolder='images/primary';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
-                $data->foto=$imgFile;
+                $data->foto_utama=$imgFile;
             }
             $data->nama_project = $request->get('namaproject');
             $data->developer = $request->get('developer');
