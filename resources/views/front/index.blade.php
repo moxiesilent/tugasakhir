@@ -82,13 +82,34 @@
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
                                     <br>
                                     @if($listing->tipepropertis->jenis_properti == 'Apartemen')
-                                    <p>Tipe Apartemen : <b>{{$listing->tipeapartemens->tipe_apartemen}}</b></p>
-                                    <p>Tower : <b>{{$listing->tower}}</b></p>
-                                    <p>View : <b>{{$listing->view}}</b></p>
-                                    <p>Nomor Lantai : <b>{{$listing->nomor_lantai}}</b></p>
-                                    <p>Nomor Unit : <b>{{$listing->nomor_unit}}</b></p>
+                                        @if($listing->tipeapartemens->tipe_apartemen != null)
+                                            <p>Tipe Apartemen : <b>{{$listing->tipeapartemens->tipe_apartemen}}</b></p>
+                                        @else
+                                            <p>Tipe Apartemen : <b>{{$listing->tipeapartemens->tipe_apartemen}}</b></p>
+                                        @endif
+                                        @if($listing->tower != null)
+                                            <p>Tower : <b>{{$listing->tower}}</b></p>
+                                        @else
+                                            <p>Tower : <b>-</b></p>
+                                        @endif
+                                        @if($listing->view != null)
+                                            <p>View : <b>{{$listing->view}}</b></p>
+                                        @else
+                                            <p>View : <b>-</b></p>
+                                        @endif
+                                        @if($listing->nomor_lantai != null)
+                                            <p>Nomor Lantai : <b>{{$listing->nomor_lantai}}</b></p>
+                                        @else
+                                            <p>Nomor Lantai : <b>-</b></p>
+                                        @endif
+                                        @if($listing->nomor_unit != null)
+                                            <p>Nomor Unit : <b>{{$listing->nomor_unit}}</b></p>
+                                        @else
+                                            <p>Nomor Unit : <b>-</b></p>
+                                        @endif
                                     @endif
                                     <br>
+                                    
                                     <p>Kamar Tidur : <b>{{$listing->kamar_tidur}}</b></p>
                                     <p>Kamar Mandi : <b>{{$listing->kamar_mandi}}</b></p>
                                     <p>Kamar Tidur Pembantu : <b>{{$listing->kamar_tidur_pembantu}}</b></p>
