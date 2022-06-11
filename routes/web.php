@@ -11,6 +11,7 @@ use App\Http\Controllers\TipepropertiController;
 use App\Http\Controllers\AgenController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\TipeapartemenController;
 
 /*
