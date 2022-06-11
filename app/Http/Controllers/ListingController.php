@@ -118,7 +118,7 @@ class ListingController extends Controller
             $data->judul = $request->get('judul');
             if($request->hasFile('fotoutama')){
                 $file=$request->file('fotoutama');
-                $imgFolder='images/listing';
+                $imgFolder='public/images/listing';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
                 $data->foto_utama=$imgFile;
@@ -129,7 +129,7 @@ class ListingController extends Controller
                 foreach($request->file('foto') as $key => $file){
                     $foto = new Foto();
                     $foto->listings_idlisting = $idlisting;
-                    $imgFolder='images/listing';
+                    $imgFolder='public/images/listing';
                     $imgFile=time().'_'.$file->getClientOriginalName();
                     $file->move($imgFolder,$imgFile);
                     $foto->path=$imgFile;
@@ -241,7 +241,7 @@ class ListingController extends Controller
         $listing->jenis_listing = $request->get('jenislisting');
         $listing->judul = $request->get('judul');
         if($request->hasFile('fotoutama')){
-            $dest='images/listing/'.$listing->foto_utama;
+            $dest='public/images/listing/'.$listing->foto_utama;
             if(file_exists($dest)){
                 @unlink($dest); 
             }

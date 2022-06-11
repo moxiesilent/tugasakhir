@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Primary;
+use App\Models\Fotoprimary;
 use Illuminate\Http\Request;
 use Illuminate\Facade\File;
 use DB;
@@ -53,17 +54,31 @@ class PrimaryController extends Controller
 
             if($request->hasFile('foto')){
                 $file=$request->file('foto');
-                $imgFolder='images/primary';
+                $imgFolder='public/images/primary';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
                 $data->foto_utama=$imgFile;
             }
+            
             $data->nama_project = $request->get('namaproject');
             $data->developer = $request->get('developer');
             $data->blt = $request->get('blt');
             $data->komisi = $request->get('komisi');
             $data->keterangan = $request->get('keterangan');
             $data->save();
+            $idprimary = $data->idprimary;
+            if($request->hasFile('multifoto')){
+                foreach($request->file('multifoto') as $key => $file){
+                    $foto = new Fotoprimary();
+                    $foto->primarys_idprimary = $idprimary;
+                    $imgFolder='public/images/primary';
+                    $imgFile=time().'_'.$file->getClientOriginalName();
+                    $file->move($imgFolder,$imgFile);
+                    $foto->path=$imgFile;
+                    $foto->save();
+                }
+            }
+
             return redirect()->route('primarys.index')->with('status','data baru telah ditambahkan');     
         }
         catch(\PDOException $e){
@@ -116,12 +131,12 @@ class PrimaryController extends Controller
         }
         try{
             if($request->hasFile('foto')){
-                $dest='images/primary/'.$primary->foto;
+                $dest='public/images/primary/'.$primary->foto;
                 if(file_exists($dest)){
                     @unlink($dest); 
                 }
                 $file=$request->file('foto');
-                $imgFolder='images/primary/';
+                $imgFolder='public/images/primary/';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
                 $primary->foto=$imgFile;
@@ -157,6 +172,8 @@ class PrimaryController extends Controller
         }
         try{
             $primary = Primary::find($request->id);
+            $idprimary = $primary->idprimary;
+            $foto_primary = DB::table('foto_primarys')->where('primarys_idprimary',$idprimary)->delete();
             $primary->delete();
             return redirect()->route('primarys.index')->with('status','data berhasil dihapus');       
         }
