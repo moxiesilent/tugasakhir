@@ -50,7 +50,7 @@ Route::post('/addbookmark', [ ApiController::class, "addBookmark"] );
 Route::post('/deletebookmark', [ ApiController::class, "deleteBookmark"] );
 
 Route::post('/deletefotolisting', [ ApiController::class, "deleteFotoListing"] );
-Route::post('/getfotolisting', [ ApiController::class, "getMultiFoto"] );
+Route::get('/getfotolisting/{idlisting}', [ ApiController::class, "getMultiFoto"] );
 
 Route::post('/addkpr', [ ApiController::class, "addKpr"] );
 Route::post('/addestimasi', [ ApiController::class, "addEstimasi"] );
