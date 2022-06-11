@@ -79,9 +79,11 @@
                                         <p>Dimensi Tanah Panjang : <b>-</b></p>
                                     @endif
                                     <p>Jenis Surat : <b>{{$listing->surats->jenis_surat}}</b></p>
-                                    @if($listing->bentukHargas['bentuk_harga'])
-                                        <p>Bentuk Harga : <b>{{$listing->bentukHargas['bentuk_harga']}}</b></p>
+                                    @if($listing->bentukhargas != null)
+                                        <h6>Bentuk Harga : <b>{{$data->bentukhargas['bentuk_harga']}}</b></h6>
                                     @else
+                                        <h6>Bentuk Harga : <b>-</b></h6>
+                                    @endif
                                         <p>Bentuk Harga : <b>-</b></p>
                                     @endif
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>

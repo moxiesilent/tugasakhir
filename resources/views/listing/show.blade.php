@@ -132,28 +132,104 @@
                             <h6>Kode Listing : <b>{{$data->kode_listing}}</b></h6>
                             <h6>Agen : <b>{{$data->agens->nama}}</b></h6>
                             <h6>Luas Tanah : <b>{{$data->luas_tanah}} m<sup>2</sup></b></h6>
+
+                            @if($data->luas_bangunan != 0)
                             <h6>Luas Bangunan : <b>{{$data->luas_bangunan}} m<sup>2</sup></b></h6>
+                            @else
+                            <h6>Luas Bangunan : <b>-</b></h6>
+                            @endif
+                            
+                            @if($data->dimensi_tanah_lebar != 0)
                             <h6>Dimensi Tanah Lebar : <b>{{$data->dimensi_tanah_lebar}} m</b></h6>
+                            @else
+                            <h6>Dimensi Tanah Lebar : <b>-</b></h6>
+                            @endif
+                            
+                            @if($data->dimensi_tanah_panjang != 0)
                             <h6>Dimensi Tanah Panjang : <b>{{$data->dimensi_tanah_panjang}} m</b></h6>
+                            @else
+                            <h6>Dimensi Tanah Panjang : <b>-</b></h6>
+                            @endif
+
                             <h6>Jenis Surat : <b>{{$data->surats->jenis_surat}}</b></h6>
                             <h6>Tipe Properti : <b>{{$data->tipepropertis->jenis_properti}}</b></h6>
+
                             @if($data->tipe_apartemens_idtipe_apartemen != '')
-                            <h6>Tipe Apartemen : <b>{{$data->tipeapartemens->tipe_apartemen}}</b></h6>
-                            <h6>Tower : <b>{{$data->tower}}</b></h6>
-                            <h6>Nomor Lantai : <b>{{$data->nomor_lantai}}</b></h6>
-                            <h6>Nomor Unit : <b>{{$data->nomor_unit}}</b></h6>
-                            <h6>View : <b>{{$data->view}}</b></h6>
+
+                                <h6>Tipe Apartemen : <b>{{$data->tipeapartemens->tipe_apartemen}}</b></h6>
+                                
+                                @if($data->tower != '')
+                                <h6>Tower : <b>{{$data->tower}}</b></h6>
+                                @else
+                                <h6>Tower : <b>-</b></h6>
+                                @endif
+                                
+                                @if($data->nomor_lantai != '')
+                                <h6>Nomor Lantai : <b>{{$data->nomor_lantai}}</b></h6>
+                                @else
+                                <h6>Nomor Lantai : <b>-</b></h6>
+                                @endif
+                                
+                                @if($data->nomor_unit != '')
+                                <h6>Nomor Unit : <b>{{$data->nomor_unit}}</b></h6>
+                                @else
+                                <h6>Nomor Unit : <b>-</b></h6>
+                                @endif
+                                
+                                @if($data->view != '')
+                                <h6>View : <b>{{$data->view}}</b></h6>
+                                @else
+                                <h6>View : <b>-</b></h6>
+                                @endif
+                            
                             @endif
+
+                            @if($data->listrik != 0)
                             <h6>Listrik : <b>{{$data->listrik}} watt</b></h6>
+                            @else
+                            <h6>Listrik : <b>-</b></h6>
+                            @endif
+                            
+                            @if($data->hadap != '')
                             <h6>Hadap : <b>{{$data->hadap}}</b></h6>
+                            @else
+                            <h6>Hadap : <b>-</b></h6>
+                            @endif
+                            
+                            @if($data->air != '')
                             <h6>Air : <b>{{$data->air}}</b></h6>
+                            @else
+                            <h6>Air : <b>-</b></h6>
+                            @endif
+                            
+                            @if($data->jumlah_lantai != '')
                             <h6>Jumlah Lantai : <b>{{$data->jumlah_lantai}}</b></h6>
+                            @else
+                            <h6>Jumlah Lantai : <b>-</b></h6>
+                            @endif
+                            
+                            @if($data->cluster != '')
                             <h6>Cluster : <b>{{$data->cluster}}</b></h6>
+                            @else
+                            <h6>Cluster : <b>-</b></h6>
+                            @endif
+                            
+                            @if($data->posisi != '')
                             <h6>Posisi : <b>{{$data->posisi}}</b></h6>
-                            <h6>Perabotan : <b>{{$data->perabotank}}</b></h6>
+                            @else
+                            <h6>Posisi : <b>-</b></h6>
+                            @endif
+                            
+                            @if($data->perabotan != '')
+                            <h6>Perabotan : <b>{{$data->perabotan}}</b></h6>
+                            @else
+                            <h6>Perabotan : <b>-</b></h6>
+                            @endif
+                            
                             <h6>Kelurahan : <b>{{$data->kelurahans->nama}}</b></h6>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8">
+                            
                             <h5><b>Data Pemilik Properti</b></h5><br>
                             <h6>Surat Kepemilikan Atas Nama : <b>{{$data->surat_kepemilikan_atasnama}}</b></h6>
                             <h6>No HP Pemilik : <b>{{$data->nomor_hp_pemilik}}</b></h6>
@@ -184,9 +260,18 @@
                             <h6>Mulai Tanggal : <b>{{$data->mulai_tanggal}}</b></h6>
                             <h6>Berakhir Tanggal : <b>{{$data->berakhir_tanggal}}</b></h6>
                             <h6>Pasang Banner : <b>{{$data->pasang_banner}}</b></h6>
-                            <h6>Bentuk Harga : <b>{{$data->bentukhargas['bentuk_harga']}}</b></h6>
-                            @if($data->status == 'available')
+                            <h6>Bentuk Harga : <b>{{$data->bentukhargas != null ? $data->bentukhargas['bentuk_harga'] : -}}</b></h6>
+                            @if($data->bentukhargas != null)
+                                <h6>Bentuk Harga : <b>{{$data->bentukhargas['bentuk_harga']}}</b></h6>
+                            @else
+                                <h6>Bentuk Harga : <b>-</b></h6>
+                            @endif
+                            @if($data->status == 'Available')
                             <h6>Status : <b class="text-success">{{$data->status}}</b></h6>
+                            @else if($data->status == 'Pending')
+                            <h6>Status : <b class="text-warning">{{$data->status}}</b></h6>
+                            @else if($data->status == 'Sold')
+                            <h6>Status : <b class="text-danger">{{$data->status}}</b></h6>
                             @else
                             <h6 class="">Status : <b>{{$data->status}}</b></h6>
                             @endif
