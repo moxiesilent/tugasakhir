@@ -256,10 +256,10 @@
                             <h5><b>Data Kantor</b></h5><br>
                             <h6>Jenis Listing : <b>{{$data->jenis_listing}}</b></h6>
                             <h6>Tipe Listing : <b>{{$data->tipe_listing}}</b></h6>
-                            <h6>Komisi : <b>{{$data->komisi}} %</b></h6>
+                            <h6>Komisi : <b>{{$data->komisi != 0 ? $data->komisi : '-'}} %</b></h6>
                             <h6>Mulai Tanggal : <b>{{$data->mulai_tanggal}}</b></h6>
-                            <h6>Berakhir Tanggal : <b>{{$data->berakhir_tanggal}}</b></h6>
-                            <h6>Pasang Banner : <b>{{$data->pasang_banner}}</b></h6>
+                            <h6>Berakhir Tanggal : <b>{{$data->berakhir_tanggal != null ? $data->berakhir_tanggal : '-'}}</b></h6>
+                            <h6>Pasang Banner : <b>{{$data->pasang_banner != null ? $data->pasang_banner : '-'}}</b></h6>
                             <h6>Bentuk Harga : <b>{{ $data->bentukhargas != null ? $data->bentukhargas['bentuk_harga'] : '-'}}</b></h6>
                             @if($data->bentukhargas != null)
                                 <h6>Bentuk Harga : <b>{{$data->bentukhargas['bentuk_harga']}}</b></h6>
