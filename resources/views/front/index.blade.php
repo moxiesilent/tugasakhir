@@ -63,13 +63,15 @@
                                     <p>Dimensi Tanah Panjang : <b>{{$listing->dimensi_tanah_panjang}} m</b></p>
                                     <p>Jenis Surat : <b>{{$listing->surats->jenis_surat}}</b></p>
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
+                                    <br>
                                     @if($listing->tipepropertis->jenis_properti == 'Apartemen')
                                     <p>Tipe Apartemen : <b>{{$listing->tipeapartemens->tipe_apartemen}}</b></p>
                                     <p>Tower : <b>{{$listing->tower}}</b></p>
                                     <p>View : <b>{{$listing->view}}</b></p>
-                                    <p>Nomor Lantai : <b>{{$listing->nomor_lantai}}}</b></p>
+                                    <p>Nomor Lantai : <b>{{$listing->nomor_lantai}}</b></p>
                                     <p>Nomor Unit : <b>{{$listing->nomor_unit}}</b></p>
                                     @endif
+                                    <br>
                                     <p>Kamar Tidur : <b>{{$listing->kamar_tidur}}</b></p>
                                     <p>Kamar Mandi : <b>{{$listing->kamar_mandi}}</b></p>
                                     <p>Kamar Tidur Pembantu : <b>{{$listing->kamar_tidur_pembantu}}</b></p>
