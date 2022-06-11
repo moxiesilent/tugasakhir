@@ -131,7 +131,7 @@
                                 <td>{{$d->nama}}</td>
                                 <td>{{$d->hp}}</td>
                                 <td>{{$d->agens->nama}}</td>
-                                <td>{{ substr($d->keterangan, 0, 10)}}</td>
+                                <td>{{ substr($d->keterangan, 0, 20, ('...'))}}</td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
