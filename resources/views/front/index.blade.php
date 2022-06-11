@@ -41,7 +41,9 @@
                                         </div>
                                         @endforeach
                                     @else
-                                        <img class="" src="{{asset('images/listing/default.png')}}" height='350px'>
+                                        <div class="carousel-item">
+                                            <img class="" src="{{asset('images/listing/default.png')}}" height='350px'>
+                                        </div>
                                     @endif
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
