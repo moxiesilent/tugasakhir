@@ -260,7 +260,7 @@
                             <h6>Mulai Tanggal : <b>{{$data->mulai_tanggal}}</b></h6>
                             <h6>Berakhir Tanggal : <b>{{$data->berakhir_tanggal}}</b></h6>
                             <h6>Pasang Banner : <b>{{$data->pasang_banner}}</b></h6>
-                            <h6>Bentuk Harga : <b>{{ ($data->bentukhargas != null) ? $data->bentukhargas['bentuk_harga'] : '-''}}</b></h6>
+                            <h6>Bentuk Harga : <b>{{ $data->bentukhargas != null ? $data->bentukhargas['bentuk_harga'] : '-'}}</b></h6>
                             @if($data->bentukhargas != null)
                                 <h6>Bentuk Harga : <b>{{$data->bentukhargas['bentuk_harga']}}</b></h6>
                             @else
