@@ -127,8 +127,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label>Jenis Listing</label><br>
-                                <select class="selectpicker" data-width="100%" name="jenislisting">
+                                <label>Jenis Listing</label>  <span style="color:red"><b>*</b></span><br>
+                                <select class="selectpicker" data-width="100%" name="jenislisting" required>
                                     <option value="">-- Pilih Jenis Listing --</option>
                                     <option value="jual">Jual</option>
                                     <option value="sewa">Sewa</option>
