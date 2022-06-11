@@ -98,9 +98,6 @@
                     <div class="text-center">
                         <h4><b>Data Calon Pembeli</b></4>
                     </div>
-                    <div class="text-right">
-                        <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah">Tambah Baru</button>
-                    </div>
                 </div>
                 @if(session('status'))
                 <div class="alert alert-light-success border-0 mb-4" role="alert">
@@ -121,7 +118,7 @@
                                 <th>Nama</th>
                                 <th>No Telp</th>
                                 <th>Agen</th>
-                                <th style="max-width: 5%">Keterangan</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -132,18 +129,6 @@
                                 <td>{{$d->hp}}</td>
                                 <td>{{$d->agens->nama}}</td>
                                 <td>{{$d->keterangan}}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('calonpembelis/'.$d->idpelanggan)}}"><button class="dropdown-item btn btn-primary">&nbsp&nbsp&nbspDetail</button></a><br>
-                                            <a href="{{url('calonpembelis/'.$d->idpelanggan.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idpelanggan}}')">&nbsp&nbsp&nbspHapus</button>
-                                        </div>
-                                    </div>
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>
