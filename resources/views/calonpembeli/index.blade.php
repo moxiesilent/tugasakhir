@@ -121,7 +121,7 @@
                                 <th>Nama</th>
                                 <th>No Telp</th>
                                 <th>Agen</th>
-                                <th>Keterangan</th>
+                                <th style="max-width: 20%">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -131,7 +131,7 @@
                                 <td>{{$d->nama}}</td>
                                 <td>{{$d->hp}}</td>
                                 <td>{{$d->agens->nama}}</td>
-                                <td>{{ substr($d->keterangan, 0, 20, ('...'))}}</td>
+                                <td>{{$d->keterangan}}</td>
                                 <td>
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
