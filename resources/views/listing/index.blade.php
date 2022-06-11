@@ -153,7 +153,7 @@
                                 </td>
                                 <td class="text-right"><b>{{number_format($d->harga)}}</b></td>
                                 <td>
-                                    @if($d->bentukHargas['bentuk_harga'] != null)
+                                    @if($d->bentukHargas != null)
                                         {{$d->bentukHargas['bentuk_harga']}}
                                     @else
                                         -
