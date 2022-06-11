@@ -30,7 +30,7 @@ class ListingController extends Controller
         if(auth()->user()->jabatan != 'admin'){
             abort(403);
         }
-        $data = Listing::all();
+        $data = Listing::orderBy('idlisting','desc')->get();
         return view('listing.index',compact('data'));
     }
 

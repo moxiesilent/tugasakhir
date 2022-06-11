@@ -21,7 +21,7 @@ class PrimaryController extends Controller
         if(auth()->user()->jabatan != 'admin'){
             abort(403);
         }
-        $data = Primary::all();
+        $data = Primary::orderBy('idlisting','desc')->get();
         return view('primary.index',compact('data'));
     }
 

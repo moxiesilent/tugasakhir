@@ -171,13 +171,12 @@ class ApiController extends Controller
                 ->where('idprovinsi',$request->get('provinsi'));
             }
         }
-
-        $listing = $listing->get();
+        $listing = $listing->orderBy('idlisting','desc')->get();
         return response()->json(['message' => 'Success', 'listing'=> $listing]);
     }
 
     public function tampilListingTipeproperti($idtipeproperti){
-        $listing = DB::table('listings')->where('tipe_properti_idtipe_properti',$idtipeproperti)->where('status','Available')->get();
+        $listing = DB::table('listings')->where('tipe_properti_idtipe_properti',$idtipeproperti)->where('status','Available')->orderBy('idlisting','desc')->get();
         return response()->json(['message'=> 'Success', 'listing'=> $listing]);
     }
 
@@ -188,7 +187,7 @@ class ApiController extends Controller
     }
 
     public function tampilHalamanListPrimary(){
-        $primary = Primary::all();
+        $primary = Primary::orderBy('idprimary','desc')->get();
         return response()->json(['message'=>'Success', 'primary'=>$primary]);
     }
 
@@ -199,7 +198,7 @@ class ApiController extends Controller
     }
 
     public function tampilMyListing($idagen){
-        $listing = DB::table('listings')->where('agen_idagen', $idagen)->where('status','Available')->get();
+        $listing = DB::table('listings')->where('agen_idagen', $idagen)->where('status','Available')->orderBy('idlisting','desc')->get();
         return response()->json(['message'=>"Success", 'listing'=>$listing]);
     }
 
