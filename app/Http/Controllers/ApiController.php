@@ -532,9 +532,9 @@ class ApiController extends Controller
         foreach($foto as $f){
             if(File::exists('public/images/listing/'.$f->path)){
                 File::delete('public/images/listing/'.$f->path);
+                $f->delete();
             }
         }
-        $foto->delete();
         return response()->json(['message' => 'Success']);
     }
 
