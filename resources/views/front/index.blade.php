@@ -34,11 +34,15 @@
                             <div class="form-content">
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:100%;">
                                     <div class="carousel-inner" style="background-color:#0e1726;">
+                                    @if($foto != null)
                                         @foreach($foto as $f => $fot)
                                         <div class="carousel-item {{$f == 0 ? 'active' : '' }}">
                                             <img class="" src="{{asset('images/listing/'.$fot->path)}}" height='350px'>
                                         </div>
                                         @endforeach
+                                    @else
+                                        <img class="" src="{{asset('images/listing/default.png')}}" height='350px'>
+                                    @endif
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
