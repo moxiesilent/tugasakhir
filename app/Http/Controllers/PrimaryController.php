@@ -99,7 +99,8 @@ class PrimaryController extends Controller
             abort(403);
         }
         $data = $primary;
-        return view("primary.show",compact('data'));
+        $foto = Fotoprimary::where('primarys_idprimary',$data->idprimary)->get();
+        return view("primary.show",compact('data','foto'));
     }
 
     /**

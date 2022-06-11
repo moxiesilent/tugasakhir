@@ -97,6 +97,26 @@
                 <div style="margin-bottom:20px;">
                     <div class="text-center">
                         <h4><b>Data Primary</b></4>
+                        <br><br>
+                        <div class="row justify-content-center">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:85%;">
+                                <div class="carousel-inner" style="background-color:#0e1726;">
+                                    @foreach($foto as $f => $fot)
+                                    <div class="carousel-item {{$f == 0 ? 'active' : '' }}">
+                                        <img class="" src="{{asset('images/primary/'.$fot->path)}}" height='350px'>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
                     </div><br>
                     <div class="row center">
                         <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
@@ -106,9 +126,6 @@
                             <h6>Komisi : <b>{{$data->komisi}} %</b></h6>
                             <h6>Keterangan : </h6>
                             <?php echo $data->keterangan ?>
-                        </div>
-                        <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-center">
-                            <img style="border-radius: 15px;" src="{{asset('images/primary/'.$data->foto_utama)}}" height='250px'/>
                         </div>
                     </div><br>
                     <div class="row">
