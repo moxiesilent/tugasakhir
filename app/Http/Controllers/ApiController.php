@@ -513,7 +513,7 @@ class ApiController extends Controller
             }
             $listing->save();
             
-            return response()->json(['message' => 'Success']);        
+            return response()->json(['message' => 'Success', 'idlisting'=>$idlisting]);        
         }
         catch(\PDOException $e){
             $msg ="Gagal menambah data. " + $e;
@@ -530,9 +530,8 @@ class ApiController extends Controller
         $idlisting = $request->get('idlisting');
         $foto = DB::table('fotos')->where('listings_idlisting',$idlisting)->get();
         foreach($foto as $f){
-            // $path = 'public/images/listing'.$foto->path;
-            if(File::exists(public_path('public/images/listing/'.$f->path))){
-                File::delete(public_path('public/images/listing/'.$f->path));
+            if(File::exists('public/images/listing/'.$f->path)){
+                File::delete('public/images/listing/'.$f->path);
                 $f->delete();
             }
         }
