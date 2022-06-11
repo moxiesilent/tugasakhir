@@ -67,8 +67,8 @@
                                     <p>Tipe Apartemen : <b>{{$listing->tipeapartemens->tipe_apartemen}}</b></p>
                                     <p>Tower : <b>{{$listing->tower}}</b></p>
                                     <p>View : <b>{{$listing->view}}</b></p>
-                                    <p>Nomor Lantai : <b>{{$listing->nomor_lantai</b></p>
-                                    <p>Nomor Unit : <b>{{$listing->nomor_unit</b></p>
+                                    <p>Nomor Lantai : <b>{{$listing->nomor_lantai}}}</b></p>
+                                    <p>Nomor Unit : <b>{{$listing->nomor_unit}}</b></p>
                                     @endif
                                     <p>Kamar Tidur : <b>{{$listing->kamar_tidur}}</b></p>
                                     <p>Kamar Mandi : <b>{{$listing->kamar_mandi}}</b></p>
