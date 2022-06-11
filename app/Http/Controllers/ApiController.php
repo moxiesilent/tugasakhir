@@ -528,7 +528,7 @@ class ApiController extends Controller
 
     public function deleteFotoListing(Request $request){
         $idlisting = $request->get('idlisting');
-        $foto = DB::table('fotos')->where('listings_idlisting',$idlisting)->get();
+        $foto = Foto::where('listings_idlisting',$idlisting)->get();
         foreach($foto as $f){
             if(File::exists('public/images/listing/'.$f->path)){
                 File::delete('public/images/listing/'.$f->path);
