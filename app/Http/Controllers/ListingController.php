@@ -252,8 +252,10 @@ class ListingController extends Controller
             $listing->foto_utama=$imgFile;
         }
         $listing->save();
+        $idlisting = $listing->idlisting;
 
         if($request->hasFile('foto')){
+            $fotoLama = Foto::where('listings_idlisting',$idlisting)->delete();
             foreach($request->file('foto') as $key => $file){
                 $foto = new Foto();
                 $foto->listings_idlisting = $idlisting;

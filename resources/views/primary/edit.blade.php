@@ -139,9 +139,19 @@
                         </div>                                   
                     </div>
                     <div class="custom-file-container" data-upload-id="myFirstImage">
-                        <label>Upload Foto Utama (tidak perlu disii apabila tidak ingin mengganti)<a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <label>Upload Foto Utama (akan ditampilkan pada bagian depan)<a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <small id="sh-text1" class="form-text text-muted">Apabila tidak ingin mengganti maka tidak perlu di upload</small>
                         <label class="custom-file-container__custom-file" >
                             <input type="file" class="custom-file-container__custom-file__custom-file-input" name="foto_utama">
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
+                    </div>
+                    <div class="custom-file-container" data-upload-id="mySecondImage">
+                        <label>Upload Semua Foto (tidak perlu disii apabila tidak ingin mengganti) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                        <small id="sh-text1" class="form-text text-muted">Apabila tidak ingin mengganti maka tidak perlu di upload</small>
+                        <label class="custom-file-container__custom-file" >
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" name="multifoto[]" multiple>
                             <span class="custom-file-container__custom-file__custom-file-control"></span>
                         </label>
                         <div class="custom-file-container__image-preview"></div>
@@ -161,6 +171,7 @@
 <script src="{{asset('plugins/file-upload/file-upload-with-preview.min.js')}}"></script>
 <script>
     var firstUpload = new FileUploadWithPreview('myFirstImage')
+    var secondUpload = new FileUploadWithPreview('mySecondImage')
 </script>
 <script>
     CKEDITOR.replace( 'keterangan' );

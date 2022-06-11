@@ -147,6 +147,21 @@ class PrimaryController extends Controller
             $primary->komisi = $request->get('komisi');
             $primary->keterangan = $request->get('keterangan');
             $primary->save();
+            $idprimary = $primary->idprimary;
+            
+            if($request->hasFile('multifoto')){
+                $fotoLama = Fotoprimary::where('primarys_idprimary',$idprimary)->delete();
+                foreach($request->file('multifoto') as $key => $file){
+                    $foto = new Fotoprimary();
+                    $foto->primarys_idprimary = $idprimary;
+                    $imgFolder='public/images/primary';
+                    $imgFile=time().'_'.$file->getClientOriginalName();
+                    $file->move($imgFolder,$imgFile);
+                    $foto->path=$imgFile;
+                    $foto->save();
+                }
+            }
+
             return redirect()->route('primarys.index')->with('status','data berhasil diubah');     
         }
         catch(\PDOException $e){
