@@ -79,6 +79,11 @@
                                         <p>Dimensi Tanah Panjang : <b>-</b></p>
                                     @endif
                                     <p>Jenis Surat : <b>{{$listing->surats->jenis_surat}}</b></p>
+                                    @if($listing->bentukHargas['bentuk_harga'])
+                                        <p>Bentuk Harga : <b>{{$listing->bentukHargas[0]->bentuk_harga}}</b></p>
+                                    @else
+                                        <p>Bentuk Harga : <b>-</b></p>
+                                    @endif
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
                                     <br>
                                     @if($listing->tipepropertis->jenis_properti == 'Apartemen')
