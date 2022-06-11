@@ -41,7 +41,7 @@
                                         </div>
                                         @endforeach
                                     @else
-                                        <div class="carousel-item">
+                                        <div class="carousel-item active">
                                             <img class="" src="{{asset('images/listing/default.png')}}" height='350px'>
                                         </div>
                                     @endif
