@@ -63,9 +63,24 @@
                                 </div>
                                 <div class="text-left">
                                     <p>Luas Tanah : <b>{{$listing->luas_tanah}} m<sup>2</sup></b></p>
-                                    <p>Luas Bangunan : <b>{{$listing->luas_bangunan}} m<sup>2</sup></b></p>
-                                    <p>Dimensi Tanah Lebar : <b>{{$listing->dimensi_tanah_lebar}} m</b></p>
+                                    @if($listing->luas_bangunan != 0)
+                                        <p>Luas Bangunan : <b>{{$listing->luas_bangunan}} m<sup>2</sup></b></p>
+                                    @else
+                                        <p>Luas Bangunan : <b>-</b></p>
+                                    @endif
+                                    @if($listing->dimensi_tanah_lebar != 0)
+                                        <p>Dimensi Tanah Lebar : <b>{{$listing->dimensi_tanah_lebar}} m</b></p>
+                                    @else
+                                        <p>Dimensi Tanah Lebar : <b>-</b></p>
+                                    @endif
+
+                                    @if()
+                                    @else
+                                    @endif
                                     <p>Dimensi Tanah Panjang : <b>{{$listing->dimensi_tanah_panjang}} m</b></p>
+                                    @if()
+                                    @else
+                                    @endif
                                     <p>Jenis Surat : <b>{{$listing->surats->jenis_surat}}</b></p>
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
                                     <br>
