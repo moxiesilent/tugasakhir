@@ -262,6 +262,12 @@ class ApiController extends Controller
         return response()->json(['message'=>"Success", 'calonpembeli'=>$calonpembeli]);
     }
 
+    public function daftarCalonpembeli(){
+        $calonpembeli = Calonpembeli::orderBy('idpelanggan','desc')->get();
+        $agen = $calonpembeli->agens()->get();
+        return response()->json(['message'=>"Success", 'calonpembeli'=>$calonpembeli, 'agen'=>$agen]);
+    }
+
     public function detailCalonPembeli($idcalonpembeli){
         $calonpembeli = Calonpembeli::find($idcalonpembeli);
         return response()->json(['message'=>'Success', 'calonpembeli'=>$calonpembeli]);

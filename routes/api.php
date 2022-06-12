@@ -51,7 +51,7 @@ Route::post('/deletebookmark', [ ApiController::class, "deleteBookmark"] );
 
 Route::post('/deletefotolisting', [ ApiController::class, "deleteFotoListing"] );
 Route::get('/getfotolisting/{idlisting}', [ ApiController::class, "getMultiFoto"] );
-
+Route::get('/daftarcalonpembelis', [ ApiController::class, "daftarCalonpembeli"] );
 Route::post('/addkpr', [ ApiController::class, "addKpr"] );
 Route::post('/addestimasi', [ ApiController::class, "addEstimasi"] );
 
