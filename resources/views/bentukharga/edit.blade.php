@@ -100,7 +100,7 @@
                     <div class="">
                         <div class="">
                             <div class="form-group">
-                                <label for="bentukharga">Jenis Lantai</label>
+                                <label for="bentukharga">Bentuk Harga</label>
                                 <input id="bentukharga" type="text" name="bentukharga" value="{{$data->bentuk_harga}}" class="form-control" required>
                             </div>
                         </div>                                        
