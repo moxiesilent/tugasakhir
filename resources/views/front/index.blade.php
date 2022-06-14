@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/theme-checkbox-radio.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/forms/switches.css')}}">
 </head>
-<body class="form">
+<body class="form" style="overflow-x:hidden;">
     
     <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
@@ -35,10 +35,10 @@
                             @if($listing != null)
                                 @if($foto != "")
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:100%;">
-                                        <div class="carousel-inner" style="background-color:#0e1726;">
+                                        <div class="carousel-inner" style="background-color:#0e1726;width:100%;">
                                             @foreach($foto as $f => $fot)
                                             <div class="carousel-item {{$f == 0 ? 'active' : '' }}">
-                                                <img class="" src="{{asset('images/listing/'.$fot->path)}}" height='350px'>
+                                                <img class="" src="{{asset('images/listing/'.$fot->path)}}" style='width:100%;'>
                                             </div>
                                             @endforeach
                                         </div>
