@@ -40,8 +40,8 @@ class HomeController extends Controller
         $calonpembeli = Calonpembeli::count('idpelanggan');
         $primary = Primary::count('idprimary');
         $hariIni = Carbon::today();
-        $satuMinggu = $hariIni->addDays(7);
-        $reminder = Reminder::where('tanggal','>=',$hariIni)->where('tanggal','<=',$satuMinggu)->get();
+        $satuMinggu = Carbon::today()->addDays(7);
+        $reminder = Reminder::where('tanggal','>=',$hariIni)->get();
         return view('index',compact('listing','user','terjual','primary','reminder','listingpending','calonpembeli'));
     }
 

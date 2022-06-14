@@ -129,7 +129,7 @@
                                     <p>Catatan : </p><p><b>{!!$listing->catatan!!}</b></p>
                                 </div>
                             @else
-                                <h2 class="pt-8">Mohon maaf, data listing tidak ditemukan</h2>
+                                <h2>Mohon maaf, data listing tidak ditemukan</h2>
                             @endif
                             </div>                    
                         </div>
