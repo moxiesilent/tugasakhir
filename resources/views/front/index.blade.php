@@ -80,9 +80,9 @@
                                     @endif
                                     <p>Jenis Surat : <b>{{$listing->surats->jenis_surat}}</b></p>
                                     @if($listing->bentukhargas != null)
-                                        <h6>Bentuk Harga : <b>{{$listing->bentukhargas['bentuk_harga']}}</b></h6>
+                                        <p>Bentuk Harga : <b>{{$listing->bentukhargas['bentuk_harga']}}</b></p>
                                     @else
-                                        <h6>Bentuk Harga : <b>-</b></h6>
+                                        <p>Bentuk Harga : <b>-</b></p>
                                     @endif
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
                                     <br>
