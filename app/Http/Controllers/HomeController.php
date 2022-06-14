@@ -41,7 +41,7 @@ class HomeController extends Controller
         $primary = Primary::count('idprimary');
         $hariIni = Carbon::today();
         $satuMinggu = Carbon::today()->addDays(7);
-        $reminder = Reminder::where('tanggal','>=',$hariIni)->get();
+        $reminder = Reminder::where('tanggal','>=',$hariIni)->where('tanggal','<=',$satuMinggu)->get();
         return view('index',compact('listing','user','terjual','primary','reminder','listingpending','calonpembeli'));
     }
 
