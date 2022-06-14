@@ -10,9 +10,9 @@
         </a>
     </li>
 
-    <li class="menu">
-        <a href="{{url('agen')}}" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
+    <li class="menu active">
+        <a href="{{url('agen')}}" aria-expanded="true" class="dropdown-toggle">
+            <div class="active">
                 <i data-feather="user"></i>
                 <span> Agen</span>
             </div>
@@ -57,8 +57,8 @@
         </ul>
     </li>
 
-    <li class="menu active">
-        <a href="#submenu2" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+    <li class="menu">
+        <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             <div class="">
                 <i data-feather="shield"></i>
                 <span> Primary</span>
@@ -67,8 +67,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </div>
         </a>
-        <ul class="collapse submenu list-unstyled show" id="submenu2" data-parent="#accordionExample">
-            <li class="active">
+        <ul class="collapse submenu list-unstyled" id="submenu2" data-parent="#accordionExample">
+            <li class="">
                 <a href="{{url('primary')}}"> List </a>
             </li>
             <li>
