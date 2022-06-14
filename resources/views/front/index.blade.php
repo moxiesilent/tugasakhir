@@ -32,6 +32,7 @@
                     <div class="col-lg-12">
                         <div class="form-container">
                             <div class="form-content">
+                            @if($listing != null)
                                 @if($foto != "")
                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:100%;">
                                         <div class="carousel-inner" style="background-color:#0e1726;">
@@ -127,6 +128,9 @@
                                     @endif
                                     <p>Catatan : </p><p><b>{!!$listing->catatan!!}</b></p>
                                 </div>
+                            @else
+                                <h2>Mohon maaf, data listing tidak ditemukan</h2>
+                            @endif
                             </div>                    
                         </div>
                     </div>
