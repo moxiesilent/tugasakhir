@@ -84,8 +84,6 @@
                                     @else
                                         <h6>Bentuk Harga : <b>-</b></h6>
                                     @endif
-                                        <p>Bentuk Harga : <b>-</b></p>
-                                    @endif
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
                                     <br>
                                     @if($listing->tipepropertis->jenis_properti == 'Apartemen')
