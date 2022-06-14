@@ -94,7 +94,7 @@ class TipeapartemenController extends Controller
             abort(403);
         }
         try{
-            $tipeapartemen->tipe_apartemen = $request->get('jenisapartemen');
+            $tipeapartemen->tipe_apartemen = $request->get('tipeapartemen');
             $tipeapartemen->save();
             return redirect()->route('tipeapartemens.index')->with('status','data berhasil diubah');     
         }

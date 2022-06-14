@@ -94,18 +94,18 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
-                <form method="post" action="{{url('tipepropertis/'.$data->idtipe_properti)}}">
+                <form method="post" action="{{url('tipeapartemens/'.$data->idtipe_apartemen)}}">
                     @csrf
                     @method('PUT')
                     <div class="">
                         <div class="">
                             <div class="form-group">
-                                <label for="jenisproperti">Jenis Surat</label>
-                                <input id="jenisproperti" type="text" name="jenisproperti" value="{{$data->jenis_properti}}" class="form-control" required>
+                                <label for="tipeapartemen">Tipe Apartemen</label>
+                                <input id="tipeapartemen" type="text" name="tipeapartemen" value="{{$data->tipe_apartemen}}" class="form-control" required>
                             </div>
                         </div>                                        
                     </div>
-                    <a href="{{url('tipepropertis')}}" class="btn btn-secondary-light"> Kembali</a>
+                    <a href="{{url('tipeapartemens')}}" class="btn btn-secondary-light"> Kembali</a>
                     <input type="submit" name="submit" value="Simpan" class="btn btn-primary">
                 </form>
                 </div>
