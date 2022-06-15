@@ -527,7 +527,7 @@
                     </div>
                     <div class="custom-file-container" data-upload-id="myFirstImage">
                         <label>Upload Foto Utama (akan ditampilkan pada bagian depan) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-                        <small id="sh-text1" class="form-text text-muted">Apabila tidak ingin mengganti maka tidak perlu di upload</small>
+                        
                         <label class="custom-file-container__custom-file" >
                             <input type="file" class="custom-file-container__custom-file__custom-file-input" name="fotoutama">
                             <span class="custom-file-container__custom-file__custom-file-control"></span>

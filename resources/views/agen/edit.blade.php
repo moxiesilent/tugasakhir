@@ -122,14 +122,26 @@
                             </div>
                         </div>                                        
                     </div>
+                    @if($data->jabatan == 'admin')
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input id="password" type="password" name="password" value="" class="form-control" >
+                                <input id="password" type="password" name="password" value="" class="form-control">
+                                <small id="sh-text1" class="form-text text-muted">Apabila tidak ingin mengganti password maka tidak perlu di isi</small>
                             </div>
-                        </div>                                        
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group">
+                                <label for="password2">Ulangi Password</label>
+                                <input id="password2" type="password" name="password2" value="" class="form-control" >
+                                <small id="sh-text1" class="form-text text-muted">Apabila tidak ingin mengganti password maka tidak perlu di isi</small>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
