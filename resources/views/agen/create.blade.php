@@ -127,8 +127,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="jabatan">Jabatan</label> <span style="color:red"><b>*</b></span>
-                                <select class="selectpicker" data-width="75%" name="jabatan" required>
+                                <label for="jabatan">Jabatan</label> <span style="color:red"><b>*</b></span><br>
+                                <select class="selectpicker" data-width="100%" name="jabatan" required>
                                     <option value="Admin">Admin</option>
                                     <option value="Expert Advisor">Expert Advisor</option>
                                     <option value="Expert Supervisor">Expert Supervisor</option>

@@ -133,8 +133,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="jabatan">Jabatan</label>
-                                <select class="selectpicker" data-width="75%" name="jabatan">
+                                <label for="jabatan">Jabatan</label><br>
+                                <select class="selectpicker" data-width="100%" name="jabatan">
                                 <option value="">-- Pilih Jabatan --</option>
                                 <?php 
                                     $jabatan = ['Admin','Expert Advisor','Expert Supervisor','Executive President','Expert Group Manager','Executive Vice President'];                               
