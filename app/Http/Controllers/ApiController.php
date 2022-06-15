@@ -468,6 +468,7 @@ class ApiController extends Controller
     public function updateListing(Request $request){
         try{
             $idlisting = $request->get('idlisting');
+
             $listing = Listing::find($idlisting);
             $listing->alamat_domisili = $request->get('alamatdomisili');
             $listing->nomor_hp_pemilik = $request->get('hppemilik');
@@ -514,10 +515,7 @@ class ApiController extends Controller
             $listing->judul = $request->get('judul');
 
             if($request->hasFile('fotoutama')){
-                $fotoLama = Foto::where('path',$listing->foto_utama)->get();
-                if($fotoLama != ''){
-                    // $fotoLama->delete();
-                }
+                $fotoLama = Foto::where('path',$listing->foto_utama)->delete();
                 $dest='public/images/listing/'.$listing->foto_utama;
                 if(file_exists($dest)){
                     @unlink($dest); 
