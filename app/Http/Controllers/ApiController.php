@@ -515,7 +515,7 @@ class ApiController extends Controller
             $listing->judul = $request->get('judul');
 
             if($request->hasFile('fotoutama')){
-                // $fotoLama = Foto::where('path',$listing->foto_utama)->delete();
+                $fotoLama = Foto::where('path',$listing->foto_utama)->delete();
                 $dest='public/images/listing/'.$listing->foto_utama;
                 if(file_exists($dest)){
                     @unlink($dest); 
@@ -528,12 +528,12 @@ class ApiController extends Controller
             }
             $listing->save();
 
-            // if($request->hasFile('fotoutama')){
-            //     $foto = new Foto();
-            //     $foto->listings_idlisting = $idlisting;
-            //     $foto->path=$imgFile;
-            //     $foto->save();
-            // }
+            if($request->hasFile('fotoutama')){
+                $foto = new Foto();
+                $foto->listings_idlisting = $idlisting;
+                $foto->path=$imgFile;
+                $foto->save();
+            }
             
             return response()->json(['message' => 'Success']);        
         }
