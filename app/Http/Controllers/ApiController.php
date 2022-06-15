@@ -516,7 +516,7 @@ class ApiController extends Controller
             if($request->hasFile('fotoutama')){
                 $fotoLama = Foto::where('path',$listing->foto_utama)->get();
                 if($fotoLama != ''){
-                    $fotoLama->delete();
+                    // $fotoLama->delete();
                 }
                 $dest='public/images/listing/'.$listing->foto_utama;
                 if(file_exists($dest)){
