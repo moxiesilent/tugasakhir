@@ -133,7 +133,7 @@ class PrimaryController extends Controller
         }
         try{
             if($request->hasFile('foto')){
-                $dest='public/images/primary/'.$primary->foto;
+                $dest='public/images/primary/'.$primary->foto_utama;
                 if(file_exists($dest)){
                     @unlink($dest); 
                 }
@@ -141,7 +141,7 @@ class PrimaryController extends Controller
                 $imgFolder='public/images/primary/';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
-                $primary->foto=$imgFile;
+                $primary->foto_utama=$imgFile;
             }
             $primary->nama_project = $request->get('namaproject');
             $primary->developer = $request->get('developer');
