@@ -129,7 +129,7 @@
                             <div class="form-group">
                                 <label for="jabatan">Jabatan</label> <span style="color:red"><b>*</b></span><br>
                                 <select class="selectpicker" data-width="100%" name="jabatan" required>
-                                    <option value="Admin">Admin</option>
+                                    <option value="admin">Admin</option>
                                     <option value="Expert Advisor">Expert Advisor</option>
                                     <option value="Expert Supervisor">Expert Supervisor</option>
                                     <option value="Executive President">Executive President</option>

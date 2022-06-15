@@ -137,7 +137,7 @@
                                 <select class="selectpicker" data-width="100%" name="jabatan">
                                 <option value="">-- Pilih Jabatan --</option>
                                 <?php 
-                                    $jabatan = ['Admin','Expert Advisor','Expert Supervisor','Executive President','Expert Group Manager','Executive Vice President'];                               
+                                    $jabatan = ['admin','Expert Advisor','Expert Supervisor','Executive President','Expert Group Manager','Executive Vice President'];                               
                                 ?>
                                 @foreach($jabatan as $j)
                                     @if($j == $data->jabatan)
