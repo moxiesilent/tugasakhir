@@ -124,7 +124,7 @@ class ListingController extends Controller
                 $data->foto_utama=$imgFile;
             }
             $data->save();
-            $idlisting = Listing::latest()->get('idlisting');
+            $idlisting = $data->idlisting;
             if($request->hasFile('foto')){
                 foreach($request->file('foto') as $key => $file){
                     $foto = new Foto();
