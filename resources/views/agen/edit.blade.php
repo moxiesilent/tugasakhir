@@ -134,7 +134,19 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="jabatan">Jabatan</label>
-                                <input id="jabatan" type="text" name="jabatan" value="{{$data->jabatan}}" class="form-control" required>
+                                <select class="selectpicker" data-width="75%" name="jabatan">
+                                <option value="">-- Pilih Jabatan --</option>
+                                <?php 
+                                    $jabatan = ['Admin','Expert Advisor','Expert Supervisor','Executive President','Expert Group Manager','Executive Vice President'];                               
+                                ?>
+                                @foreach($jabatan as $j)
+                                    @if($j == $data->jabatan)
+                                        <option value="{{$j}}" selected>{{$j}}</option>
+                                    @else
+                                        <option value="{{$j}}">{{$j}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                             </div>
                         </div>                                        
                     </div>

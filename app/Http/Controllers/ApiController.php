@@ -306,7 +306,7 @@ class ApiController extends Controller
 
     public function prosesLogin(Request $request)
     {
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email',$request->email)->where('jabatan','!=','admin')->first();
 
         if($user != null)
         {

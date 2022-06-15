@@ -128,7 +128,14 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="jabatan">Jabatan</label> <span style="color:red"><b>*</b></span>
-                                <input id="jabatan" type="text" name="jabatan" placeholder="jabatan" class="form-control" required>
+                                <select class="selectpicker" data-width="75%" name="jabatan" required>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Expert Advisor">Expert Advisor</option>
+                                    <option value="Expert Supervisor">Expert Supervisor</option>
+                                    <option value="Executive President">Executive President</option>
+                                    <option value="Expert Group Manager">Expert Group Manager</option>
+                                    <option value="Executive Vice President">Executive Vice President</option>
+                                </select>
                             </div>
                         </div>                                        
                     </div>
