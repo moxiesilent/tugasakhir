@@ -124,6 +124,7 @@
                             <h6>Developer : <b>{{$data->developer}}</b></h6>
                             <h6>BLT : <b>Rp. {{number_format($data->blt)}}</b></h6>
                             <h6>Komisi : <b>{{$data->komisi}} %</b></h6>
+                            <h6>Website : <b>{{$data->website != '' ? $data->website : '-'}} </b></h6>
                             <h6>Keterangan : </h6>
                             <?php echo $data->keterangan ?>
                         </div>

@@ -133,6 +133,14 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
+                                <label for="website">Website</label>
+                                <input id="website" type="text" name="website" value="{{$data->website}}" placeholder="https://www.example.com" class="form-control">
+                            </div>
+                        </div>                                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto mb-3">
+                            <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
                                 <textarea id="keterangan" name="keterangan">{{$data->keterangan}}</textarea>
                             </div>

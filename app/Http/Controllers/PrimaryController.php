@@ -65,6 +65,7 @@ class PrimaryController extends Controller
             $data->blt = $request->get('blt');
             $data->komisi = $request->get('komisi');
             $data->keterangan = $request->get('keterangan');
+            $data->website = $request->get('website');
             $data->save();
             $idprimary = $data->idprimary;
             if($request->hasFile('multifoto')){
@@ -147,6 +148,7 @@ class PrimaryController extends Controller
             $primary->blt = $request->get('blt');
             $primary->komisi = $request->get('komisi');
             $primary->keterangan = $request->get('keterangan');
+            $primary->website = $request->get('website');
             $primary->save();
             $idprimary = $primary->idprimary;
             
