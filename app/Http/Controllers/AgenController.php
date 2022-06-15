@@ -49,30 +49,36 @@ class AgenController extends Controller
         if(auth()->user()->jabatan != 'admin'){
             abort(403);
         }
-        $data = new User();
+        try{
+            $data = new User();
         
-        if($request->hasFile('foto')){
-            $file=$request->file('foto');
-            $imgFolder='public/images/agen/';
-            $imgFile=time().'_'.$file->getClientOriginalName();
-            $file->move($imgFolder,$imgFile);
-            $data->foto=$imgFile;
+            if($request->hasFile('foto')){
+                $file=$request->file('foto');
+                $imgFolder='public/images/agen/';
+                $imgFile=time().'_'.$file->getClientOriginalName();
+                $file->move($imgFolder,$imgFile);
+                $data->foto=$imgFile;
+            }
+
+            $data->kode = $request->get('kode');
+            $data->nama = $request->get('nama');
+            $data->email = $request->get('email');
+            $data->tanggallahir = $request->get('tanggallahir');
+            $data->jabatan = $request->get('jabatan');
+            $data->password = Hash::make('12345678');
+            $data->jenis_kelamin = $request->get('jeniskelamin');
+            $data->hp = $request->get('hp');
+            $data->alamat = $request->get('alamat');
+            $data->agama = $request->get('agama');
+            $data->whatsapp = $request->get('whatsapp');
+            $data->save();
+
+            return redirect()->route('agens.index')->with('status','data agen baru berhasil ditambahkan');
         }
-
-        $data->kode = $request->get('kode');
-        $data->nama = $request->get('nama');
-        $data->email = $request->get('email');
-        $data->tanggallahir = $request->get('tanggallahir');
-        $data->jabatan = $request->get('jabatan');
-        $data->password = Hash::make('12345678');
-        // $data->password = md5('12345678');
-        $data->jenis_kelamin = $request->get('jeniskelamin');
-        $data->hp = $request->get('hp');
-        $data->alamat = $request->get('alamat');
-        $data->agama = $request->get('agama');
-        $data->save();
-
-        return redirect()->route('agens.index')->with('status','data agen baru berhasil ditambahkan');
+        catch(\PDOException $e){
+            $msg ="Gagal mengubah data. ";
+            return redirect()->route('agens.index')->with('error', $msg);
+        }
     }
 
     /**
@@ -117,7 +123,7 @@ class AgenController extends Controller
         if(auth()->user()->jabatan != 'admin'){
             abort(403);
         }
-        // try{
+        try{
             if($request->hasFile('foto')){
                 $dest='public/images/agen/'.$agen->foto;
                 if(file_exists($dest)){
@@ -137,13 +143,14 @@ class AgenController extends Controller
             $agen->hp = $request->get('hp');
             $agen->alamat = $request->get('alamat');
             $agen->agama = $request->get('agama');
+            $agen->whatsapp = $request->get('whatsapp');
             $agen->save();
             return redirect()->route('agens.index')->with('status','data berhasil diubah');     
-        // }
-        // catch(\PDOException $e){
-        //     $msg ="Gagal mengubah data. ";
-        //     return redirect()->route('agens.index')->with('error', $msg);
-        // }
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal mengubah data. ";
+            return redirect()->route('agens.index')->with('error', $msg);
+        }
     }
 
     /**

@@ -512,6 +512,7 @@ class ApiController extends Controller
             $listing->catatan = $request->get('catatan');
             $listing->jenis_listing = $request->get('jenislisting');
             $listing->judul = $request->get('judul');
+            $imgFile = '';
             if($request->hasFile('fotoutama')){
                 $dest='public/images/listing/'.$listing->foto_utama;
                 if(file_exists($dest)){
@@ -524,6 +525,13 @@ class ApiController extends Controller
                 $listing->foto_utama=$imgFile;
             }
             $listing->save();
+
+            if($request->hasFile('fotoutama')){
+                $foto = new Foto();
+                $foto->listings_idlisting = $idlisting;
+                $foto->path=$imgFile;
+                $foto->save();
+            }
             
             return response()->json(['message' => 'Success']);        
         }
@@ -634,8 +642,14 @@ class ApiController extends Controller
                 $data->foto_utama=$imgFile;
             }
             $data->save();
-
             $idlisting = $data->idlisting;
+
+            if($request->hasFile('fotoutama')){
+                $foto = new Foto();
+                $foto->listings_idlisting = $idlisting;
+                $foto->path=$imgFile;
+                $foto->save();
+            }
             
             return response()->json(['message' => 'Success', 'idlisting'=>$idlisting]);        
         }

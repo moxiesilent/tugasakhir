@@ -187,7 +187,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="whatsapp">Alamat</label>
+                                <label for="whatsapp">WhatsApp (tanpa menggunakan 0 didepan)</label>
                                 <input id="whatsapp" type="text" name="whatsapp" placeholder="822xxxxxxxx" class="form-control">
                             </div>
                         </div>                                        

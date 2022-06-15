@@ -108,7 +108,8 @@
                             <h6>Email : <b>{{$data->email}}</b></h6>
                             <h6>No Telp : <b>{{$data->hp}}</b></h6>
                             <h6>Alamat : <b>{{$data->alamat}}</b></h6>
-                            <h6>Jenis Kelamin : <b>{{$data->jenis_kelamin}}</b></h6><br>
+                            <h6>Jenis Kelamin : <b>{{$data->jenis_kelamin}}</b></h6>
+                            <h6>WhatsApp : <b>{{$data->whatsapp}}</b></h6><br>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-center">
                             <img style="border-radius: 15px;" src="{{asset('images/agen/'.$data->foto)}}" height='250px'/>
