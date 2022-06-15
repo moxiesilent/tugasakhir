@@ -528,12 +528,12 @@ class ApiController extends Controller
             }
             $listing->save();
 
-            if($request->hasFile('fotoutama')){
-                $foto = new Foto();
-                $foto->listings_idlisting = $idlisting;
-                $foto->path=$imgFile;
-                $foto->save();
-            }
+            // if($request->hasFile('fotoutama')){
+            //     $foto = new Foto();
+            //     $foto->listings_idlisting = $idlisting;
+            //     $foto->path=$imgFile;
+            //     $foto->save();
+            // }
             
             return response()->json(['message' => 'Success']);        
         }
