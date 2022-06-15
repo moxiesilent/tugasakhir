@@ -135,6 +135,17 @@ class AgenController extends Controller
                 $file->move($imgFolder,$imgFile);
                 $agen->foto=$imgFile;
             }
+            if($request->get('password') != null){
+                $pass = $request->get('password');
+                $pass2 = $request->get('password2');
+                if($pass != $pass2){
+                    $msg ="Gagal mengubah data. Password baru yang dimasukkan tidak sesuai";
+                    return redirect()->route('agens.index')->with('error', $msg);
+                }
+                else{
+                    $agen->password = Hash::make($pass);
+                }
+            }
             $agen->kode = $request->get('kode');
             $agen->nama = $request->get('nama');
             $agen->email = $request->get('email');

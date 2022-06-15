@@ -128,7 +128,7 @@
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input id="password" type="password" name="password" value="" class="form-control">
-                                <small id="sh-text1" class="form-text text-muted">Apabila tidak ingin mengganti password maka tidak perlu di isi</small>
+                                <small id="sh-text1" class="form-text text-muted">Apabila tidak ingin mengganti password maka tidak perlu di isi (harap mengingat password baru dengan baik)</small>
                             </div>
                         </div>
                     </div>
