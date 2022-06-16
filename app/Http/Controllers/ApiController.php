@@ -536,8 +536,7 @@ class ApiController extends Controller
             return response()->json(['message' => 'Success']);        
         }
         catch(\PDOException $e){
-            $msg ="Gagal menambah data. " + $e;
-            return response()->json(['message' => 'Error '. $msg]);
+            return response()->json(['message' => 'Error']);
         }
     }   
 
@@ -654,8 +653,7 @@ class ApiController extends Controller
             return response()->json(['message' => 'Success', 'idlisting'=>$idlisting]);        
         }
         catch(\PDOException $e){
-            $msg ="Gagal menambah data. ";
-            return response()->json(['message' => 'Error '. $msg]);
+            return response()->json(['message' => 'Error']);
         }
     }
 
