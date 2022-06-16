@@ -525,15 +525,13 @@ class ApiController extends Controller
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
                 $listing->foto_utama=$imgFile;
-            }
-            $listing->save();
 
-            if($request->hasFile('fotoutama')){
                 $foto = new Foto();
                 $foto->listings_idlisting = $idlisting;
                 $foto->path=$imgFile;
                 $foto->save();
             }
+            $listing->save();
             
             return response()->json(['message' => 'Success']);        
         }
