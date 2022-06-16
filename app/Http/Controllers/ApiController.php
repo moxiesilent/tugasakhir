@@ -546,40 +546,57 @@ class ApiController extends Controller
     }
 
     public function deleteFotoListing(Request $request){
-        $idlisting = $request->get('idlisting');
-        $foto = Foto::where('listings_idlisting',$idlisting)->get();
-        foreach($foto as $f){
-            if(File::exists('public/images/listing/'.$f->path)){
-                File::delete('public/images/listing/'.$f->path);
-                $f->delete();
+        try{
+            $idlisting = $request->get('idlisting');
+            
+            $foto = Foto::where('listings_idlisting',$idlisting)->get();
+            foreach($foto as $f){
+                $fotoutama = Listing::where('fotoutama',$f->path)->get();
+                if($fotoutama != $f->path){
+                    if(File::exists('public/images/listing/'.$f->path)){
+                        File::delete('public/images/listing/'.$f->path);
+                        $f->delete();
+                    }
+                }
             }
+            return response()->json(['message' => 'Success']);
+        } catch (\PDOException $e){
+            return response()->json(['message' => 'Error']);
         }
-        return response()->json(['message' => 'Success']);
+        
     }
 
     public function addFotoListing(Request $request){
-        $idlisting = $request->get('idlisting');
-        $file = $request->file('foto');
+        try{
+            $idlisting = $request->get('idlisting');
+            $file = $request->file('foto');
 
-        $foto = new Foto();
-        
-        $foto->listings_idlisting = $idlisting;
-        $imgFolder='public/images/listing';
-        $imgFile=time().'_'.$file->getClientOriginalName();
-        $file->move($imgFolder,$imgFile);
-        $foto->path=$imgFile;
-        $foto->save();
+            $foto = new Foto();
+            
+            $foto->listings_idlisting = $idlisting;
+            $imgFolder='public/images/listing';
+            $imgFile=time().'_'.$file->getClientOriginalName();
+            $file->move($imgFolder,$imgFile);
+            $foto->path=$imgFile;
+            $foto->save();
 
-        return response()->json(['message' => 'Success']);
+            return response()->json(['message' => 'Success']);
+        } catch (\PDOException $e){
+            return response()->json(['message' => 'Error']);
+        }
     }
 
     public function deleteListing(Request $request){
-        $idlisting = $request->get('idlisting');
-        $listing = Listing::find($idlisting);
-        $foto = DB::table('fotos')->where('listings_idlisting', $idlisting)->delete();
-        $bookmark = DB::table('bookmarks')->where('listings_idlisting', $idlisting)->delete();
-        $listing->delete();
-        return response()->json(['message' => 'Success']);
+        try{
+            $idlisting = $request->get('idlisting');
+            $listing = Listing::find($idlisting);
+            $foto = DB::table('fotos')->where('listings_idlisting', $idlisting)->delete();
+            $bookmark = DB::table('bookmarks')->where('listings_idlisting', $idlisting)->delete();
+            $listing->delete();
+            return response()->json(['message' => 'Success']);
+        } catch (\PDOException $e){
+            return response()->json(['message' => 'Error']);
+        }
     }
 
     public function addListing(Request $request){
