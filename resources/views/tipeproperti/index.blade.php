@@ -198,6 +198,7 @@ $(document).ready( function () {
         closeOnCancel: true,
         showLoaderOnConfirm: true
     }).then(function (result) {
+        console.log(result);
         if (result.value) {
             var url = '/hapustipeproperti';
             $.post(url, {

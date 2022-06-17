@@ -102,7 +102,7 @@ class TipepropertiController extends Controller
         }
         catch(\PDOException $e){
             $msg ="Gagal mengubah data.";
-            return redirect()->route('tipepropertis.index')->with('error', $msg);
+            return response()->json(['error' => 'Error'.$msg]);
         }
     }
 
