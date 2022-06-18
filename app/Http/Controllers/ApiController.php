@@ -509,8 +509,12 @@ class ApiController extends Controller
             if($request->get('idbh') != '0'){
                 $listing->bentuk_harga_idbentuk_harga = $request->get('idbh');
             }
-            $listing->jenis_surat_idjenis_surat = $request->get('idjs');
-            $listing->tipe_properti_idtipe_properti = $request->get('idtp');
+            if($request->get('idjs') != '0'){
+                $listing->jenis_surat_idjenis_surat = $request->get('idjs');
+            }
+            if($request->get('idtp') != '0'){
+                $listing->tipe_properti_idtipe_properti = $request->get('idtp');
+            }
             if($request->get('idjl') != '0'){
                 $listing->jenis_lantai_idjenis_lantai = $request->get('idjl');
             }
