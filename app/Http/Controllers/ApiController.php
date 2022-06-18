@@ -506,10 +506,14 @@ class ApiController extends Controller
             $listing->perabotan = $request->get('perabotan');
             $listing->komisi = $request->get('komisi');
             $listing->pasang_banner = $request->get('banner');
-            $listing->bentuk_harga_idbentuk_harga = $request->get('idbh');
+            if($request->get('idbh') != '0'){
+                $listing->bentuk_harga_idbentuk_harga = $request->get('idbh');
+            }
             $listing->jenis_surat_idjenis_surat = $request->get('idjs');
             $listing->tipe_properti_idtipe_properti = $request->get('idtp');
-            $listing->jenis_lantai_idjenis_lantai = $request->get('idjl');
+            if($request->get('idjl') != '0'){
+                $listing->jenis_lantai_idjenis_lantai = $request->get('idjl');
+            }
             $listing->catatan = $request->get('catatan');
             $listing->jenis_listing = $request->get('jenislisting');
             $listing->judul = $request->get('judul');
@@ -517,8 +521,8 @@ class ApiController extends Controller
             if($request->hasFile('fotoutama')){
                 $fotoLama = Foto::where('path',$listing->foto_utama)->delete();
                 $dest='public/images/listing/'.$listing->foto_utama;
-                if(file_exists($dest)){
-                    @unlink($dest); 
+                if(File::exists('public/images/listing/'.$listing->foto_utama)){
+                    File::delete('public/images/listing/'.$listing->foto_utama);
                 }
                 $file=$request->file('fotoutama');
                 $imgFolder='public/images/listing/';
