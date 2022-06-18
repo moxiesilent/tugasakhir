@@ -282,9 +282,9 @@ class ApiController extends Controller
 
     public function bookmark($idagen){
         $getidlisting = DB::table('bookmarks')->where('agen_idagen',$idagen)->get();
-        $listing;
+        $listing = [];
         foreach($getidlisting as $idl){
-            $listing = Listing::where('idlisting',$idl->listings_idlisting)->where('status','Available')->get();
+            $listing[] = Listing::where('idlisting', $idl->listings_idlisting)->where('status','Available')->get();
         }
         return response()->json(['message'=>'Success', 'listing'=>$listing]);
     }
