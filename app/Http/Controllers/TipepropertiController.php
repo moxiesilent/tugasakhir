@@ -102,7 +102,7 @@ class TipepropertiController extends Controller
         }
         catch(\PDOException $e){
             $msg ="Gagal mengubah data.";
-            return response()->json(['error' => 'Error'.$msg]);
+            return redirect()->route('tipepropertis.index')->with('error', $msg);
         }
     }
 
@@ -122,14 +122,19 @@ class TipepropertiController extends Controller
         if(auth()->user()->jabatan != 'admin'){
             abort(403);
         }
-        try{
             $tipeproperti = Tipeproperti::find($request->id);
-            $tipeproperti->delete();
-            return redirect()->route('tipepropertis.index')->with('status','data berhasil dihapus');       
-        }
-        catch(\PDOException $e){
-            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('tipepropertis.index')->with('error', $msg);
-        }
+            // $anu = $tipeproperti->delete();
+            // dd($anu);
+            try{
+                $tipeproperti->delete();
+                $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+
+                // return response()->json(['sukses']);
+                return response()->json(array('status'=>'sukses'));
+            } catch (\PDOException $e){
+                $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+                return response()->json(array('status'=>'gagal'));
+            }
+        
     }
 }

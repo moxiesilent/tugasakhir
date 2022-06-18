@@ -198,7 +198,7 @@ class ApiController extends Controller
     }
 
     public function tampilMyListing($idagen){
-        $listing = DB::table('listings')->where('agen_idagen', $idagen)->where('status','Available')->orderBy('idlisting','desc')->get();
+        $listing = DB::table('listings')->where('agen_idagen', $idagen)->orderBy('idlisting','desc')->get();
         return response()->json(['message'=>"Success", 'listing'=>$listing]);
     }
 
