@@ -551,9 +551,9 @@ class ApiController extends Controller
             $fotoutama = Listing::where('idlisting',$idlisting)->select('foto_utama')->get();
             
             $foto = Foto::where('listings_idlisting',$idlisting)->get();
-            dd($fotoutama);
             foreach($foto as $f){
-                if($fotoutama != $f->path){
+                if($fotoutama[0]->foto_utama != $f->path){
+                    dd($fotoutama." | ".$f->path);
                     if(File::exists('public/images/listing/'.$f->path)){
                         File::delete('public/images/listing/'.$f->path);
                         $f->delete();
