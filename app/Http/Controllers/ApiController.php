@@ -552,7 +552,7 @@ class ApiController extends Controller
             
             $foto = Foto::where('listings_idlisting',$idlisting)->get();
             foreach($foto as $f){
-                if($fotoutama != $f->path){
+                if($fotoutama->foto_utama != $f->path){
                     if(File::exists('public/images/listing/'.$f->path)){
                         File::delete('public/images/listing/'.$f->path);
                         $f->delete();
