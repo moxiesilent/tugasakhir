@@ -182,7 +182,7 @@ class ApiController extends Controller
 
     public function tampilHalamanprofil($idagen){
         $calonpembeli = Calonpembeli::where('agen_idagen',$idagen)->count('idpelanggan');
-        $listing = Listing::where('agen_idagen', $idagen)->where('status','Available')->count('idlisting');
+        $listing = Listing::where('agen_idagen', $idagen)->count('idlisting');
         return response()->json(['message' => 'Success', 'calonpembeli' => $calonpembeli, 'listing'=>$listing]);
     }
 
