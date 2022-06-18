@@ -369,6 +369,7 @@ class ListingController extends Controller
             $listing = Listing::find($request->id);
             $listing->status = 'Pending';
             $listing->save();
+            $bookmark = DB::table('bookmarks')->where('listings_idlisting',$request->id)->delete();
             return redirect('listings/'.$listing->id)->with('status','status listing berhasil diubah');
         }
         catch(\PDOException $e){
