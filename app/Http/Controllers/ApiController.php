@@ -549,7 +549,7 @@ class ApiController extends Controller
             return response()->json(['message' => 'Success']);        
         }
         catch(\PDOException $e){
-            return response()->json(['message' => 'Error'.$e]);
+            return response()->json(['message' => 'Error']);
         }
     }   
 
