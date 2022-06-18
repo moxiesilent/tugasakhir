@@ -122,19 +122,14 @@ class TipepropertiController extends Controller
         if(auth()->user()->jabatan != 'admin'){
             abort(403);
         }
-            $tipeproperti = Tipeproperti::find($request->id);
-            // $anu = $tipeproperti->delete();
-            // dd($anu);
-            try{
-                $tipeproperti->delete();
-                $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-
-                // return response()->json(['sukses']);
-                return response()->json(array('status'=>'sukses'));
-            } catch (\PDOException $e){
-                $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-                return response()->json(array('status'=>'gagal'));
-            }
-        
+        $tipeproperti = Tipeproperti::find($request->id);
+        try{
+            $tipeproperti->delete();
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return response()->json(['message'=>'success']);
+        } catch (\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return response()->json(['message'=>'error']);
+        }
     }
 }

@@ -206,7 +206,7 @@ $(document).ready( function () {
                 id:id,
                 },
             function (data) {
-                if(data.status != 'error'){
+                if(data.message != 'error'){
                     swal(
                     'Berhasil!',
                     'Data berhasil dihapus.',
