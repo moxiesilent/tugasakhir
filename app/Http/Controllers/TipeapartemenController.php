@@ -123,11 +123,11 @@ class TipeapartemenController extends Controller
         try{
             $tipeapartemen = Tipeapartemen::find($request->id);
             $tipeapartemen->delete();
-            return redirect()->route('tipeapartemens.index')->with('status','data berhasil dihapus');       
+            return response()->json(['message'=>'success']);       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('tipeapartemens.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 }

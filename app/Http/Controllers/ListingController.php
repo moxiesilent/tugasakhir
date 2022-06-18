@@ -295,8 +295,7 @@ class ListingController extends Controller
             return redirect()->route('listings.index')->with('status','data berhasil dihapus');       
         }
         catch(\PDOException $e){
-            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('listings.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 
@@ -343,8 +342,7 @@ class ListingController extends Controller
             return redirect('listings/'.$listing->id)->with('status','status listing berhasil diubah');
         }
         catch(\PDOException $e){
-            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('listings.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 
@@ -359,8 +357,7 @@ class ListingController extends Controller
             return redirect('listings/'.$listing->id)->with('status','status listing berhasil diubah');
         }
         catch(\PDOException $e){
-            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('listings.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 
@@ -375,8 +372,7 @@ class ListingController extends Controller
             return redirect('listings/'.$listing->id)->with('status','status listing berhasil diubah');
         }
         catch(\PDOException $e){
-            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('listings.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 }

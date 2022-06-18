@@ -118,11 +118,11 @@ class BentukhargaController extends Controller
         try{
             $bentukharga = Bentukharga::find($request->id);
             $bentukharga->delete();
-            return redirect()->route('bentukhargas.index')->with('status','data berhasil dihapus');       
+            return response()->json(['message'=>'success']);       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('bentukhargas.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 }

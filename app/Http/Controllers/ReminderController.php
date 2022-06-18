@@ -140,11 +140,11 @@ class ReminderController extends Controller
         try{
             $reminder = Reminder::find($request->id);
             $reminder->delete();
-            return redirect()->route('reminders.index')->with('status','data berhasil dihapus');       
+            return response()->json(['message'=>'success']);       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('reminders.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 }

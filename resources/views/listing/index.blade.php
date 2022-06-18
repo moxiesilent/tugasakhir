@@ -223,13 +223,21 @@ $(document).ready( function () {
                 id:id,
                 },
             function (data) {
-                swal(
-                'Berhasil!',
-                'Data berhasil dihapus.',
-                'success'
-                ).then(function () {
-                    location.reload();
-                })
+                if(data.message != 'error'){
+                    swal(
+                    'Berhasil!',
+                    'Data berhasil dihapus.',
+                    'success'
+                    ).then(function () {
+                        location.reload();
+                    })
+                }else{
+                    swal(
+                    'Error!!',
+                    'Data tidak bisa dihapus. Data masih terpakai di tempat lain.',
+                    'error'
+                    )
+                }
             });
         } else if(result.dismiss) {
             swal(

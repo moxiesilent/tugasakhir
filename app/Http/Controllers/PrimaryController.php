@@ -193,11 +193,11 @@ class PrimaryController extends Controller
             $idprimary = $primary->idprimary;
             $foto_primary = DB::table('foto_primarys')->where('primarys_idprimary',$idprimary)->delete();
             $primary->delete();
-            return redirect()->route('primarys.index')->with('status','data berhasil dihapus');       
+            return response()->json(['message'=>'success']);       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('primarys.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 }

@@ -122,8 +122,8 @@ class TipepropertiController extends Controller
         if(auth()->user()->jabatan != 'admin'){
             abort(403);
         }
-        $tipeproperti = Tipeproperti::find($request->id);
         try{
+            $tipeproperti = Tipeproperti::find($request->id);
             $tipeproperti->delete();
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
             return response()->json(['message'=>'success']);

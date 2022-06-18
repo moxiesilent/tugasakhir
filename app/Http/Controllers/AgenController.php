@@ -183,11 +183,11 @@ class AgenController extends Controller
         try{
             $agen = User::find($request->id);
             $agen->delete();
-            return redirect()->route('agens.index')->with('status','data berhasil dihapus');       
+            return response()->json(['message'=>'success']);       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('agens.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 

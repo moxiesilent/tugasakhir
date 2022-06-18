@@ -119,11 +119,11 @@ class LantaiController extends Controller
         try{
             $lantai = Lantai::find($request->id);
             $lantai->delete();
-            return redirect()->route('lantais.index')->with('status','data berhasil dihapus');       
+            return response()->json(['message'=>'success']);       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('lantais.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 }

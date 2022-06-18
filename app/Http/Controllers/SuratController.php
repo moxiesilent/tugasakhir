@@ -124,11 +124,11 @@ class SuratController extends Controller
         try{
             $surat = Surat::find($request->id);
             $surat->delete();
-            return redirect()->route('surats.index')->with('status','data surat berhasil dihapus');       
+            return response()->json(['message'=>'success']);       
         }
         catch(\PDOException $e){
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
-            return redirect()->route('surats.index')->with('error', $msg);
+            return response()->json(['message'=>'error']);
         }
     }
 }
