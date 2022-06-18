@@ -537,7 +537,7 @@ class ApiController extends Controller
                 $imgFolder='public/images/listing/';
                 $imgFile=time().'_'.$file->getClientOriginalName();
                 $file->move($imgFolder,$imgFile);
-                dd($listing->foto_utama=$imgFile);
+                $listing->foto_utama=$imgFile;
 
                 $foto = new Foto();
                 $foto->listings_idlisting = $idlisting;
