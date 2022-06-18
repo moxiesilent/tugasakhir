@@ -641,10 +641,14 @@ class ApiController extends Controller
             $data->perabotan = $request->get('perabotan');
             $data->komisi = $request->get('komisi');
             $data->pasang_banner = $request->get('banner');
-            $data->bentuk_harga_idbentuk_harga = $request->get('idbh');
+            if($request->get('idbh') != 0){
+                $data->bentuk_harga_idbentuk_harga = $request->get('idbh');
+            }
             $data->jenis_surat_idjenis_surat = $request->get('idjs');
             $data->tipe_properti_idtipe_properti = $request->get('idtp');
-            $data->jenis_lantai_idjenis_lantai = $request->get('idjl');
+            if($request->get('idjl') != 0){
+                $data->jenis_lantai_idjenis_lantai = $request->get('idjl');
+            }
             $data->kelurahans_idkelurahan = $request->get('kelurahan');
             $data->catatan = $request->get('catatan');
             $data->status = 'Available';
