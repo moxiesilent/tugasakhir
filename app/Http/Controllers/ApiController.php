@@ -527,9 +527,12 @@ class ApiController extends Controller
                 //     $fotoLama = Foto::where('path',$listing->foto_utama)->delete();
                 // }
                 $dest='public/images/listing/'.$listing->foto_utama;
-                if(File::exists('public/images/listing/'.$listing->foto_utama)){
-                    File::delete('public/images/listing/'.$listing->foto_utama);
+                if(file_exists($dest)){
+                    @unlink($dest); 
                 }
+                // if(File::exists('public/images/listing/'.$listing->foto_utama)){
+                //     File::delete('public/images/listing/'.$listing->foto_utama);
+                // }
                 $file=$request->file('fotoutama');
                 $imgFolder='public/images/listing/';
                 $imgFile=time().'_'.$file->getClientOriginalName();
