@@ -551,15 +551,15 @@ class ApiController extends Controller
             $fotoutama = Listing::where('idlisting',$idlisting)->select('foto_utama')->get();
             
             $foto = Foto::where('listings_idlisting',$idlisting)->get();
-            dd($foto[0]->path);
-            // foreach($foto as $f){
-            //     if($fotoutama != $f->path){
-            //         if(File::exists('public/images/listing/'.$f->path)){
-            //             File::delete('public/images/listing/'.$f->path);
-            //             $f->delete();
-            //         }
-            //     }
-            // }
+            dd($fotoutama);
+            foreach($foto as $f){
+                if($fotoutama != $f->path){
+                    if(File::exists('public/images/listing/'.$f->path)){
+                        File::delete('public/images/listing/'.$f->path);
+                        $f->delete();
+                    }
+                }
+            }
             return response()->json(['message' => 'Success']);
         } catch (\PDOException $e){
             return response()->json(['message' => 'Error']);
