@@ -88,7 +88,7 @@
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
                                     <br>
                                     @if($listing->tipepropertis->jenis_properti == 'Apartemen')
-                                        @if($listing->tipeapartemens['tipe_apartemen'] != null)
+                                        @if($listing->tipeapartemens != null)
                                             <p>Tipe Apartemen : <b>{{$listing->tipeapartemens['tipe_apartemen']}}</b></p>
                                         @else
                                             <p>Tipe Apartemen : <b>-</b></p>
