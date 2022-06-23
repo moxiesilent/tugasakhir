@@ -85,6 +85,15 @@
             </div>
         </a>
     </li>
+
+    <li class="menu">
+        <a href="{{url('laporan')}}" aria-expanded="false" class="dropdown-toggle">
+            <div class="">
+                <i data-feather="archive"></i>
+                <span> Laporan Listing</span>
+            </div>
+        </a>
+    </li>
     
 </ul>
 @endsection
@@ -114,7 +123,7 @@
                     </div>
                     <div class="widget-content row col-md-12">
                         <div class="w-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <i data-feather="trending-up"></i>
                         </div>
                         <h2 class="ml-3 text-white">{{$listing}}</h2>
                     </div>
@@ -128,7 +137,7 @@
                     </div>
                     <div class="widget-content row col-md-12">
                         <div class="w-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <i data-feather="archive"></i>
                         </div>
                         <h2 class="ml-3 text-white">{{$terjual}}</h2>
                     </div>
@@ -142,7 +151,7 @@
                     </div>
                     <div class="widget-content row col-md-12">
                         <div class="w-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <i data-feather="trending-up"></i>
                         </div>
                         <h2 class="ml-3 text-white">{{$primary}}</h2>
                     </div>
@@ -170,7 +179,7 @@
                     </div>
                     <div class="widget-content row col-md-12">
                         <div class="w-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <i data-feather="clock"></i>
                         </div>
                         <h2 class="ml-3 text-white">{{$listingpending}}</h2>
                     </div>

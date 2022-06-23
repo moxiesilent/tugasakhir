@@ -64,4 +64,12 @@ class User extends Authenticatable
     public function calonpembelis(){
         return $this->hasMany("App\Models\Calonpembeli","agen_idagen","idagen");
     }
+
+    public function laporansPemilik(){
+        return $this->hasMany("App\Models\Laporan","agens_pemilik","idagen");
+    }
+
+    public function laporansPenjual(){
+        return $this->hasMany("App\Models\Laporan","agens_penjual","idagen");
+    }
 }

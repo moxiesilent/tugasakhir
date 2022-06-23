@@ -6,6 +6,10 @@ use App\Models\Agen;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\User;
+use App\Models\Laporan;
+use App\Models\Listing;
+use App\Models\Reminder;
+use App\Models\Calonpembeli;
 use Illuminate\Support\Facades\Hash;
 
 class AgenController extends Controller
@@ -93,7 +97,15 @@ class AgenController extends Controller
             abort(403);
         }
         $data = $agen;
-        return view("agen.show",compact('data'));
+        $laporan = Laporan::where('agens_pemilik',$agen->idagen)->orWhere('agens_penjual',$agen->idagen)->get();
+        $cp = Calonpembeli::where('agen_idagen',$agen->idagen)->count('idpelanggan');
+        $komisiPrimary = Reminder::where('agens_idagen',$agen->idagen)->sum('total_komisi');
+        $laporanPrimary = Reminder::where('agens_idagen',$agen->idagen)->get();
+        $totalListing = Listing::where('agen_idagen',$agen->idagen)->count('idlisting');
+        $laporanPemilik = Laporan::where('agens_pemilik',$agen->idagen)->sum('komisi_agen_pemilik');
+        $laporanPenjual = Laporan::where('agens_penjual',$agen->idagen)->sum('komisi_agen_penjual');
+        $totalKomisi = $laporanPemilik + $laporanPenjual + $komisiPrimary;
+        return view("agen.show",compact('data','totalKomisi','cp','totalListing','laporan'));
     }
 
     /**
@@ -205,5 +217,19 @@ class AgenController extends Controller
             $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
             return redirect('agens/'.$request->id)->with('error', $msg);
         }
+    }
+
+    public function detailLaporan($id){
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
+        $agen = User::find($id);
+        $laporanListing = Laporan::where('agens_pemilik',$id)->orWhere('agens_penjual',$id)->get();
+        $laporanPrimary = Reminder::where('agens_idagen',$id)->get();
+        $komisiPrimary = Reminder::where('agens_idagen',$id)->sum('total_komisi');
+        $laporanPemilik = Laporan::where('agens_pemilik',$id)->sum('komisi_agen_pemilik');
+        $laporanPenjual = Laporan::where('agens_penjual',$id)->sum('komisi_agen_penjual');
+        $komisiListing = $laporanPemilik + $laporanPenjual;
+        return view("agen.laporan",compact('laporanListing','laporanPrimary','komisiPrimary','komisiListing','agen'));
     }
 }

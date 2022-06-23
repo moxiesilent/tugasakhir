@@ -85,6 +85,15 @@
             </div>
         </a>
     </li>
+
+    <li class="menu">
+        <a href="{{url('laporan')}}" aria-expanded="false" class="dropdown-toggle">
+            <div class="">
+                <i data-feather="archive"></i>
+                <span> Laporan Listing</span>
+            </div>
+        </a>
+    </li>
     
 </ul>
 @endsection

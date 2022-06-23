@@ -13,6 +13,7 @@ use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\TipeapartemenController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::resource('bentukhargas',BentukhargaController::class)->middleware('auth')
 Route::resource('agens',AgenController::class)->middleware('auth');
 Route::resource('reminders',ReminderController::class)->middleware('auth');
 Route::resource('listings',ListingController::class)->middleware('auth');
+Route::resource('laporans',LaporanController::class)->middleware('auth');
 
 Route::post('/hapussurat', [ SuratController::class, "hapussurat" ])->name('hapussurat')->middleware('auth');
 Route::post('/hapustipeproperti', [ TipepropertiController::class, "hapustipeproperti" ])->name('hapustipeproperti')->middleware('auth');
@@ -65,6 +67,8 @@ Route::get('/primary', [ PrimaryController::class, "index" ])->name('primary')->
 Route::get('/agen', [ AgenController::class, "index" ])->name('agen')->middleware('auth');
 Route::get('/reminder', [ ReminderController::class, "index" ])->name('reminder')->middleware('auth');
 Route::get('/listing', [ ListingController::class, "index" ])->name('listing')->middleware('auth');
+Route::get('/laporan', [ LaporanController::class, "index" ])->name('laporan')->middleware('auth');
+Route::get('/detaillaporanagen/{id}', [ AgenController::class, "detailLaporan" ])->name('detaillaporanagen')->middleware('auth');
 Route::get('/tipeapartemen', [ TipeapartemenController::class, "index" ])->name('tipeapartemen')->middleware('auth');
 Route::get('/view/listing/{id}',[ FrontEndController::class, "viewFrontEnd"]);
 

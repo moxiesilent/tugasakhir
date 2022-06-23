@@ -40,4 +40,8 @@ class Listing extends Model
         return $this->belongsTo("App\Models\Kelurahan","kelurahans_idkelurahan");
     }
 
+    public function laporans(){
+        return $this->hasMany("App\Models\Laporan","listings_idlisting","idlaporan");
+    }
+
 }
