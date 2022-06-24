@@ -109,8 +109,8 @@
                     </div>
                     <br>
                     <h6>Kode Listing : {{$data->listings != null ? $data->listings['kode_listing'] : '-'}}</h6>
-                    <h6>Agen Pemilik Listing : {{$data->agens_pemilik != null ? $data->agens_pemilik['nama'] : '-'}}</h6>
-                    <h6>Agen Penjual Listing : {{$data->agens_penjual != null ? $data->agens_penjual['nama'] : '-'}}</h6>
+                    <h6>Agen Pemilik Listing : {{$data->agensPemilik != null ? $data->agensPemilik['nama'] : '-'}}</h6>
+                    <h6>Agen Penjual Listing : {{$data->agensPenjual != null ? $data->agensPenjual['nama'] : '-'}}</h6>
                     <h6>Harga Tejual : Rp. {{number_format($data->harga_terjual)}}</h6>
                     <h6>Tanggal Kesepakatan : {{$data->tanggal_deal}}</h6>
                     <h6>Komisi Agen Pemilik Listing : {{$data->komisi_agen_pemilik != null ? $data->komisi_agen_pemilik : '-'}}</h6>
