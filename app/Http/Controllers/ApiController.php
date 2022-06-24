@@ -693,7 +693,7 @@ class ApiController extends Controller
 
     public function tampilLaporan(Request $request)
     {
-        $laporan = Laporan::query()->where('agens_pemilik',$request->get('idagen'))->orWhere('agens_penjual',$request->get('idagen'));
+        $laporan = Laporan::query();
         
         if($request->get('tanggalAwal') != "" && $request->get('tanggalAkhir') != ""){
             // $laporan = $laporan->whereBetween('tanggal_deal', [$request->get('tanggalAwal'),$request->get('tanggalAkhir')]);
@@ -701,7 +701,7 @@ class ApiController extends Controller
                                 ->where('tanggal_deal','<=',$request->get('tanggalAkhir'));
         }
 
-        $laporan = $laporan->orderBy('idlaporan','desc')->get();
+        $laporan = $laporan->where('agens_pemilik',$request->get('idagen'))->orWhere('agens_penjual',$request->get('idagen'))->orderBy('idlaporan','desc')->get();
         $listingSold = Listing::where('agen_idagen',$request->get('idagen'))->where('status','Sold')->get();
         $jumListingSold = $listingSold->count('idlisting');
         
