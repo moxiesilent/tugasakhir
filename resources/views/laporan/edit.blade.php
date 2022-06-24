@@ -108,16 +108,7 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="listing">Listing</label>
-                        <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="listing" required>
-                            <option value="">-- Pilih Listing --</option>
-                            @foreach($listing as $l)
-                                @if($l->idlisting == $data->listings_idlisting)
-                                    <option value="{{$l->idlisting}}" selected>{{$l->kode_listing}}</option>
-                                @else
-                                    <option value="{{$l->idlisting}}">{{$l->kode_listing}}</option>
-                                @endif
-                            @endforeach
-                        </select>
+                        <input id="listing" type="text" name="listing" placeholder="(angka)" value="{{$data->listings != null ? $data->listings['kode_listing'] : 'Data listing bukan dari kantor XMTG'}}" class="form-control" disabled>
                     </div>
                     <div class="form-group">
                         <label for="agenPemilik">Agen Pemilik</label>

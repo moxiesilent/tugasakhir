@@ -110,7 +110,8 @@ class LaporanController extends Controller
             abort(403);
         }
         $data = $laporan;
-        return view("laporan.edit",compact('data'));
+        $agen = User::all();
+        return view("laporan.edit",compact('data','agen'));
     }
 
     /**
