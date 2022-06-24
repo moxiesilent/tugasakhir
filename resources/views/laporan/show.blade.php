@@ -103,28 +103,33 @@
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
             <div class="widget-content widget-content-area br-6">
                 <div style="margin:20px;">
-                <div class="" style="margin-bottom:20px;">
-                    <div class="text-center">
-                        <h4><b>Detail Laporan Penjualan Listing</b></4>
+                    <div class="" style="margin-bottom:20px;">
+                        <div class="text-center">
+                            <h4><b>Detail Laporan Penjualan Listing</b></4>
+                        </div>
+                        <br>
+                        <h6>Kode Listing : {{$data->listings != null ? $data->listings['kode_listing'] : '-'}}</h6>
+                        <h6>Agen Pemilik Listing : {{$data->agensPemilik != null ? $data->agensPemilik['nama'] : '-'}}</h6>
+                        <h6>Agen Penjual Listing : {{$data->agensPenjual != null ? $data->agensPenjual['nama'] : '-'}}</h6>
+                        <h6>Harga Terjual : Rp. {{number_format($data->harga_jual)}}</h6>
+                        <h6>Tanggal Kesepakatan : {{date('d-m-Y',strtotime($data->tanggal_deal))}}</h6>
+                        <h6>Komisi Agen Pemilik Listing : {{$data->komisi_agen_pemilik != null ? number_format($data->komisi_agen_pemilik) : '-'}}</h6>
+                        <h6>Komisi Agen Penjual Listing : {{$data->komisi_agen_penjual != null ? number_format($data->komisi_agen_penjual) : '-'}}</h6>
+                        <h6>Nama Pembeli : {{$data->nama_pembeli}}</h6>
+                        <h6>Nama Notaris : {{$data->nama_notaris}}</h6>
+                        <h6>Jumlah Uang Muka : Rp. {{number_format($data->dp)}}</h6>
+                        <h6>Keterangan : </h6>
+                        <?php echo $data->keterangan?>
                     </div>
-                    <br>
-                    <h6>Kode Listing : {{$data->listings != null ? $data->listings['kode_listing'] : '-'}}</h6>
-                    <h6>Agen Pemilik Listing : {{$data->agensPemilik != null ? $data->agensPemilik['nama'] : '-'}}</h6>
-                    <h6>Agen Penjual Listing : {{$data->agensPenjual != null ? $data->agensPenjual['nama'] : '-'}}</h6>
-                    <h6>Harga Terjual : Rp. {{number_format($data->harga_jual)}}</h6>
-                    <h6>Tanggal Kesepakatan : {{date('d-m-Y',strtotime($data->tanggal_deal))}}</h6>
-                    <h6>Komisi Agen Pemilik Listing : {{$data->komisi_agen_pemilik != null ? number_format($data->komisi_agen_pemilik) : '-'}}</h6>
-                    <h6>Komisi Agen Penjual Listing : {{$data->komisi_agen_penjual != null ? number_format($data->komisi_agen_penjual) : '-'}}</h6>
-                    <h6>Nama Pembeli : {{$data->nama_pembeli}}</h6>
-                    <h6>Nama Notaris : {{$data->nama_notaris}}</h6>
-                    <h6>Jumlah Uang Muka : Rp. {{number_format($data->dp)}}</h6>
-                    <h6>Keterangan : </h6>
-                    <?php echo $data->keterangan?>
-                </div>
-                <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
+                            <a href="{{url('laporans/'.$data->idlaporan.'/edit')}}"><button class="btn btn-warning">Ubah</button></a>
+                            <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idlaporan}}')">Hapus</button>
+                        </div>
+                        <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
                             <a href="{{url('laporans')}}" class="btn btn-secondary-light"> Kembali</a>
                         </div>
-
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,7 +153,7 @@
         showLoaderOnConfirm: true
     }).then(function (result) {
         if (result.value) {
-            var url = '/hapuslantai';
+            var url = '/hapuslaporan';
             $.post(url, {
 
                 _token: token,

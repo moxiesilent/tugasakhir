@@ -49,7 +49,7 @@ class LaporanController extends Controller
             abort(403);
         }
         try{
-            if($request->get('agenPemilik') != null && $request->get('agenPenjual') != null){
+            if($request->get('agenPemilik') != null || $request->get('agenPenjual') != null){
                 $data = new Laporan();
                 $data->listings_idlisting = $request->get('listing');
                 $data->agens_pemilik = $request->get('agenPemilik');
@@ -106,7 +106,11 @@ class LaporanController extends Controller
      */
     public function edit(Laporan $laporan)
     {
-        //
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
+        $data = $laporan;
+        return view("laporan.edit",compact('data'));
     }
 
     /**
@@ -118,7 +122,33 @@ class LaporanController extends Controller
      */
     public function update(Request $request, Laporan $laporan)
     {
-        //
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
+        try{
+            if($request->get('agenPemilik') != null || $request->get('agenPenjual') != null){
+                $laporan->listings_idlisting = $request->get('listing');
+                $laporan->agens_pemilik = $request->get('agenPemilik');
+                $laporan->agens_penjual = $request->get('agenPenjual');
+                $laporan->tanggal_deal = $request->get('tanggal');
+                $laporan->komisi_agen_pemilik = $request->get('komisiPemilik');
+                $laporan->komisi_agen_penjual = $request->get('komisiPenjual');
+                $laporan->harga_jual = $request->get('hargaJual');
+                $laporan->nama_pembeli = $request->get('namaPembeli');
+                $laporan->nama_notaris = $request->get('namaNotaris');
+                $laporan->dp = $request->get('dp');
+                $laporan->keterangan = $request->get('keterangan');
+                $laporan->save();
+
+                return redirect()->route('laporans.index')->with('status','laporan baru telah ditambahkan'); 
+            } else{
+                return redirect()->route('laporans.index')->with('error', "Pemilik atau penjual listing harus dari kantor Xavier Marks Tjandra Grande");
+            }    
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menambah data. ";
+            return redirect()->route('laporans.index')->with('error', $msg);
+        }
     }
 
     /**
@@ -130,5 +160,21 @@ class LaporanController extends Controller
     public function destroy(Laporan $laporan)
     {
         //
+    }
+
+    public function hapuslaporan(Request $request)
+    {
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
+        try{
+            $laporan = Laporan::find($request->id);
+            $laporan->delete();
+            return response()->json(['message'=>'success']);       
+        }
+        catch(\PDOException $e){
+            $msg ="Gagal menghapus data karena data masih terpakai di tempat lain. ";
+            return response()->json(['message'=>'error']);
+        }
     }
 }

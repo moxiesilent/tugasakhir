@@ -304,7 +304,7 @@ $(document).ready( function () {
         showLoaderOnConfirm: true
     }).then(function (result) {
         if (result.value) {
-            var url = '/hapuslantai';
+            var url = '/hapuslaporan';
             $.post(url, {
 
                 _token: token,

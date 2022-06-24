@@ -50,6 +50,7 @@ Route::post('/hapusprimary', [ PrimaryController::class, "hapusprimary" ])->name
 Route::post('/hapusbentukharga', [ BentukhargaController::class, "hapusbentukharga" ])->name('hapusbentukharga')->middleware('auth');
 Route::post('/hapuslantai', [ LantaiController::class, "hapuslantai" ])->name('hapuslantai')->middleware('auth');
 Route::post('/hapusagen', [ AgenController::class, "hapusagen" ])->name('hapusagen')->middleware('auth');
+Route::post('/hapuslaporan', [ LaporanController::class, "hapuslaporan" ])->name('hapuslaporan')->middleware('auth');
 Route::post('/hapusreminder', [ ReminderController::class, "hapusreminder" ])->name('hapusreminder')->middleware('auth');
 Route::post('/resetpassword', [ AgenController::class, "resetpassword" ])->name('resetpassword')->middleware('auth');
 Route::post('/hapuslisting', [ ListingController::class, "hapuslisting" ])->name('hapuslisting')->middleware('auth');
