@@ -175,7 +175,7 @@ class LaporanController extends Controller
         }
         try{
             $laporan = Laporan::find($request->id);
-            $listing = Listing::where('idlisting', $laporan->listings_idlisting);
+            $listing = Listing::where('idlisting', $laporan->listings_idlisting)->first();
             $listing->status = 'Available';
             $listing->save();
             $laporan->delete();

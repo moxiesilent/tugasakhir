@@ -137,15 +137,8 @@
                                 <td>{{$d->idtipe_apartemen}}</td>
                                 <td>{{$d->tipe_apartemen}}</td>
                                 <td>
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('tipeapartemens/'.$d->idtipe_apartemen.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idtipe_apartemen}}')">&nbsp&nbsp&nbspHapus</button>
-                                        </div>
-                                    </div>
+                                    <a href="{{url('tipeapartemens/'.$d->idtipe_apartemen.'/edit')}}"><button class="btn btn-warning btn-sm p-2"><i data-feather="edit"></i></button></a>
+                                    <button class="btn btn-danger btn-sm p-2"><i data-feather="trash-2" onclick="hapus('{{csrf_token()}}','{{$d->idtipe_apartemen}}')"></i></button>
                                 </td>
                             </tr>
                             @endforeach

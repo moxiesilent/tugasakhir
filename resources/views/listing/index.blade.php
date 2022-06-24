@@ -131,11 +131,10 @@
                                 <th>Jenis Listing</th>
                                 <th>Tipe Properti</th>
                                 <th>L.Tanah</th>
-                                <th>L.Bangunan</th>
                                 <th>Harga</th>
                                 <th>Bentuk Harga</th>
                                 <th>Komisi</th>
-                                <th>Daerah</th>
+                                <th>Kelurahan</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -153,13 +152,6 @@
                                 </td>
                                 <td>{{$d->tipePropertis->jenis_properti}}</td>
                                 <td>{{$d->luas_tanah}} m<sup>2</sup></td>
-                                <td class="text-center">
-                                    @if($d->luas_bangunan != '')
-                                    {{$d->luas_bangunan}} m<sup>2</sup>
-                                    @else
-                                    -
-                                    @endif
-                                </td>
                                 <td class="text-right"><b>{{number_format($d->harga)}}</b></td>
                                 <td>
                                     @if($d->bentukHargas != null)
@@ -180,16 +172,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                            <a href="{{url('listings/'.$d->idlisting)}}"><button class="dropdown-item btn btn-primary">&nbsp&nbsp&nbspDetail</button></a><br>
-                                            <a href="{{url('listings/'.$d->idlisting.'/edit')}}"><button class="dropdown-item btn btn-warning">&nbsp&nbsp&nbspUbah</button></a><br>
-                                            <button class="dropdown-item btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$d->idlisting}}')">&nbsp&nbsp&nbspHapus</button>
-                                        </div>
-                                    </div>
+                                    <a href="{{url('listings/'.$d->idlisting)}}"><button class="btn btn-primary btn-sm p-2"><i data-feather="eye"></i></button></a>
+                                    <a href="{{url('listings/'.$d->idlisting.'/edit')}}"><button class="btn btn-warning btn-sm p-2"><i data-feather="edit"></i></button></a>
+                                    <button class="btn btn-danger btn-sm p-2"><i data-feather="trash-2" onclick="hapus('{{csrf_token()}}','{{$d->idlisting}}')"></i></button>
                                 </td>
                             </tr>
                             @endforeach

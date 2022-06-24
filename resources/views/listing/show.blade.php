@@ -215,11 +215,17 @@
                     </div><br>
                     <div class="row">
                         <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
-                            <a href="{{url('listings/'.$data->idlisting.'/edit')}}"><button class="btn btn-warning">Ubah</button></a>
-                            <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idlisting}}')">Hapus</button>
-                            <button class="btn btn-dark" onclick="terjual('{{csrf_token()}}','{{$data->idlisting}}')">Sold</button>
-                            <button class="btn btn-info" onclick="pending('{{csrf_token()}}','{{$data->idlisting}}')">Pending</button>
-                            <button class="btn btn-success" onclick="available('{{csrf_token()}}','{{$data->idlisting}}')">Available</button>
+                            @if($data->status == 'Sold')
+                                <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idlisting}}')"><i data-feather="trash-2"></i> Hapus</button>
+                            @elseif($data->status == 'Available')
+                                <a href="{{url('listings/'.$data->idlisting.'/edit')}}"><button class="btn btn-warning"><i data-feather="edit"></i> Ubah</button></a>
+                                <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idlisting}}')"><i data-feather="trash-2"></i> Hapus</button>
+                                <button class="btn btn-dark" onclick="pending('{{csrf_token()}}','{{$data->idlisting}}')"><i data-feather="clock"></i> Pending</button>
+                            @else
+                                <a href="{{url('listings/'.$data->idlisting.'/edit')}}"><button class="btn btn-warning"><i data-feather="edit"></i> Ubah</button></a>
+                                <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idlisting}}')"><i data-feather="trash-2"></i> Hapus</button>
+                                <button class="btn btn-success" onclick="available('{{csrf_token()}}','{{$data->idlisting}}')"><i data-feather="check-circle"></i> Available</button>
+                            @endif
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
                             <a href="{{url('listings')}}" class="btn btn-secondary-light"> Kembali</a>

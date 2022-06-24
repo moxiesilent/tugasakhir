@@ -7,6 +7,7 @@ use App\Models\Tipeproperti;
 use App\Models\Listing;
 use App\Models\Bentukharga;
 use App\Models\Primary;
+use App\Models\Reminder;
 use App\Models\Lantai;
 use App\Models\Provinsi;
 use App\Models\Kota;
@@ -18,6 +19,7 @@ use App\Models\Foto;
 use App\Models\Calonpembeli;
 use App\Models\User;
 use App\Models\Kpr;
+use App\Models\Laporan;
 use App\Models\Estimasi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -530,9 +532,6 @@ class ApiController extends Controller
                 if(file_exists($dest)){
                     @unlink($dest); 
                 }
-                // if(File::exists('public/images/listing/'.$listing->foto_utama)){
-                //     File::delete('public/images/listing/'.$listing->foto_utama);
-                // }
                 $file=$request->file('fotoutama');
                 $imgFolder='public/images/listing/';
                 $imgFile=time().'_'.$file->getClientOriginalName();
@@ -690,6 +689,24 @@ class ApiController extends Controller
         catch(\PDOException $e){
             return response()->json(['message' => 'Error', 'pesan'=>$e]);
         }
+    }
+
+    public function tampilLaporan(Request $request)
+    {
+        $laporan = Laporan::query()->where('agens_pemilik',$request->get('idagen'))->orWhere('agens_penjual',$request->get('idagen'));
+        
+        if($request->get('tanggalAwal') != "" && $request->get('tanggalAkhir')){
+            $laporan = $laporan->where('tanggal_deal','>=',$request->get('tanggalAwal'))->where('tanggal_deal','<=',$request->get('tanggalAkhir'));
+        }
+
+        $laporan = $laporan->orderBy('idlaporan','desc')->get();
+        $laporanPrimary = Reminder::where('agens_idagen',$request->get('idagen'))->get();
+        $komisiPrimary = Reminder::where('agens_idagen',$request->get('idagen'))->sum('total_komisi');
+        $laporanPemilik = Laporan::where('agens_pemilik',$request->get('idagen'))->sum('komisi_agen_pemilik');
+        $laporanPenjual = Laporan::where('agens_penjual',$request->get('idagen'))->sum('komisi_agen_penjual');
+
+        $komisiListing = $laporanPemilik + $laporanPenjual;
+        return response()->json(['message' => 'Success', 'laporan'=> $laporan, 'komisiListing'=> $komisiListing, 'komisiPrimary'=>$komisiPrimary]);
     }
 
 }

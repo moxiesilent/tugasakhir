@@ -165,10 +165,10 @@
                     <br>
                     <div class="row">
                         <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
-                            <a href="{{url('agens/'.$data->idagen.'/edit')}}"><button class="btn btn-warning">Ubah</button></a>
-                            <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idagen}}')">Hapus</button>
-                            <button class="btn btn-dark" onclick="resetpassword('{{csrf_token()}}','{{$data->idagen}}')">Reset Password</button>
-                            <a href="{{url('detaillaporanagen/'.$data->idagen)}}"><button class="btn btn-primary">Lihat Detail Laporan</button></a>
+                            <a href="{{url('agens/'.$data->idagen.'/edit')}}"><button class="btn btn-warning"><i data-feather="edit"></i> Ubah</button></a>
+                            <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idagen}}')"><i data-feather="trash-2"></i> Hapus</button>
+                            <button class="btn btn-dark" onclick="resetpassword('{{csrf_token()}}','{{$data->idagen}}')"><i data-feather="lock"></i> Reset Password</button>
+                            <a href="{{url('detaillaporanagen/'.$data->idagen)}}"><button class="btn btn-primary"><i data-feather="eye"></i> Lihat Detail Laporan</button></a>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
                             <a href="{{url('agens')}}" class="btn btn-secondary-light"> Kembali</a>

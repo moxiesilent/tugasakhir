@@ -33,6 +33,8 @@ Route::get('/estimasis/{idagen}', [ApiController::class, "getEstimasi"]);
 Route::get('/clearestimasi/{idestimasi}', [ApiController::class, "clearEstimasi"]);
 Route::get('/clearallestimasi/{idagen}', [ApiController::class, "clearAllEstimasi"]);
 
+Route::post('/laporan', [ApiController::class, "tampilLaporan"]);
+
 Route::get('/halamanutama', [ ApiController::class, "tampilHalamanUtama" ]);
 // Route::get('/halamanlisting/{idagen}', [ ApiController::class, "tampilHalamanListing" ]);
 Route::post('/halamanlisting', [ ApiController::class, "tampilHalamanListing" ]);
