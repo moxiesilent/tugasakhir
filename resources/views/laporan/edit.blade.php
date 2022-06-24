@@ -112,7 +112,7 @@
                     </div>
                     <div class="form-group">
                         <label for="agenPemilik">Agen Pemilik</label>
-                        <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="agenPemilik" required>
+                        <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="agenPemilik">
                             <option value="">-- Pilih Agen --</option>
                             @foreach($agen as $ag)
                                 @if($ag->jabatan != 'admin')
@@ -127,7 +127,7 @@
                     </div>
                     <div class="form-group">
                         <label for="agenPenjual">Agen Penjual</label>
-                        <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="agenPenjual" required>
+                        <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="agenPenjual">
                             <option value="">-- Pilih Agen --</option>
                             @foreach($agen as $ag)
                                 @if($ag->jabatan != 'admin')
