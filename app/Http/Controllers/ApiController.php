@@ -696,8 +696,9 @@ class ApiController extends Controller
         $laporan = Laporan::query()->where('agens_pemilik',$request->get('idagen'))->orWhere('agens_penjual',$request->get('idagen'));
         
         if($request->get('tanggalAwal') != "" && $request->get('tanggalAkhir') != ""){
-            $laporan = $laporan->whereDate('tanggal_deal','>=',$request->get('tanggalAwal'))
-                                ->whereDate('tanggal_deal','<=',$request->get('tanggalAkhir'));
+            $laporan = $laporan->whereBetween('tanggal_deal', [$request->get('tanggalAwal'),$request->get('tanggalAkhir')]);
+            // $laporan = $laporan->whereDate('tanggal_deal','>=',$request->get('tanggalAwal'))
+            //                     ->whereDate('tanggal_deal','<=',$request->get('tanggalAkhir'));
         }
 
         $laporan = $laporan->orderBy('idlaporan','desc')->get();
