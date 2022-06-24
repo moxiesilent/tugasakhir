@@ -51,7 +51,8 @@ class LaporanController extends Controller
         try{
             if($request->get('agenPemilik') != null || $request->get('agenPenjual') != null){
                 $listing = Listing::where('idlisting',$request->get('listing'))->get();
-                $komisi = $listing->komisi;
+                $komisi = $listing[0]['komisi'];
+                dd($komisi);
                 $data = new Laporan();
                 $data->listings_idlisting = $request->get('listing');
                 $data->agens_pemilik = $request->get('agenPemilik');
