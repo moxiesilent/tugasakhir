@@ -152,14 +152,14 @@
                                     @if($d->agensPemilik != null)
                                         {{$d->agensPemilik['nama']}}
                                     @else
-                                        bukan agen XMTG
+                                        -
                                     @endif
                                 </td>
                                 <td>
                                     @if($d->agensPenjual != null)
                                         {{$d->agensPenjual['nama']}}
                                     @else
-                                        bukan agen XMTG
+                                        -
                                     @endif
                                 </td>
                                 <td>{{number_format($d->harga_jual)}}</td>
