@@ -704,13 +704,14 @@ class ApiController extends Controller
         $jumListingSold = $listingSold->count('idlisting');
         
         $laporanPrimary = Reminder::where('agens_idagen',$request->get('idagen'))->get();
+        $jumPrimarySold = $laporanPrimary->count('idreminder');
         $komisiPrimary = Reminder::where('agens_idagen',$request->get('idagen'))->sum('total_komisi');
         $laporanPemilik = Laporan::where('agens_pemilik',$request->get('idagen'))->sum('komisi_agen_pemilik');
         $laporanPenjual = Laporan::where('agens_penjual',$request->get('idagen'))->sum('komisi_agen_penjual');
 
         $komisiListing = $laporanPemilik + $laporanPenjual;
         return response()->json(['message' => 'Success', 'laporan'=> $laporan, 'komisiListing'=> $komisiListing, 'komisiPrimary'=>$komisiPrimary,
-        'jumListingSold'=>$jumListingSold,'listingSold'=>$listingSold]);
+        'jumListingSold'=>$jumListingSold,'listingSold'=>$listingSold,'jumPrimarySold'=>$jumPrimarySold]);
     }
 
 }
