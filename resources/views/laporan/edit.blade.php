@@ -115,7 +115,7 @@
                         <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="agenPemilik" required>
                             <option value="">-- Pilih Agen --</option>
                             @foreach($agen as $ag)
-                                @if($ag->nama != 'admin')
+                                @if($ag->jabatan != 'admin')
                                     @if($ag->idagen == $data->agens_pemilik)
                                         <option value="{{$ag->idagen}}" selected>{{$ag->kode}} - {{$ag->nama}}</option>
                                     @else
@@ -130,7 +130,7 @@
                         <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="agenPenjual" required>
                             <option value="">-- Pilih Agen --</option>
                             @foreach($agen as $ag)
-                                @if($ag->nama != 'admin')
+                                @if($ag->jabatan != 'admin')
                                     @if($ag->idagen == $data->agens_penjual)
                                         <option value="{{$ag->idagen}}" selected>{{$ag->kode}} - {{$ag->nama}}</option>
                                     @else
