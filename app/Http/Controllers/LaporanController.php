@@ -55,8 +55,12 @@ class LaporanController extends Controller
                 $data->agens_pemilik = $request->get('agenPemilik');
                 $data->agens_penjual = $request->get('agenPenjual');
                 $data->tanggal_deal = $request->get('tanggal');
-                $data->komisi_agen_pemilik = $request->get('komisiPemilik');
-                $data->komisi_agen_penjual = $request->get('komisiPenjual');
+                if($request->get('agenPemilik') != null){
+                    $data->komisi_agen_pemilik = $request->get('hargaJual') * 25 / 100;
+                }
+                if($request->get('agenPenjual') != null){
+                    $data->komisi_agen_penjual = $request->get('hargaJual') * 25 / 100;
+                }
                 $data->harga_jual = $request->get('hargaJual');
                 $data->nama_pembeli = $request->get('namaPembeli');
                 $data->nama_notaris = $request->get('namaNotaris');

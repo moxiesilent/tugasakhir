@@ -241,14 +241,6 @@
                             <input class="form-control flatpickr flatpickr-input active" type="date" id="tanggal" name="tanggal" required>
                         </div>
                         <div class="form-group">
-                            <label for="komisiPemilik">Total Komisi Pemilik</label>
-                            <input id="komisiPemilik" type="text" name="komisiPemilik" placeholder="(angka)" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="komisiPenjual">Total Komisi Penjual</label>
-                            <input id="komisiPenjual" type="text" name="komisiPenjual" placeholder="(angka)" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <label for="namaPembeli">Nama Pembeli</label>
                             <input id="namaPembeli" type="text" name="namaPembeli" placeholder="nama pembeli" class="form-control">
                         </div>
