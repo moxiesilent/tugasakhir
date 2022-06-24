@@ -128,7 +128,6 @@ class LaporanController extends Controller
         }
         try{
             if($request->get('agenPemilik') != null || $request->get('agenPenjual') != null){
-                $laporan->listings_idlisting = $request->get('listing');
                 $laporan->agens_pemilik = $request->get('agenPemilik');
                 $laporan->agens_penjual = $request->get('agenPenjual');
                 $laporan->tanggal_deal = $request->get('tanggal');
