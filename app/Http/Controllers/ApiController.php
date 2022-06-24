@@ -700,13 +700,17 @@ class ApiController extends Controller
         }
 
         $laporan = $laporan->orderBy('idlaporan','desc')->get();
+        $listingSold = Listing::where('agen_idagen',$request->get('idagen'))->where('status','Sold')->get();
+        $jumListingSold = $listingSold->count('idlisting');
+        
         $laporanPrimary = Reminder::where('agens_idagen',$request->get('idagen'))->get();
         $komisiPrimary = Reminder::where('agens_idagen',$request->get('idagen'))->sum('total_komisi');
         $laporanPemilik = Laporan::where('agens_pemilik',$request->get('idagen'))->sum('komisi_agen_pemilik');
         $laporanPenjual = Laporan::where('agens_penjual',$request->get('idagen'))->sum('komisi_agen_penjual');
 
         $komisiListing = $laporanPemilik + $laporanPenjual;
-        return response()->json(['message' => 'Success', 'laporan'=> $laporan, 'komisiListing'=> $komisiListing, 'komisiPrimary'=>$komisiPrimary]);
+        return response()->json(['message' => 'Success', 'laporan'=> $laporan, 'komisiListing'=> $komisiListing, 'komisiPrimary'=>$komisiPrimary,
+        'jumListingSold'=>$jumListingSold,'listingSold'=>$listingSold]);
     }
 
 }
