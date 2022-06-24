@@ -50,16 +50,17 @@ class LaporanController extends Controller
         }
         try{
             if($request->get('agenPemilik') != null || $request->get('agenPenjual') != null){
+                $komisi = Listing::where('idlisting',$request->get('listing'))->select('komisi');
                 $data = new Laporan();
                 $data->listings_idlisting = $request->get('listing');
                 $data->agens_pemilik = $request->get('agenPemilik');
                 $data->agens_penjual = $request->get('agenPenjual');
                 $data->tanggal_deal = $request->get('tanggal');
                 if($request->get('agenPemilik') != null){
-                    $data->komisi_agen_pemilik = $request->get('hargaJual') * 25 / 100;
+                    $data->komisi_agen_pemilik = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
                 }
                 if($request->get('agenPenjual') != null){
-                    $data->komisi_agen_penjual = $request->get('hargaJual') * 25 / 100;
+                    $data->komisi_agen_penjual = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
                 }
                 $data->harga_jual = $request->get('hargaJual');
                 $data->nama_pembeli = $request->get('namaPembeli');
