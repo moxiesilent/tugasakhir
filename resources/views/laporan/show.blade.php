@@ -112,7 +112,7 @@
                     <h6>Agen Pemilik Listing : {{$data->agensPemilik != null ? $data->agensPemilik['nama'] : '-'}}</h6>
                     <h6>Agen Penjual Listing : {{$data->agensPenjual != null ? $data->agensPenjual['nama'] : '-'}}</h6>
                     <h6>Harga Terjual : Rp. {{number_format($data->harga_jual)}}</h6>
-                    <h6>Tanggal Kesepakatan : {{date('d-m-Y',strtotime($data->tanggal_deal)}}</h6>
+                    <h6>Tanggal Kesepakatan : {{date('d-m-Y',strtotime($data->tanggal_deal))}}</h6>
                     <h6>Komisi Agen Pemilik Listing : {{$data->komisi_agen_pemilik != null ? number_format($data->komisi_agen_pemilik) : '-'}}</h6>
                     <h6>Komisi Agen Penjual Listing : {{$data->komisi_agen_penjual != null ? number_format($data->komisi_agen_penjual) : '-'}}</h6>
                     <h6>Nama Pembeli : {{$data->nama_pembeli}}</h6>
