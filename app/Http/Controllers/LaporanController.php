@@ -64,11 +64,14 @@ class LaporanController extends Controller
                 $data->keterangan = $request->get('keterangan');
                 $data->save();
 
-                $listing = Listing::find($request->get('listing'));
-                $listing->status = 'Sold';
-                $listing->save();
+                if($request->get('listing') != null){
+                    $listing = Listing::find($request->get('listing'));
+                    $listing->status = 'Sold';
+                    $listing->save();
 
-                DB::table('bookmarks')->where('listings_idlisting', $request->get('listing'))->delete();
+                    DB::table('bookmarks')->where('listings_idlisting', $request->get('listing'))->delete();
+                }
+
                 return redirect()->route('laporans.index')->with('status','laporan baru telah ditambahkan'); 
             } else{
                 return redirect()->route('laporans.index')->with('error', "Pemilik atau penjual listing harus dari kantor Xavier Marks Tjandra Grande");
@@ -88,7 +91,11 @@ class LaporanController extends Controller
      */
     public function show(Laporan $laporan)
     {
-        //
+        if(auth()->user()->jabatan != 'admin'){
+            abort(403);
+        }
+        $data = $laporan;
+        return view("laporan.show",compact('data'));
     }
 
     /**
