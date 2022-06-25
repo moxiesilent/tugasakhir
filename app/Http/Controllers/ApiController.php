@@ -708,15 +708,14 @@ class ApiController extends Controller
 
     public function detailLaporan(Request $request)
     {
-        $laporan = Laporan::query();
-        
-        if($request->get('tanggalAwal') != "" && $request->get('tanggalAkhir') != ""){
-            $laporan->where('tanggal_deal','>=',$request->get('tanggalAwal'))
-                                ->where('tanggal_deal','<=',$request->get('tanggalAkhir'));
-        }
-
-        $laporan = $laporan->where('agens_pemilik',$request->get('idagen'))->orWhere('agens_penjual',$request->get('idagen'))->orderBy('idlaporan','desc')->get();
-
+        $laporan = Laporan::where('tanggal_deal','>=',$request->get('tanggalAwal'))->where('tanggal_deal','<=',$request->get('tanggalAkhir'))
+        ->join('listings','laporans.listings_idlisting','=','listing.idlisting')
+        ->join('agens AS pemi','laporans.agens_pemilik','=','pemi.idagen')
+        ->join('agens AS penj','laporans.agens_penjual','=','penj.idagen')
+        ->select('laporans.*','pemi.nama AS agenPemilik','penj.nama AS agenPenjual','listings.kode_listing AS kodeListing')
+        ->where('agens_pemilik',$request->get('idagen'))->orWhere('agens_penjual',$request->get('idagen'))
+        ->get();
+      
         return response()->json(['message' => 'Success', 'laporan'=> $laporan]);
     }
 
