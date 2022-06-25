@@ -693,17 +693,7 @@ class ApiController extends Controller
 
     public function tampilLaporan(Request $request)
     {
-        $laporan = Laporan::query();
-        
-        if($request->get('tanggalAwal') != "" && $request->get('tanggalAkhir') != ""){
-            // $laporan = $laporan->whereBetween('tanggal_deal', [$request->get('tanggalAwal'),$request->get('tanggalAkhir')]);
-            $laporan->where('tanggal_deal','>=',$request->get('tanggalAwal'))
-                                ->where('tanggal_deal','<=',$request->get('tanggalAkhir'));
-        }
-
-        $laporan = $laporan->where('agens_pemilik',$request->get('idagen'))->orWhere('agens_penjual',$request->get('idagen'))->orderBy('idlaporan','desc')->get();
-        $listingSold = Listing::where('agen_idagen',$request->get('idagen'))->where('status','Sold')->get();
-        $jumListingSold = $listingSold->count('idlisting');
+        $jumListingSold = Listing::where('agen_idagen',$request->get('idagen'))->where('status','Sold')->count('idlisting');
         
         $laporanPrimary = Reminder::where('agens_idagen',$request->get('idagen'))->get();
         $jumPrimarySold = $laporanPrimary->count('idreminder');
@@ -712,8 +702,22 @@ class ApiController extends Controller
         $laporanPenjual = Laporan::where('agens_penjual',$request->get('idagen'))->sum('komisi_agen_penjual');
 
         $komisiListing = $laporanPemilik + $laporanPenjual;
-        return response()->json(['message' => 'Success', 'laporan'=> $laporan, 'komisiListing'=> $komisiListing, 'komisiPrimary'=>$komisiPrimary,
-        'jumListingSold'=>$jumListingSold,'listingSold'=>$listingSold,'jumPrimarySold'=>$jumPrimarySold]);
+        return response()->json(['message' => 'Success', 'komisiListing'=> $komisiListing, 'komisiPrimary'=>$komisiPrimary,
+        'jumListingSold'=>$jumListingSold,'jumPrimarySold'=>$jumPrimarySold]);
+    }
+
+    public function detailLaporan(Request $request)
+    {
+        $laporan = Laporan::query();
+        
+        if($request->get('tanggalAwal') != "" && $request->get('tanggalAkhir') != ""){
+            $laporan->where('tanggal_deal','>=',$request->get('tanggalAwal'))
+                                ->where('tanggal_deal','<=',$request->get('tanggalAkhir'));
+        }
+
+        $laporan = $laporan->where('agens_pemilik',$request->get('idagen'))->orWhere('agens_penjual',$request->get('idagen'))->orderBy('idlaporan','desc')->get();
+
+        return response()->json(['message' => 'Success', 'laporan'=> $laporan]);
     }
 
 }
