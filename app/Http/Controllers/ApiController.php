@@ -709,7 +709,7 @@ class ApiController extends Controller
     public function detailLaporan(Request $request)
     {
         $laporan = Laporan::where('tanggal_deal','>=',$request->get('tanggalAwal'))->where('tanggal_deal','<=',$request->get('tanggalAkhir'))
-        ->join('listings','laporans.listings_idlisting','=','listing.idlisting')
+        ->join('listings','laporans.listings_idlisting','=','listings.idlisting')
         ->join('agens AS pemi','laporans.agens_pemilik','=','pemi.idagen')
         ->join('agens AS penj','laporans.agens_penjual','=','penj.idagen')
         ->select('laporans.*','pemi.nama AS agenPemilik','penj.nama AS agenPenjual','listings.kode_listing AS kodeListing')
