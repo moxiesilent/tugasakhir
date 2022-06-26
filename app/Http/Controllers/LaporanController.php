@@ -146,7 +146,7 @@ class LaporanController extends Controller
                 $laporan->keterangan = $request->get('keterangan');
                 $laporan->save();
 
-                return redirect()->route('laporans.index')->with('status','laporan baru telah ditambahkan'); 
+                return redirect()->route('laporans.index')->with('status','laporan berhasil diubah'); 
             } else{
                 return redirect()->route('laporans.index')->with('error', "Pemilik atau penjual listing harus dari kantor Xavier Marks Tjandra Grande");
             }    
