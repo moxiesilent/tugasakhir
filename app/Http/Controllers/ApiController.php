@@ -708,14 +708,12 @@ class ApiController extends Controller
 
     public function detailLaporan(Request $request)
     {
-        $laporan = Laporan::where('tanggal_deal','>=',$request->get('tanggalAwal'))->where('tanggal_deal','<=',$request->get('tanggalAkhir'))
-        ->join('listings','laporans.listings_idlisting','=','listings.idlisting')
-        ->join('agens AS pemi','laporans.agens_pemilik','=','pemi.idagen')
-        ->join('agens AS penj','laporans.agens_penjual','=','penj.idagen')
-        ->select('laporans.*','pemi.nama AS agenPemilik','penj.nama AS agenPenjual','listings.kode_listing AS kodeListing')
-        ->where('agens_pemilik',$request->get('idagen'))->orWhere('agens_penjual',$request->get('idagen'))
-        ->get();
-      
+        $tglAwal = $request->get('tanggalAwal');
+        $tglAkhir = $request->get('tanggalAkhir');
+        $agen = $request->get('idagen');
+        $laporan = DB::select(DB::raw('
+        select laporans.*,  pemi.nama  as agenPemilik, penj.nama as agenPenjual, listings.kode_listing as kodeListing from laporans inner join listings on laporans.listings_idlisting = listings.idlisting inner join agens as pemi on laporans.agens_pemilik = pemi.idagen inner join agens as penj on laporans.agens_penjual = penj.idagen where (tanggal_deal >= "'.$tglAwal.'" and tanggal_deal <= "'. $tglAkhir.'") and (agens_pemilik = '.$agen.' or agens_penjual = '.$agen.')'));
+        
         return response()->json(['message' => 'Success', 'laporan'=> $laporan]);
     }
 
