@@ -158,7 +158,6 @@ class AgenController extends Controller
                     $agen->password = Hash::make($pass);
                 }
             }
-            $agen->kode = $request->get('kode');
             $agen->nama = $request->get('nama');
             $agen->email = $request->get('email');
             $agen->tanggallahir = $request->get('tanggallahir');

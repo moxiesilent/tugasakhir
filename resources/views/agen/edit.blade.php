@@ -110,7 +110,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="nama">Nama Lengkap</label>
+                                <label for="nama">Nama Lengkap</label> <span style="color:red"><b>*</b></span>
                                 <input id="nama" type="text" name="nama" value="{{$data->nama}}" class="form-control" required>
                             </div>
                         </div>                                        
@@ -118,7 +118,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="kode">Kode Agen</label>
+                                <label for="kode">Kode Agen</label> <span style="color:red"><b>*</b></span>
                                 <input id="kode" type="text" name="kode" value="{{$data->kode}}" class="form-control" required disabled>
                             </div>
                         </div>                                        
@@ -126,7 +126,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">Email</label> <span style="color:red"><b>*</b></span>
                                 <input id="email" type="text" name="email" value="{{$data->email}}" class="form-control" required>
                             </div>
                         </div>                                        
