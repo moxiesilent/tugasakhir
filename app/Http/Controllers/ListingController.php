@@ -178,9 +178,7 @@ class ListingController extends Controller
         $jenissurat = Surat::all();
         $tipeproperti = Tipeproperti::all();
         $tipeapartemen = Tipeapartemen::all();
-        $provinsi = Provinsi::all();
-        $kelurahan = Kelurahan::all();
-        return view("listing.edit",compact('data','jenislantai','bentukharga','jenissurat','tipeproperti','tipeapartemen','provinsi','kelurahan'));
+        return view("listing.edit",compact('data','jenislantai','bentukharga','jenissurat','tipeproperti','tipeapartemen'));
     }
 
     /**
