@@ -115,7 +115,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="kode">Kode Listing</label>
+                                <label for="kode">Kode Listing</label> <span style="color:red"><b>*</b></span>
                                 <input id="kode" type="text" value="{{$data->kode_listing}}" class="form-control" disabled>
                             </div>
                         </div>                                        
@@ -123,7 +123,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="agen">Agen</label>
+                                <label for="agen">Agen</label> <span style="color:red"><b>*</b></span>
                                 <input id="agen" type="text" value="{{$data->agens->nama}}" class="form-control" disabled>
                             </div>
                         </div>                                        
@@ -131,8 +131,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label>Jenis Listing</label><br>
-                                <select class="selectpicker" data-width="100%" name="jenislisting">
+                                <label>Jenis Listing</label><br> <span style="color:red"><b>*</b></span>
+                                <select class="selectpicker" data-width="100%" name="jenislisting" required>
                                     <option value="">-- Pilih Jenis Listing --</option>
                                     @if($data->jenis_listing == 'JUAL')
                                     <option value="jual" selected>Jual</option>
@@ -196,8 +196,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="lt">Luas Tanah (dalam meter persegi)</label>
-                                <input id="lt" type="number" step="0.1" name="lt" value="{{$data->luas_tanah}}" class="form-control">
+                                <label for="lt">Luas Tanah (dalam meter persegi)</label> <span style="color:red"><b>*</b></span>
+                                <input id="lt" type="number" step="0.1" name="lt" value="{{$data->luas_tanah}}" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -411,8 +411,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="harga">Harga</label>
-                                <input id="harga" type="number" name="harga" value="{{$data->harga}}" step="100000000" min="0" class="form-control">
+                                <label for="harga">Harga</label> <span style="color:red"><b>*</b></span>
+                                <input id="harga" type="number" name="harga" value="{{$data->harga}}" step="100000000" min="0" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -443,8 +443,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="komisi">Komisi (dalam persen)</label>
-                                <input id="komisi" type="number" name="komisi" value="{{$data->komisi}}" step="0.01" min="0" class="form-control">
+                                <label for="komisi">Komisi (dalam persen)</label> <span style="color:red"><b>*</b></span>
+                                <input id="komisi" type="number" name="komisi" value="{{$data->komisi}}" step="0.01" min="0" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -472,7 +472,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="bentukharga">Harga Dalam Bentuk</label>
+                                <label for="bentukharga">Harga Dalam Bentuk</label> <span style="color:red"><b>*</b></span>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih bentuk harga" name="idbh" required>
                                     @foreach($bentukharga as $bh)
                                         <option value="{{$bh->idbentuk_harga}}">{{$bh->bentuk_harga}}</option>
@@ -484,7 +484,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="jenissurat">Jenis Surat</label>
+                                <label for="jenissurat">Jenis Surat</label> <span style="color:red"><b>*</b></span>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih jenis surat" name="idjs" required>
                                     @foreach($jenissurat as $js)
                                         <option value="{{$js->idjenis_surat}}">{{$js->jenis_surat}}</option>
@@ -496,7 +496,7 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="tipeproperti">Tipe Properti</label>
+                                <label for="tipeproperti">Tipe Properti</label> <span style="color:red"><b>*</b></span>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Pilih tipe properti" name="idtp" required>
                                     @foreach($tipeproperti as $tp)
                                         <option value="{{$tp->idtipe_properti}}">{{$tp->jenis_properti}}</option>
