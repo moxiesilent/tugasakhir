@@ -139,17 +139,17 @@
                         <div class="col-xl-7 col-lg-7 col-md-6 col-sm-4 ">
                             <h5><b>Data Utama</b></h5><br>
                             <h6>Kode Listing : <b>{{$data->kode_listing}}</b></h6>
-                            <h6>Agen : <b>{{$data->agens->nama}}</b></h6>
+                            <h6>Agen : <b>{{$data->agens['nama']}}</b></h6>
                             <h6>Luas Tanah : <b>{{$data->luas_tanah}} m<sup>2</sup></b></h6>
                             <h6>Luas Bangunan : <b>{{$data->luas_bangunan != 0 ? $data->luas_bangunan : '-'}} m<sup>2</sup></b></h6>
                             <h6>Dimensi Tanah Lebar : <b>{{$data->dimensi_tanah_lebar != 0 ? $data->dimensi_tanah_lebar : '-'}} m</b></h6>
                             <h6>Dimensi Tanah Panjang : <b>{{$data->dimensi_tanah_panjang != 0 ? $data->dimensi_tanah_panjang : '-'}} m</b></h6>
-                            <h6>Jenis Surat : <b>{{$data->surats != null ? $data->surats->jenis_surat : '-'}}</b></h6>
-                            <h6>Tipe Properti : <b>{{$data->tipepropertis->jenis_properti}}</b></h6>
+                            <h6>Jenis Surat : <b>{{$data->surats != null ? $data->surats['jenis_surat'] : '-'}}</b></h6>
+                            <h6>Tipe Properti : <b>{{$data->tipepropertis['jenis_properti']}}</b></h6>
 
                             @if($data->tipe_apartemens_idtipe_apartemen != '')
 
-                                <h6>Tipe Apartemen : <b>{{$data->tipeapartemens->tipe_apartemen}}</b></h6>
+                                <h6>Tipe Apartemen : <b>{{$data->tipeapartemens['tipe_apartemen']}}</b></h6>
                                 <h6>Tower : <b>{{$data->tower != '' ? $data->tower : '-'}}</b></h6>
                                 <h6>Nomor Lantai : <b>{{$data->nomor_lantai != '' ? $data->nomor_lantai : '-'}}</b></h6>
                                 <h6>Nomor Unit : <b>{{$data->nomor_unit != '' ? $data->nomor_unit : '-'}}</b></h6>
@@ -165,7 +165,7 @@
                             <h6>Posisi : <b>{{$data->posisi != '' ? $data->posisi : '-'}}</b></h6>
                             <h6>Perabotan : <b>{{$data->perabotan != '' ? $data->perabotan : '-'}}</b></h6>
                             
-                            <h6>Kelurahan : <b>{{$data->kelurahans->nama}}</b></h6>
+                            <h6>Kelurahan : <b>{{$data->kelurahans['nama']}}</b></h6>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8">
                             
@@ -187,7 +187,7 @@
                             <h6>Dapur : <b>{{$data->dapur != 0 ? $data->dapur : '-'}}</b></h6>
                             <h6>Carport : <b>{{$data->carport != 0 ? $data->carport : '-'}}</b></h6>
                             <h6>Garasi : <b>{{$data->garasi != 0 ? $data->garasi : '-'}}</b></h6>
-                            <h6>Jenis Lantai : <b>{{$data->lantais != null ? $data->lantais->nama : '-'}}</b></h6><br>
+                            <h6>Jenis Lantai : <b>{{$data->lantais != null ? $data->lantais['nama'] : '-'}}</b></h6><br>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8">
                             <h5><b>Data Kantor</b></h5><br>
