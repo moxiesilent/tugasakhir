@@ -123,8 +123,8 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 ">
-                            <a href="{{url('laporans/'.$data->idlaporan.'/edit')}}"><button class="btn btn-warning">Ubah</button></a>
-                            <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idlaporan}}')">Hapus</button>
+                            <a href="{{url('laporans/'.$data->idlaporan.'/edit')}}"><button class="btn btn-warning"><i data-feather="edit"></i> Ubah</button></a>
+                            <button class="btn btn-danger" onclick="hapus('{{csrf_token()}}','{{$data->idlaporan}}')"><i data-feather="trash-2"></i> Hapus</button>
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
                             <a href="{{url('laporans')}}" class="btn btn-secondary-light"> Kembali</a>

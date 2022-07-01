@@ -228,7 +228,7 @@
                             @endif
                         </div>
                         <div class="col-xl col-lg-5 col-md-6 col-sm-8 align-self-center text-right">
-                            <a href="{{url('listings')}}" class="btn btn-secondary-light"> Kembali</a>
+                            <a href="{{url('listings')}}" class="btn btn-secondary-light"><i data-feather="arrow-left"></i> Kembali</a>
                         </div>
                     </div>
                 </div>
