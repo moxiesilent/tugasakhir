@@ -38,7 +38,7 @@
                                         <div class="carousel-inner" style="background-color:#0e1726;width:100%;">
                                             @foreach($foto as $f => $fot)
                                             <div class="carousel-item {{$f == 0 ? 'active' : '' }}">
-                                                <img class="" src="{{asset('images/listing/'.$fot->path)}}" style='width:100%;'>
+                                                <img class="" src="{{asset('images/listing/'.$fot->path)}}" style='max-width:300px;'>
                                             </div>
                                             @endforeach
                                         </div>
@@ -124,7 +124,7 @@
                                     <p>Carport : <b>{{$listing->carport}}</b></p>
                                     <p>Garasi : <b>{{$listing->garasi}}</b></p>
                                     @if($listing->jenis_lantai_idjenis_lantai != '')
-                                    <p>Jenis Lantai : <b>{{$listing->lantais->nama}}</b></p><br>
+                                    <p>Jenis Lantai : <b>{{$listing->lantais['nama']}}</b></p><br>
                                     @endif
                                     <p>Catatan : </p><p><b>{!!$listing->catatan!!}</b></p>
                                 </div>
