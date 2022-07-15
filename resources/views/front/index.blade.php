@@ -86,6 +86,7 @@
                                         <p>Bentuk Harga : <b>-</b></p>
                                     @endif
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
+                                    <p>Hadap : <b>{{$listing->hadap != null ? $listing->hadap : '-'}}</b></p>
                                     <br>
                                     @if($listing->tipepropertis->jenis_properti == 'Apartemen')
                                         @if($listing->tipeapartemens != null)
@@ -126,6 +127,7 @@
                                     @if($listing->jenis_lantai_idjenis_lantai != '')
                                     <p>Jenis Lantai : <b>{{$listing->lantais['nama']}}</b></p><br>
                                     @endif
+                                    <br>
                                     <p>Catatan : </p><p><b>{!!$listing->catatan!!}</b></p>
                                 </div>
                             @else
