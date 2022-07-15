@@ -126,7 +126,7 @@
                                     <p>Carport : <b>{{$listing->carport}}</b></p>
                                     <p>Garasi : <b>{{$listing->garasi}}</b></p>
                                     @if($listing->listrik != 0)
-                                    <p>Listrik : <b>{{$listing->listrik}}</b></p>
+                                    <p>Listrik : <b>{{$listing->listrik}} WATT</b></p>
                                     @endif
                                     @if($listing->air != '')
                                     <p>Air : <b>{{$listing->air}}</b></p>
