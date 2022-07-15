@@ -87,8 +87,9 @@
                                     @endif
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
                                     <p>Hadap : <b>{{$listing->hadap != null ? $listing->hadap : '-'}}</b></p>
-                                    <br>
+                                    
                                     @if($listing->tipepropertis->jenis_properti == 'Apartemen')
+                                    <br>
                                         @if($listing->tipeapartemens != null)
                                             <p>Tipe Apartemen : <b>{{$listing->tipeapartemens['tipe_apartemen']}}</b></p>
                                         @else
@@ -124,6 +125,9 @@
                                     <p>Dapur : <b>{{$listing->dapur}}</b></p>
                                     <p>Carport : <b>{{$listing->carport}}</b></p>
                                     <p>Garasi : <b>{{$listing->garasi}}</b></p>
+                                    @if($listing->listrik != 0)
+                                    <p>Listrik : <b>{{$listing->listrik}}</b></p><br>
+                                    @endif
                                     @if($listing->jenis_lantai_idjenis_lantai != '')
                                     <p>Jenis Lantai : <b>{{$listing->lantais['nama']}}</b></p><br>
                                     @endif
