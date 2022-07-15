@@ -126,7 +126,10 @@
                                     <p>Carport : <b>{{$listing->carport}}</b></p>
                                     <p>Garasi : <b>{{$listing->garasi}}</b></p>
                                     @if($listing->listrik != 0)
-                                    <p>Listrik : <b>{{$listing->listrik}}</b></p><br>
+                                    <p>Listrik : <b>{{$listing->listrik}}</b></p>
+                                    @endif
+                                    @if($listing->air != '')
+                                    <p>Air : <b>{{$listing->air}}</b></p>
                                     @endif
                                     @if($listing->jenis_lantai_idjenis_lantai != '')
                                     <p>Jenis Lantai : <b>{{$listing->lantais['nama']}}</b></p><br>
