@@ -87,6 +87,12 @@
                                     @endif
                                     <p>Tipe Properti : <b>{{$listing->tipepropertis->jenis_properti}}</b></p>
                                     <p>Hadap : <b>{{$listing->hadap != null ? $listing->hadap : '-'}}</b></p>
+                                    @if($listing->cluster != '')
+                                    <p>Cluster : <b>{{$listing->cluster}}</b></p>
+                                    @endif
+                                    @if($listing->perabotan != '')
+                                    <p>Perabotan : <b>{{$listing->perabotan}}</b></p>
+                                    @endif
                                     
                                     @if($listing->tipepropertis->jenis_properti == 'Apartemen')
                                     <br>
