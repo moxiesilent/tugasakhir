@@ -127,7 +127,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="blt">BLT</label> <span style="color:red"><b>*</b></span>
-                                <input id="blt" type="text" name="blt" value="{{$data->blt}}" class="form-control" required>
+                                <input id="blt" type="number" name="blt" min="0" value="{{$data->blt}}" class="form-control" required>
                             </div>
                         </div>                                        
                     </div>
@@ -135,7 +135,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="komisi">Komisi (%)</label> <span style="color:red"><b>*</b></span>
-                                <input id="komisi" type="text" name="komisi" value="{{$data->komisi}}" class="form-control" required>
+                                <input id="komisi" type="number" min="0" name="komisi" value="{{$data->komisi}}" class="form-control" required>
                             </div>
                         </div>                                        
                     </div>

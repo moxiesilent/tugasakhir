@@ -129,7 +129,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="blt">BLT</label> <span style="color:red"><b>*</b></span>
-                                <input id="blt" type="text" name="blt" placeholder="Jumlah BLT(angka)" class="form-control" required>
+                                <input id="blt" type="number" min="0" name="blt" placeholder="Jumlah BLT(angka)" class="form-control" required>
                             </div>
                         </div>                                        
                     </div>
@@ -137,7 +137,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="komisi">Komisi (%)</label> <span style="color:red"><b>*</b></span>
-                                <input id="komisi" type="text" name="komisi" placeholder="(dalam persen)" class="form-control" required>
+                                <input id="komisi" type="number" name="komisi" min="0" max="50" placeholder="(angka)" class="form-control" required>
                             </div>
                         </div>                                        
                     </div>
