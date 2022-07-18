@@ -187,7 +187,7 @@
                     'Data berhasil dihapus.',
                     'success'
                     ).then(function () {
-                        location.reload();
+                        window.location = "{{url('primarys')}}";
                     })
                 }else{
                     swal(
