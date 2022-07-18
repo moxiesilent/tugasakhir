@@ -121,7 +121,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="kode">Kode Agen</label> <span style="color:red"><b>*</b></span>
-                                <input id="kode" type="text" name="kode" placeholder="Kode agen" class="form-control" required>
+                                <input id="kode" type="text" name="kode" pattern="([A-Z]{3})(\.)([A-Z]{1})" placeholder="Kode agen" class="form-control" required>
                             </div>
                         </div>                                        
                     </div>
