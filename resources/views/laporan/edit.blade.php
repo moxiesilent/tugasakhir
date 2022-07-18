@@ -142,19 +142,11 @@
                     </div>
                     <div class="form-group">
                         <label for="hargaJual">Harga Jual</label> <span style="color:red"><b>*</b></span>
-                        <input id="hargaJual" type="text" name="hargaJual" placeholder="(angka)" value="{{$data->harga_jual}}" class="form-control" required>
+                        <input id="hargaJual" type="number" min="0" name="hargaJual" placeholder="(angka)" value="{{$data->harga_jual}}" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="tanggal">Tanggal Deal</label> <span style="color:red"><b>*</b></span>
                         <input class="form-control flatpickr flatpickr-input active" type="date" value="{{$data->tanggal_deal}}" id="tanggal" name="tanggal" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="komisiPemilik">Total Komisi Pemilik</label>
-                        <input id="komisiPemilik" type="text" name="komisiPemilik" value="{{$data->komisi_agen_pemilik}}" placeholder="(angka)" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="komisiPenjual">Total Komisi Penjual</label>
-                        <input id="komisiPenjual" type="text" name="komisiPenjual" value="{{$data->komisi_agen_penjual}}" placeholder="(angka)" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="namaPembeli">Nama Pembeli</label>
@@ -166,7 +158,7 @@
                     </div>
                     <div class="form-group">
                         <label for="dp">DP</label>
-                        <input id="dp" type="text" name="dp" placeholder="(angka)" value="{{$data->dp}}" class="form-control">
+                        <input id="dp" type="number" name="dp" min="0"  placeholder="(angka)" value="{{$data->dp}}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>

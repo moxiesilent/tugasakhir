@@ -228,7 +228,7 @@
                         </div>
                         <div class="form-group">
                             <label for="hargaJual">Harga Jual</label> <span style="color:red"><b>*</b></span>
-                            <input id="hargaJual" type="text" name="hargaJual" placeholder="(angka)" class="form-control" required>
+                            <input id="hargaJual" type="number" min="0" name="hargaJual" placeholder="(angka)" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="tanggal">Tanggal Deal</label> <span style="color:red"><b>*</b></span>
@@ -244,7 +244,7 @@
                         </div>
                         <div class="form-group">
                             <label for="dp">DP</label>
-                            <input id="dp" type="text" name="dp" placeholder="(angka)" class="form-control">
+                            <input id="dp" type="number" name="dp" min="0" placeholder="(angka)" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>

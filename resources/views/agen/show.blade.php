@@ -215,7 +215,7 @@ $(document).ready( function () {
                     'Data berhasil dihapus.',
                     'success'
                     ).then(function () {
-                        location.reload();
+                        window.location = "{{url('agens')}}";
                     })
                 }else{
                     swal(

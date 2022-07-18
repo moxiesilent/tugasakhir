@@ -272,7 +272,7 @@ $(document).ready( function () {
                     'Data berhasil dihapus.',
                     'success'
                     ).then(function () {
-                        window.location = "";
+                        window.location = "{{url('listings')}}";
                     })
                 }else{
                     swal(

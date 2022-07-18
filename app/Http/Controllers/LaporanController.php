@@ -152,7 +152,7 @@ class LaporanController extends Controller
             }    
         }
         catch(\PDOException $e){
-            $msg ="Gagal menambah data. ";
+            $msg ="Gagal mengubah data. ";
             return redirect()->route('laporans.index')->with('error', $msg);
         }
     }

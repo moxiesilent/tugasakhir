@@ -166,7 +166,7 @@
                     'Data berhasil dihapus.',
                     'success'
                     ).then(function () {
-                        location.reload();
+                        window.location = "{{url('laporans')}}";
                     })
                 }else{
                     swal(
