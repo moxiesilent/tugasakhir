@@ -122,6 +122,10 @@ class ApiController extends Controller
                 $listing = $listing->where('carport', $request->get('mincarport'));
             }
         }
+        if ($request->get('minlantai') != 0 && $request->get('maxlantai')!= 0) {
+            $listing = $listing->where('nomor_lantai', '>=', $request->get('minlantai'))
+                               ->where('nomor_lantai', '<=', $request->get('maxlantai'));
+        }
         if ($request->get('hadap') != "") {
             $listing = $listing->where('hadap', 'LIKE','%'.$request->get('hadap').'%');
         }
