@@ -473,83 +473,88 @@ class ApiController extends Controller
 
     public function updateListing(Request $request){
         try{
-            $idlisting = $request->get('idlisting');
-
-            $listing = Listing::find($idlisting);
-            $listing->alamat_domisili = $request->get('alamatdomisili');
-            $listing->nomor_hp_pemilik = $request->get('hppemilik');
-            $listing->surat_kepemilikan_atasnama = $request->get('skan');
-            $listing->alamat_properti = $request->get('alamatproperti');
-            if($request->get('tipeapartemen') != '0'){
-                $listing->tipe_apartemens_idtipe_apartemen = $request->get('tipeapartemen');
+            if($request->get('mulaitanggal') > $request->get('berakhirtanggal')){
+                return response()->json(['message' => 'Error']);
             }
-            $listing->tower = $request->get('tower');
-            $listing->cluster = $request->get('cluster');
-            $listing->luas_tanah = $request->get('lt');
-            $listing->luas_bangunan = $request->get('lb');
-            $listing->dimensi_tanah_lebar = $request->get('dtl');
-            $listing->dimensi_tanah_panjang = $request->get('dtp');
-            $listing->kamar_tidur = $request->get('kt');
-            $listing->kamar_mandi = $request->get('km');
-            $listing->kamar_tidur_pembantu = $request->get('ktp');
-            $listing->kamar_mandi_pembantu = $request->get('kmp');
-            $listing->jumlah_lantai = $request->get('jumlahlantai');
-            $listing->nomor_lantai = $request->get('nomorlantai');
-            $listing->nomor_unit = $request->get('nomorunit');
-            $listing->view = $request->get('view');
-            $listing->listrik = $request->get('listrik');
-            $listing->dapur = $request->get('dapur');
-            $listing->carport = $request->get('carport');
-            $listing->garasi = $request->get('garasi');
-            $listing->hadap = $request->get('hadap');
-            $listing->tipe_listing = $request->get('tipelisting');
-            $listing->air = $request->get('air');
-            $listing->pemegang_hak = $request->get('pemeganghak');
-            $listing->mulai_tanggal = $request->get('mulaitanggal');
-            $listing->harga = $request->get('harga');
-            $listing->berakhir_tanggal = $request->get('berakhirtanggal');
-            $listing->posisi = $request->get('posisi');
-            $listing->perabotan = $request->get('perabotan');
-            $listing->komisi = $request->get('komisi');
-            $listing->pasang_banner = $request->get('banner');
-            if($request->get('idbh') != '0'){
-                $listing->bentuk_harga_idbentuk_harga = $request->get('idbh');
-            }
-            if($request->get('idjs') != '0'){
-                $listing->jenis_surat_idjenis_surat = $request->get('idjs');
-            }
-            if($request->get('idtp') != '0'){
-                $listing->tipe_properti_idtipe_properti = $request->get('idtp');
-            }
-            if($request->get('idjl') != '0'){
-                $listing->jenis_lantai_idjenis_lantai = $request->get('idjl');
-            }
-            $listing->catatan = $request->get('catatan');
-            $listing->jenis_listing = $request->get('jenislisting');
-            $listing->judul = $request->get('judul');
-
-            if($request->hasFile('fotoutama')){
-                if(Foto::where('path',$listing->foto_utama)->first() != ''){
-                    $fotoLama = Foto::where('path',$listing->foto_utama)->delete();
+            else{
+                $idlisting = $request->get('idlisting');
+    
+                $listing = Listing::find($idlisting);
+                $listing->alamat_domisili = $request->get('alamatdomisili');
+                $listing->nomor_hp_pemilik = $request->get('hppemilik');
+                $listing->surat_kepemilikan_atasnama = $request->get('skan');
+                $listing->alamat_properti = $request->get('alamatproperti');
+                if($request->get('tipeapartemen') != '0'){
+                    $listing->tipe_apartemens_idtipe_apartemen = $request->get('tipeapartemen');
                 }
-                $dest='public/images/listing/'.$listing->foto_utama;
-                if(file_exists($dest)){
-                    @unlink($dest); 
+                $listing->tower = $request->get('tower');
+                $listing->cluster = $request->get('cluster');
+                $listing->luas_tanah = $request->get('lt');
+                $listing->luas_bangunan = $request->get('lb');
+                $listing->dimensi_tanah_lebar = $request->get('dtl');
+                $listing->dimensi_tanah_panjang = $request->get('dtp');
+                $listing->kamar_tidur = $request->get('kt');
+                $listing->kamar_mandi = $request->get('km');
+                $listing->kamar_tidur_pembantu = $request->get('ktp');
+                $listing->kamar_mandi_pembantu = $request->get('kmp');
+                $listing->jumlah_lantai = $request->get('jumlahlantai');
+                $listing->nomor_lantai = $request->get('nomorlantai');
+                $listing->nomor_unit = $request->get('nomorunit');
+                $listing->view = $request->get('view');
+                $listing->listrik = $request->get('listrik');
+                $listing->dapur = $request->get('dapur');
+                $listing->carport = $request->get('carport');
+                $listing->garasi = $request->get('garasi');
+                $listing->hadap = $request->get('hadap');
+                $listing->tipe_listing = $request->get('tipelisting');
+                $listing->air = $request->get('air');
+                $listing->pemegang_hak = $request->get('pemeganghak');
+                $listing->mulai_tanggal = $request->get('mulaitanggal');
+                $listing->harga = $request->get('harga');
+                $listing->berakhir_tanggal = $request->get('berakhirtanggal');
+                $listing->posisi = $request->get('posisi');
+                $listing->perabotan = $request->get('perabotan');
+                $listing->komisi = $request->get('komisi');
+                $listing->pasang_banner = $request->get('banner');
+                if($request->get('idbh') != '0'){
+                    $listing->bentuk_harga_idbentuk_harga = $request->get('idbh');
                 }
-                $file=$request->file('fotoutama');
-                $imgFolder='public/images/listing/';
-                $imgFile=time().'_'.$file->getClientOriginalName();
-                $file->move($imgFolder,$imgFile);
-                $listing->foto_utama=$imgFile;
-
-                $foto = new Foto();
-                $foto->listings_idlisting = $idlisting;
-                $foto->path=$imgFile;
-                $foto->save();
+                if($request->get('idjs') != '0'){
+                    $listing->jenis_surat_idjenis_surat = $request->get('idjs');
+                }
+                if($request->get('idtp') != '0'){
+                    $listing->tipe_properti_idtipe_properti = $request->get('idtp');
+                }
+                if($request->get('idjl') != '0'){
+                    $listing->jenis_lantai_idjenis_lantai = $request->get('idjl');
+                }
+                $listing->catatan = $request->get('catatan');
+                $listing->jenis_listing = $request->get('jenislisting');
+                $listing->judul = $request->get('judul');
+    
+                if($request->hasFile('fotoutama')){
+                    if(Foto::where('path',$listing->foto_utama)->first() != ''){
+                        $fotoLama = Foto::where('path',$listing->foto_utama)->delete();
+                    }
+                    $dest='public/images/listing/'.$listing->foto_utama;
+                    if(file_exists($dest)){
+                        @unlink($dest); 
+                    }
+                    $file=$request->file('fotoutama');
+                    $imgFolder='public/images/listing/';
+                    $imgFile=time().'_'.$file->getClientOriginalName();
+                    $file->move($imgFolder,$imgFile);
+                    $listing->foto_utama=$imgFile;
+    
+                    $foto = new Foto();
+                    $foto->listings_idlisting = $idlisting;
+                    $foto->path=$imgFile;
+                    $foto->save();
+                }
+                $listing->save();
+                
+                return response()->json(['message' => 'Success']);        
             }
-            $listing->save();
-            
-            return response()->json(['message' => 'Success']);        
         }
         catch(\PDOException $e){
             return response()->json(['message' => 'Error']);

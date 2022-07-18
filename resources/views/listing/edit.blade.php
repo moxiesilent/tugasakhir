@@ -197,7 +197,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="lt">Luas Tanah (dalam meter persegi)</label> <span style="color:red"><b>*</b></span>
-                                <input id="lt" type="number" step="0.1" name="lt" value="{{$data->luas_tanah}}" class="form-control" required>
+                                <input id="lt" type="number" step="0.1" min="0" name="lt" value="{{$data->luas_tanah}}" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="lb">Luas Bangunan (dalam meter persegi)</label>
-                                <input id="lb" type="number" step="0.1" name="lb" value="{{$data->luas_bangunan}}" class="form-control">
+                                <input id="lb" type="number" step="0.1" min="0" name="lb" value="{{$data->luas_bangunan}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="dtl">Dimensi Tanah Lebar (dalam meter persegi)</label>
-                                <input id="dtl" type="number" step="0.1" name="dtl" value="{{$data->dimensi_tanah_lebar}}" class="form-control">
+                                <input id="dtl" type="number" step="0.1" min="0" name="dtl" value="{{$data->dimensi_tanah_lebar}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="dtp">Dimensi Tanah Panjang (dalam meter persegi)</label>
-                                <input id="dtp" type="number" step="0.1" name="dtp" value="{{$data->dimensi_tanah_luas}}" class="form-control">
+                                <input id="dtp" type="number" step="0.1" min="0" name="dtp" value="{{$data->dimensi_tanah_luas}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -229,7 +229,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="kt">Jumlah Kamar Tidur</label>
-                                <input id="kt" type="number" step="1" name="kt" value="{{$data->kamar_tidur}}" class="form-control" >
+                                <input id="kt" type="number" step="1" min="0" name="kt" value="{{$data->kamar_tidur}}" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -237,7 +237,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="km">Jumlah Kamar Mandi</label>
-                                <input id="km" type="number" step="1" name="km" value="{{$data->kamar_mandi}}" class="form-control" >
+                                <input id="km" type="number" step="1" min="0" name="km" value="{{$data->kamar_mandi}}" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -245,7 +245,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="ktp">Jumlah Kamar Tidur Pembantu</label>
-                                <input id="ktp" type="number" step="1" name="ktp" value="{{$data->kamar_tidur_pembantu}}" class="form-control">
+                                <input id="ktp" type="number" step="1" min="0" name="ktp" value="{{$data->kamar_tidur_pembantu}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="kmp">Jumlah Kamar Mandi Pembantu</label>
-                                <input id="kmp" type="number" step="1" name="kmp" value="{{$data->kamar_mandi_pembantu}}" class="form-control">
+                                <input id="kmp" type="number" step="1" min="0" name="kmp" value="{{$data->kamar_mandi_pembantu}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -261,7 +261,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="jumlahlantai">Jumlah Lantai (bangunan)</label>
-                                <input id="jumlahlantai" type="number" step="1" name="jumlahlantai" value="{{$data->jumlah_lantai}}" class="form-control">
+                                <input id="jumlahlantai" type="number" step="1" min="1" name="jumlahlantai" value="{{$data->jumlah_lantai}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -305,7 +305,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="listrik">Listrik (dalam watt)</label>
-                                <input id="listrik" type="number" step="100" name="listrik" value="{{$data->listrik}}" class="form-control">
+                                <input id="listrik" type="number" min="0"  name="listrik" value="{{$data->listrik}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -313,7 +313,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="dapur">Jumlah Dapur</label>
-                                <input id="dapur" type="number" step="1" name="dapur" value="{{$data->dapur}}" class="form-control">
+                                <input id="dapur" type="number" step="1" min="0" name="dapur" value="{{$data->dapur}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -321,7 +321,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="carport">Jumlah Carport</label>
-                                <input id="carport" type="number" step="1" name="carport" value="{{$data->carport}}" class="form-control">
+                                <input id="carport" type="number" step="1" min="0" name="carport" value="{{$data->carport}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -329,7 +329,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="garasi">Jumlah Garasi</label>
-                                <input id="garasi" type="number" step="1" name="garasi" value="{{$data->garasi}}" class="form-control">
+                                <input id="garasi" type="number" step="1" min="0" name="garasi" value="{{$data->garasi}}" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -412,7 +412,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="harga">Harga</label> <span style="color:red"><b>*</b></span>
-                                <input id="harga" type="number" name="harga" value="{{$data->harga}}" step="100000000" min="0" class="form-control" required>
+                                <input id="harga" type="number" name="harga" value="{{$data->harga}}" min="0" class="form-control" required>
                             </div>
                         </div>
                     </div>

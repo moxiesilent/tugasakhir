@@ -113,7 +113,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="kode">Kode Listing</label> <span style="color:red"><b>*</b></span>
-                                <input id="kode" type="text" name="kode" placeholder="RIC.A000" class="form-control" required>
+                                <input id="kode" type="text" name="kode" placeholder="RIC.A000" class="form-control" pattern="([A-Z]{3})(\.)([A-Z]{1}[0-9]{3})" required>
                             </div>
                         </div>                                        
                     </div>
@@ -197,7 +197,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="lt">Luas Tanah (dalam meter persegi)</label> <span style="color:red"><b>*</b></span>
-                                <input id="lt" type="number" step="0.1" name="lt" placeholder="Luas tanah (angka)" class="form-control" required>
+                                <input id="lt" type="number" step="0.1" name="lt" min="0" placeholder="Luas tanah (angka)" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="lb">Luas Bangunan (dalam meter persegi)</label>
-                                <input id="lb" type="number" step="0.1" name="lb" placeholder="Luas bangunan (angka)" class="form-control">
+                                <input id="lb" type="number" step="0.1" name="lb" min="0" placeholder="Luas bangunan (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="dtl">Dimensi Tanah Lebar (dalam meter persegi)</label>
-                                <input id="dtl" type="number" step="0.1" name="dtl" placeholder="Dimensi tanah lebar (angka)" class="form-control">
+                                <input id="dtl" type="number" step="0.1" name="dtl" min="0" placeholder="Dimensi tanah lebar (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="dtp">Dimensi Tanah Panjang (dalam meter persegi)</label>
-                                <input id="dtp" type="number" step="0.1" name="dtp" placeholder="Dimensi tanah panjang (angka)" class="form-control">
+                                <input id="dtp" type="number" step="0.1" name="dtp" min="0" placeholder="Dimensi tanah panjang (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -229,7 +229,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="kt">Jumlah Kamar Tidur</label>
-                                <input id="kt" type="number" step="1" name="kt" placeholder="Jumlah kamar tidur (angka)" class="form-control">
+                                <input id="kt" type="number" step="1" name="kt" min="0" placeholder="Jumlah kamar tidur (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -237,7 +237,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="km">Jumlah Kamar Mandi</label>
-                                <input id="km" type="number" step="1" name="km" placeholder="Jummlah kamar mandi (angka)" class="form-control" >
+                                <input id="km" type="number" step="1" name="km" min="0" placeholder="Jummlah kamar mandi (angka)" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -245,7 +245,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="ktp">Jumlah Kamar Tidur Pembantu</label>
-                                <input id="ktp" type="number" step="1" name="ktp" placeholder="Jumlah kamar tidur pembantu (angka)" class="form-control">
+                                <input id="ktp" type="number" step="1" name="ktp" min="0" placeholder="Jumlah kamar tidur pembantu (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="kmp">Jumlah Kamar Mandi Pembantu</label>
-                                <input id="kmp" type="number" step="1" name="kmp" placeholder="Luas bangunan (angka)" class="form-control">
+                                <input id="kmp" type="number" step="1" name="kmp" min="0" placeholder="Luas bangunan (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -261,7 +261,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="jumlahlantai">Jumlah Lantai (bangunan)</label>
-                                <input id="jumlahlantai" type="number" step="1" name="jumlahlantai" placeholder="Jumlah lantai (angka)" class="form-control">
+                                <input id="jumlahlantai" type="number" step="1" name="jumlahlantai" min="1" placeholder="Jumlah lantai (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -297,7 +297,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="listrik">Listrik (dalam watt)</label>
-                                <input id="listrik" type="number" step="100" name="listrik" placeholder="Listrik (angka)" class="form-control">
+                                <input id="listrik" type="number" name="listrik" min="0" placeholder="Listrik (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -305,7 +305,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="dapur">Jumlah Dapur</label>
-                                <input id="dapur" type="number" step="1" name="dapur" placeholder="Jumlah dapur (angka)" class="form-control">
+                                <input id="dapur" type="number" step="1" name="dapur" min="0" placeholder="Jumlah dapur (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -313,7 +313,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="carport">Jumlah Carport</label>
-                                <input id="carport" type="number" step="1" name="carport" placeholder="Jumlah carport (angka)" class="form-control">
+                                <input id="carport" type="number" step="1" name="carport" min="0" placeholder="Jumlah carport (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -321,7 +321,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="garasi">Jumlah Garasi</label>
-                                <input id="garasi" type="number" step="1" name="garasi" placeholder="Jumlah garasi (angka)" class="form-control">
+                                <input id="garasi" type="number" step="1" name="garasi" min="0" placeholder="Jumlah garasi (angka)" class="form-control">
                             </div>
                         </div>
                     </div>
