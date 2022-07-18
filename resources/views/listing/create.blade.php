@@ -444,7 +444,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="komisi">Komisi (dalam persen)</label> <span style="color:red"><b>*</b></span>
-                                <input id="komisi" type="number" name="komisi" placeholder="Komisi (angka)" step="0.01" min="0" class="form-control" required>
+                                <input id="komisi" type="number" name="komisi" placeholder="Komisi (angka)" step="0.01" min="0" max="50" class="form-control" required>
                             </div>
                         </div>
                     </div>
