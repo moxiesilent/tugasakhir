@@ -116,11 +116,6 @@
                                         @else
                                             <p>Nomor Lantai : <b>-</b></p>
                                         @endif
-                                        @if($listing->nomor_unit != null)
-                                            <p>Nomor Unit : <b>{{$listing->nomor_unit}}</b></p>
-                                        @else
-                                            <p>Nomor Unit : <b>-</b></p>
-                                        @endif
                                     @endif
                                     <br>
                                     
