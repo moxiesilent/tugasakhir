@@ -726,7 +726,7 @@ class ApiController extends Controller
         $tglAkhir = $request->get('tanggalAkhir');
         $agen = $request->get('idagen');
         $laporan = DB::select(DB::raw('
-        select laporans.*,  pemi.nama  as agenPemilik, penj.nama as agenPenjual, listings.kode_listing as kodeListing from laporans inner join listings on laporans.listings_idlisting = listings.idlisting inner join agens as pemi on laporans.agens_pemilik = pemi.idagen inner join agens as penj on laporans.agens_penjual = penj.idagen where (tanggal_deal >= "'.$tglAwal.'" and tanggal_deal <= "'. $tglAkhir.'") and (agens_pemilik = '.$agen.' or agens_penjual = '.$agen.')'));
+        select laporans.*,  pemi.nama  as agenPemilik, penj.nama as agenPenjual, listings.kode_listing as kodeListing from laporans left join listings on laporans.listings_idlisting = listings.idlisting left join agens as pemi on laporans.agens_pemilik = pemi.idagen left join agens as penj on laporans.agens_penjual = penj.idagen where (tanggal_deal >= "'.$tglAwal.'" and tanggal_deal <= "'. $tglAkhir.'") and (agens_pemilik = '.$agen.' or agens_penjual = '.$agen.')'));
         
         return response()->json(['message' => 'Success', 'laporan'=> $laporan]);
     }
