@@ -68,7 +68,8 @@ class ListingController extends Controller
         }
         try{
             if($request->get('mulaitanggal') > $request->get('berakhirtanggal')){
-                return response()->json(['message' => 'Error']);
+                $msg ="Gagal menambah data. ";
+                return redirect()->route('listings.index')->with('error', $msg);
             }
             else{
                 $data = new Listing();
@@ -200,7 +201,8 @@ class ListingController extends Controller
         }
         try{
             if($request->get('mulaitanggal') > $request->get('berakhirtanggal')){
-                return response()->json(['message' => 'Error']);
+                $msg ="Gagal menambah data. ";
+                return redirect()->route('listings.index')->with('error', $msg);
             }
             else{
                 $idlisting = $request->get('idlisting');
