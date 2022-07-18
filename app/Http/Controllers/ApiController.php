@@ -177,8 +177,7 @@ class ApiController extends Controller
                 ->where('idprovinsi',$request->get('provinsi'));
             }
         }
-        // $listing = $listing->orderBy('idlisting','desc')->get();
-        $listing = $listing->orderBy('idlisting','desc')->toSql();
+        $listing = $listing->orderBy('idlisting','desc')->get();
         return response()->json(['message' => 'Success', 'listing'=> $listing]);
     }
 
