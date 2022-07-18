@@ -201,7 +201,7 @@ class ListingController extends Controller
         }
         try{
             if($request->get('mulaitanggal') > $request->get('berakhirtanggal')){
-                $msg ="Gagal menambah data. ";
+                $msg ="Gagal mengubah data. ";
                 return redirect()->route('listings.index')->with('error', $msg);
             }
             else{
@@ -281,7 +281,7 @@ class ListingController extends Controller
             }
         }
         catch(\PDOException $e){
-            $msg ="Gagal menambah data. ";
+            $msg ="Gagal mengubah data. ";
             return redirect()->route('listings.index')->with('error', $msg);
         }
     }
