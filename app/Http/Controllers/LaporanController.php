@@ -50,19 +50,21 @@ class LaporanController extends Controller
         }
         try{
             if($request->get('agenPemilik') != null || $request->get('agenPenjual') != null){
-                $listing = Listing::where('idlisting',$request->get('listing'))->get();
-                $komisi = $listing[0]['komisi'];
+                // $listing = Listing::where('idlisting',$request->get('listing'))->get();
+                // $komisi = $listing[0]['komisi'];
                 $data = new Laporan();
                 $data->listings_idlisting = $request->get('listing');
                 $data->agens_pemilik = $request->get('agenPemilik');
                 $data->agens_penjual = $request->get('agenPenjual');
                 $data->tanggal_deal = $request->get('tanggal');
-                if($request->get('agenPemilik') != null){
-                    $data->komisi_agen_pemilik = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
-                }
-                if($request->get('agenPenjual') != null){
-                    $data->komisi_agen_penjual = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
-                }
+                // if($request->get('agenPemilik') != null){
+                //     $data->komisi_agen_pemilik = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
+                // }
+                // if($request->get('agenPenjual') != null){
+                //     $data->komisi_agen_penjual = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
+                // }
+                $data->komisi_agen_pemilik = $request->get('komisipemilik');
+                $data->komisi_agen_penjual = $request->get('komisipenjual');
                 $data->harga_jual = $request->get('hargaJual');
                 $data->nama_pembeli = $request->get('namaPembeli');
                 $data->nama_notaris = $request->get('namaNotaris');
@@ -134,15 +136,19 @@ class LaporanController extends Controller
         }
         try{
             if($request->get('agenPemilik') != null || $request->get('agenPenjual') != null){
+                $listing = Listing::where('idlisting',$request->get('listing'))->get();
+                $komisi = $listing[0]['komisi'];
                 $laporan->agens_pemilik = $request->get('agenPemilik');
                 $laporan->agens_penjual = $request->get('agenPenjual');
                 $laporan->tanggal_deal = $request->get('tanggal');
-                if($request->get('agenPemilik') != null){
-                    $laporan->komisi_agen_pemilik = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
-                }
-                if($request->get('agenPenjual') != null){
-                    $laporan->komisi_agen_penjual = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
-                }
+                // if($request->get('agenPemilik') != null){
+                //     $laporan->komisi_agen_pemilik = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
+                // }
+                // if($request->get('agenPenjual') != null){
+                //     $laporan->komisi_agen_penjual = $request->get('hargaJual') * $komisi / 100 * 25 / 100;
+                // }
+                $laporan->komisi_agen_pemilik = $request->get('komisipemilik');
+                $laporan->komisi_agen_penjual = $request->get('komisipenjual');
                 $laporan->harga_jual = $request->get('hargaJual');
                 $laporan->nama_pembeli = $request->get('namaPembeli');
                 $laporan->nama_notaris = $request->get('namaNotaris');

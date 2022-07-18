@@ -145,6 +145,14 @@
                         <input id="hargaJual" type="number" min="0" name="hargaJual" placeholder="(angka)" value="{{$data->harga_jual}}" class="form-control" required>
                     </div>
                     <div class="form-group">
+                            <label for="komisipemilik">Komisi Agen Pemilik</label>
+                            <input id="komisipemilik" type="number" name="komisipemilik" min="0" value="{{$data->komisi_agen_pemilik != null ? $data->komisi_agen_pemilik : '-'}}" placeholder="(angka)" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="komisipenjual">Komisi Agen Penjual</label>
+                            <input id="komisipenjual" type="number" name="komisipenjual" min="0" value="{{$data->komisi_agen_penjual != null ? $data->komisi_agen_penjual : '-'}}" placeholder="(angka)" class="form-control">
+                        </div>
+                    <div class="form-group">
                         <label for="tanggal">Tanggal Deal</label> <span style="color:red"><b>*</b></span>
                         <input class="form-control flatpickr flatpickr-input active" type="date" value="{{$data->tanggal_deal}}" id="tanggal" name="tanggal" required>
                     </div>
