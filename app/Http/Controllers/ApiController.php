@@ -618,7 +618,7 @@ class ApiController extends Controller
 
     public function addListing(Request $request){
         try{
-            if($request->get('mulaitanggal') > $request->get('berakhirtanggal')){
+            if($request->get('mulaitanggal') > $request->get('berakhirtanggal') || $request->get('nomorlantai') <= 0){
                 return response()->json(['message' => 'Error']);
             }
             else{
