@@ -269,7 +269,7 @@
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
                                 <label for="nomorlantai">Nomor Lantai (apartemen)</label>
-                                <input id="nomorlantai" type="text" name="nomorlantai" value="{{$data->nomor_lantai}}" class="form-control">
+                                <input id="nomorlantai" type="number" min="0" name="nomorlantai" value="{{$data->nomor_lantai}}" class="form-control">
                             </div>
                         </div>
                     </div>
