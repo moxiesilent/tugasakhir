@@ -50,6 +50,10 @@ class LaporanController extends Controller
         }
         try{
             if($request->get('agenPemilik') != null || $request->get('agenPenjual') != null){
+                if($request->get('komisipemilik') > $request->get('hargaJual') || $request->get('komisipenjual') > $request->get('hargaJual')){
+                    $msg ="Gagal menyimpan data.";
+                    return redirect()->route('laporans.index')->with('error', $msg);
+                }
                 // $listing = Listing::where('idlisting',$request->get('listing'))->get();
                 // $komisi = $listing[0]['komisi'];
                 $data = new Laporan();
