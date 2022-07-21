@@ -627,9 +627,16 @@ class ApiController extends Controller
                 return response()->json(['message' => 'Error']);
             }
             else{
-                $data = new Listing();
 
-                $data->kode_listing = $request->get('kode');
+                $data = new Listing();
+                
+                $kodeAgen = $request->get('kodeAgen');
+                $lastKode = Listing::select('kode_listing')->where('kode_listing','LIKE','%'.$kodeAgen.'%')->latest()->first();
+                $lastNumber = substr($lastKode['kode_listing'],5);
+                $angkaKode = str_pad($lastNumber + 1, 3, "0", STR_PAD_LEFT);
+                $data->kode_listing = $kodeAgen . $angkaKode;
+
+                // $data->kode_listing = $request->get('kode');
                 $data->agen_idagen = $request->get('idagen');
                 $data->alamat_domisili = $request->get('alamatdomisili');
                 $data->nomor_hp_pemilik = $request->get('hppemilik');
