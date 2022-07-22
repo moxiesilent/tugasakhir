@@ -724,7 +724,7 @@ class ApiController extends Controller
 
         $komisiListing = $laporanPemilik + $laporanPenjual;
         return response()->json(['message' => 'Success', 'komisiListing'=> $komisiListing, 'komisiPrimary'=>$komisiPrimary,
-        'jumListingSold'=>$jumListingSold,'jumPrimarySold'=>$jumPrimarySold]);
+        'jumListingSold'=>$jumListingSold,'jumPrimarySold'=>$jumPrimarySold, 'komisiPemilik'=>$laporanPemilik, 'komisiPenjual'=>$laporanPenjual]);
     }
 
     public function detailLaporan(Request $request)
