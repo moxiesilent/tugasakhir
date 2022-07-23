@@ -112,14 +112,6 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="kode">Kode Listing</label> <span style="color:red"><b>*</b></span>
-                                <input id="kode" type="text" name="kode" placeholder="RIC.A000" class="form-control" pattern="([A-Z]{3})(\.)([A-Z]{1}[0-9]{3})" required>
-                            </div>
-                        </div>                                        
-                    </div>
-                    <div class="row">
-                        <div class="col-12 mx-auto mb-3">
-                            <div class="form-group">
                                 <label for="agen">Agen</label> <span style="color:red"><b>*</b></span>
                                 <select class="form-control basic" data-toggle="select" title="Simple select" data-placeholder="Kode - Nama Agen" name="idagen" required>
                                     @foreach($agen as $ag)
