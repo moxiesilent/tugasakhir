@@ -148,8 +148,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="hp">No HP Pemilik</label>
-                                <input id="hp" type="text" name="hppemilik" placeholder="08xxxxxx" class="form-control">
+                                <label for="hp">No HP Pemilik</label>  <span style="color:red"><b>*</b></span><br>
+                                <input id="hp" type="text" name="hppemilik" placeholder="08xxxxxx" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -164,8 +164,8 @@
                     <div class="row">
                         <div class="col-12 mx-auto mb-3">
                             <div class="form-group">
-                                <label for="alamatproperti">Alamat Properti</label>
-                                <input id="alamatproperti" type="text" name="alamatproperti" placeholder="Alamat properti..." class="form-control">
+                                <label for="alamatproperti">Alamat Properti</label>  <span style="color:red"><b>*</b></span><br>
+                                <input id="alamatproperti" type="text" name="alamatproperti" placeholder="Alamat properti..." class="form-control" required>
                             </div>
                         </div>
                     </div>
