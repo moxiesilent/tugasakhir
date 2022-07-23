@@ -75,6 +75,7 @@ class ListingController extends Controller
                 $data = new Listing();
 
                 $kodeAgen = User::select('kode')->where('idagen', $request->get('idagen'))->first();
+                dd($kodeAgen);
                 $lastKode = Listing::select('kode_listing')->where('kode_listing','LIKE','%'.$kodeAgen.'%')->latest()->first();
                 $lastNumber = substr($lastKode['kode_listing'],5);
                 $angkaKode = str_pad($lastNumber + 1, 3, "0", STR_PAD_LEFT);
